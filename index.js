@@ -1,6 +1,6 @@
 import express, { urlencoded } from 'express'
 import rutas from './routes/routes.js'
-import db from './config/dbs.js';
+import db from './config/dbs.js'
 
 //* Crear app
 const app = express()
@@ -21,11 +21,11 @@ try {
 app.set('view engine', 'pug');
 app.set('views', './views');
 
-//* Carpeta pública   
-app.use(express.static('public'));  //? Contenedor de archivos estáticos
-
 //* Routes 
 app.use('/auth', rutas); // Esto es lo que se conoce como middleware
+
+//* Carpeta pública   
+app.use(express.static('public'));  //? Contenedor de archivos estáticos
 
 //* Definir un puerto y arrancar proyecto
 const port = 3000;
