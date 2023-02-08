@@ -8,5 +8,4 @@ router.get('/registro', formularioRegistro);
 router.post('/registro', registroRespuesta);
 router.get('/olvide-password', formularioOlvidePassword);
 
-
 export default router
