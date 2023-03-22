@@ -1,4 +1,6 @@
-import express, { urlencoded } from 'express'
+import express from 'express'
+import csrf from 'csurf'
+import cookieParser from 'cookie-parser'
 import rutas from './routes/routes.js'
 import db from './config/dbs.js'
 
@@ -7,6 +9,12 @@ const app = express()
 
 //* Habilitar lectura de datos de formularios
 app.use( express.urlencoded({extended: true}))
+
+//* Habilitar Cookie Parser
+app.use( cookieParser() )
+
+//* Habilitar CSRF
+app.use( csrf({ cookie: true }));
 
 //* Conexión a la base de datos
 try {
@@ -28,7 +36,7 @@ app.use('/auth', rutas); // Esto es lo que se conoce como middleware
 app.use(express.static('public'));  //? Contenedor de archivos estáticos
 
 //* Definir un puerto y arrancar proyecto
-const port = 3000;
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
-  console.log(`El servidor esta corriendo en ${port}`);
+  console.log(`El servidor en puerto ${port}`);
 });
