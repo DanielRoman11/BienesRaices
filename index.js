@@ -8,10 +8,10 @@ import db from './config/dbs.js'
 const app = express()
 
 //* Habilitar lectura de datos de formularios
-app.use( express.urlencoded({extended: true}))
+app.use( express.urlencoded({extended: true}));
 
 //* Habilitar Cookie Parser
-app.use( cookieParser() )
+app.use( cookieParser());
 
 //* Habilitar CSRF
 app.use( csrf({ cookie: true }));

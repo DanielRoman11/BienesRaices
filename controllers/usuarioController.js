@@ -1,6 +1,6 @@
 import { check, validationResult, body } from 'express-validator'
 import Usuario from '../models/Usuario.js'
-import { generarID } from '../helpers/tokens.js'
+import { generarToken } from '../helpers/tokens.js'
 import { emailOlvidePassword, emailRegistro } from '../helpers/emails.js'
 
 //* Formulario de inicio de sesión
@@ -64,7 +64,7 @@ const registroRespuesta = async (req, res) => {
     nombre,
     email,
     password,
-    token: generarID()
+    token: generarToken()
   });
 
   // Envía email de confirmación
@@ -122,7 +122,7 @@ const resetPassword = async(req, res) => {
     return res.render('auth/olvide-password', {
       pagina: 'Recupera tu acceso',
       errores: resultado.array(),
-      csrfToken: req.csrfToken(),
+      csrfToken: req.csrfToken()
     });
   }
 
@@ -132,15 +132,16 @@ const resetPassword = async(req, res) => {
   const usuario = await Usuario.findOne( {where: {email}  });
   if(!usuario) {
     return res.render('auth/olvide-password', {
-      pagina: 'Recupera tu acceso a Bienes Raices',
-      csrfToken: req.csrfToken(),
-      errores: [{msg: 'El email no pertenece a un usuario'}]
+      pagina: 'Recupera tu acceso',
+      email: email,
+      errores: [{msg: 'El email no pertenece a un usuario'}],
+      csrfToken: req.csrfToken()
     })
   }
 
   //? Generar un Token y enviar el email
   //Generando token
-  usuario.token = generarID();
+  usuario.token = generarToken();
   await usuario.save();
 
   //Enviar email
@@ -148,20 +149,13 @@ const resetPassword = async(req, res) => {
     email: usuario.email,
     nombre: usuario.nombre,
     token: usuario.token
-  })
+  });
 
   //Renderizar un email
-  res.render('templates/mensaje', {
+  return res.render('templates/mensaje', {
     pagina: 'Restablece tu contraseña',
     mensaje: 'Hemos enviado un email con las instrucciones'
-  })
-}
-
-const comprobarToken = (req, res) => {
-
-}
-const nuevoPassword = (req, res) => {
-
+  });
 }
 
 export {
@@ -170,7 +164,5 @@ export {
   formularioOlvidePassword,
   registroRespuesta,
   confirmar,
-  resetPassword,
-  comprobarToken,
-  nuevoPassword
+  resetPassword
 }
