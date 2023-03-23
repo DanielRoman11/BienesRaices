@@ -7,7 +7,7 @@ block contenido
     h2.text-center.text-2xl.font-semibold= pagina
 
     if errores
-      div(class="max-w-md mx-auto my-10")
+      .max-w-md.mx-auto.my-10
         each error in errores
           p.bg-red-600.text-white.uppercase.text-xs.text-center.p-2.mb-1.font-bold= error.msg
 
