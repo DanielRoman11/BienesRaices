@@ -1,6 +1,7 @@
 import { check, validationResult } from 'express-validator'
 import Usuario from '../models/Usuario.js'
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken"
 import { generarToken } from '../helpers/tokens.js'
 import { emailOlvidePassword, emailRegistro } from '../helpers/emails.js'
 
@@ -55,8 +56,10 @@ const login = async(req, res) => {
       csrfToken: req.csrfToken()
     });
   }
-  
-  console.log("Ingresando...");
+
+  const token = 
+
+  console.log(token);
 }
 
 //* Formulario de registro
@@ -90,10 +93,8 @@ const registroRespuesta = async (req, res) => {
       }
     });
   }
-
-  
   // Extraer los datos
-  const { nombre, email, password } = req.body
+  const { nombre, email, password } = req.body;
 
   // Verificar que el usuario no este duplicado
   const existeUsuario = await Usuario.findOne( {where: { email }});
@@ -247,23 +248,23 @@ const nuevaPassword = async(req, res, next) => {
   const salt = await bcrypt.genSalt(10);
   usuario.password = await bcrypt.hash(password, salt);
   usuario.token = null;
-
+  usuario.confirmado = true;
   await usuario.save();
 
   return res.render('auth/confirmar-cuenta', {
-    pagina: 'Cuenta Confirmada',
-    mensaje: 'La cuenta se confirmó correctamente',
+    pagina: 'Se cambio la contraseña',
+    mensaje: 'La contraseña fue cambiada satisfactoriamente',
   });
 }
 
 export {
   formularioLogin,
+  login,
   formularioRegistro,
   formularioOlvidePassword,
   registroRespuesta,
   confirmar,
   resetPassword,
   comprobarPasswordToken,
-  nuevaPassword,
-  login
+  nuevaPassword
 }
