@@ -1,8 +1,7 @@
 import { check, validationResult } from 'express-validator'
 import Usuario from '../models/Usuario.js'
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken"
-import { generarToken } from '../helpers/tokens.js'
+import { generarJWT, generarToken } from '../helpers/tokens.js'
 import { emailOlvidePassword, emailRegistro } from '../helpers/emails.js'
 
 //* Formulario de inicio de sesión
@@ -57,9 +56,16 @@ const login = async(req, res) => {
     });
   }
 
-  const token = 
+  const token = generarJWT({ id: usuario.id, nombre: usuario.nombre });
 
   console.log(token);
+
+  //Almacenar en un Cookie
+  return res.cookie('_token', token, {
+    httpOnly: true,
+    // secure: true, //? Solo si tiene certificado SSL
+    // sameSite:true //? Solo si tiene certificado SSL
+  }).redirect('/mis-propiedades');
 }
 
 //* Formulario de registro
