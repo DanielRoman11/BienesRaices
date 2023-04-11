@@ -6,6 +6,10 @@ html(lang="es")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title Bienes Raices | #{pagina}
     link(rel="stylesheet", href="/css/app.css")
-  body(class= "min-h-screen bg-yellow-100 backdrop-blur-md" )
-    main(class="mx-auto container mt-10 px-2")  
+  body(class=" min-h-screen bg-[#F7F1E5]" )
+    if barra
+      include header
+    main(class="mx-auto container mt-5 px-2")  
       block contenido
+
+    block scripts

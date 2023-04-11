@@ -1,5 +1,5 @@
 import express from 'express';
-import { comprobarPasswordToken, confirmar, formularioLogin, formularioOlvidePassword, formularioRegistro,  login,  nuevaPassword,  registroRespuesta, resetPassword } from "../controllers/usuarioController.js";
+import { comprobarPasswordToken, confirmar, formularioLogin, formularioOlvidePassword, formularioRegistro,  login,  nuevaPassword,  registroRespuesta, resetPassword } from "../controllers/usuarios.Controller.js";
 
 const router = express.Router();
 

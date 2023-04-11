@@ -1,7 +1,8 @@
 import express from 'express'
 import csrf from 'csurf'
 import cookieParser from 'cookie-parser'
-import rutas from './routes/routes.js'
+import rutas from './routes/usuario.Routes.js'
+import rutasPropiedades from './routes/propiedades.Routes.js'
 import db from './config/dbs.js'
 
 //* Crear app
@@ -31,6 +32,7 @@ app.set('views', './views');
 
 //* Routes 
 app.use('/auth', rutas); // Esto es lo que se conoce como middleware
+app.use('/', rutasPropiedades);
 
 //* Carpeta pública   
 app.use(express.static('public'));  //? Contenedor de archivos estáticos
