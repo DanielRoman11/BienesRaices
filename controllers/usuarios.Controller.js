@@ -65,7 +65,7 @@ const login = async(req, res) => {
     httpOnly: true,
     // secure: true, //? Solo si tiene certificado SSL
     // sameSite:true //? Solo si tiene certificado SSL
-  }).redirect('/mis-propiedades');
+  }).redirect('/propiedades');
 }
 
 //* Formulario de registro
@@ -115,6 +115,7 @@ const registroRespuesta = async (req, res) => {
       }
     });
   }
+  
   // Almacenar un Usuario
   const usuario = await Usuario.create({
     nombre,
@@ -122,7 +123,7 @@ const registroRespuesta = async (req, res) => {
     password,
     token: generarToken()
   });
-
+  
   // Envía email de confirmación
   emailRegistro({
     nombre: usuario.nombre,

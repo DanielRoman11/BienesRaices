@@ -546,11 +546,11 @@ video {
 .hidden {
   display: none;
 }
-.h-96 {
-  height: 24rem;
-}
 .h-24 {
   height: 6rem;
+}
+.h-96 {
+  height: 24rem;
 }
 .min-h-screen {
   min-height: 100vh;
