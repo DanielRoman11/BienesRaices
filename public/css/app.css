@@ -672,6 +672,27 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(247 241 229 / var(--tw-bg-opacity));
 }
+.bg-\[\] {
+  background-color: ;
+}
+.bg-\[\#4\] {
+  background-color: #4;
+}
+.bg-\[\#4c4\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(68 204 68 / var(--tw-bg-opacity));
+}
+.bg-\[\#4C4\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(68 204 68 / var(--tw-bg-opacity));
+}
+.bg-\[\#4C4B1\] {
+  background-color: #4C4B1;
+}
+.bg-\[\#EBD638\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(235 214 56 / var(--tw-bg-opacity));
+}
 .p-2 {
   padding: 0.5rem;
 }
@@ -745,6 +766,10 @@ video {
   font-size: 1.125rem;
   line-height: 1.75rem;
 }
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
 .font-extrabold {
   font-weight: 800;
 }
@@ -802,6 +827,16 @@ video {
 .hover\:scale-105:hover {
   --tw-scale-x: 1.05;
   --tw-scale-y: 1.05;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+.hover\:scale-\[102\]:hover {
+  --tw-scale-x: 102;
+  --tw-scale-y: 102;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+.hover\:scale-\[102\%\]:hover {
+  --tw-scale-x: 102%;
+  --tw-scale-y: 102%;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 .hover\:bg-gray-700:hover {
@@ -906,6 +941,12 @@ video {
   .md\:text-2xl {
     font-size: 1.5rem;
     line-height: 2rem;
+  }
+
+  .hover\:md\:scale-105:hover {
+    --tw-scale-x: 1.05;
+    --tw-scale-y: 1.05;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   }
 }
 @media (min-width: 1024px) {
