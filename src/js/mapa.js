@@ -45,7 +45,10 @@
     geocodeService.reverse().latlng(posicion, 12).run(function(error, resultado){//? Esto regresa las propiedades de la ubicación del marcador 
       marker.bindPopup(resultado.address.LongLabel).openPopup(); //? Obtener Información de la ubicación
 
+      //* Para mostrar en la vista
       document.querySelector(".calle").textContent = resultado?.address?.Address ?? "";
+
+      //* Para almacenar en la base de datos
       document.querySelector("#calle").value = resultado?.address?.Address ?? "";
       let lat = document.getElementById("lat").value = resultado?.latlng?.lat ?? "";
       let lng = document.getElementById("lng").value = resultado?.latlng?.lng ?? "";

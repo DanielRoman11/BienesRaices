@@ -32,10 +32,6 @@ const Propiedad = db.define("propiedades", {
     type: DataTypes.STRING,
     allowNull: false
   },
-  calle: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
   lat: {
     type: DataTypes.STRING(60),
     allowNull: false
@@ -53,7 +49,6 @@ const Propiedad = db.define("propiedades", {
     allowNull: false,
     defaultValue: false
   }
-
 });
 
 
