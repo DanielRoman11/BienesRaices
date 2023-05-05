@@ -30,13 +30,14 @@ Cualquier comentario que ayude a la mejora de esta página es recibido es recibi
 
 
 Las variables de entorno son: // Estas pueden que cambien dependiendo de la versión del proyecto, por lo cual puede que esten incompletas
--->Bases de Datos:
+-->Database:
 BD_NOMBRE, BD_USER, BD_PASS, BD_HOST
 
--->Email:
+-->Nodemailer:
 EMAIL_HOST, EMAIL_PORT, EMAIL_USER, EMAIL_PASS
 
--->WebTokens:
+-->JsonWebTokens:
 SECRET_JWT
-BACKEND_URL
-PORT
+
+-->General:
+BACKEND_URL, PORT
