@@ -37,6 +37,7 @@ app.use('/', rutasPropiedades);
 //* Carpeta pública   
 app.use(express.static('public'));  //? Contenedor de archivos estáticos
 
+
 //* Definir un puerto y arrancar proyecto
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
