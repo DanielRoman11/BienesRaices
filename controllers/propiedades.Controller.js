@@ -1,7 +1,5 @@
 import { check, validationResult } from "express-validator";
-import Categoria from "../models/Categoria.js"
-import Precio from "../models/Precio.js"
-import Propiedad from "../models/Propiedad.js"
+import { Categoria, Propiedad, Precio } from "../models/index.js" 
 
 const admin = (req, res) => {
   res.render("propiedades/admin", {
@@ -35,7 +33,7 @@ const guardar = async(req, res) => {
   ]);
 
   const { titulo, descripcion, categoria, precio, habitaciones, estacionamiento, wc, lat, lng, calle } = req.body
-
+  
   if(!errores.isEmpty()){
     return res.render("propiedades/crear", {
       pagina: "Crear propiedad",
@@ -49,49 +47,53 @@ const guardar = async(req, res) => {
         precio,
         habitaciones,
         estacionamiento,
-        wc
+        wc,
+        calle,
+        lat,
+        lng
       },
       errores: errores.array(),
       csrfToken: req.csrfToken()
     });
   }
 
-  const propiedadReg = await Propiedad.findOne({where: lat, where: lng})
+  const {id: usuarioId} = req.usuario;
 
-  if(propiedadReg){
-    return res.render("propiedades/crear", {
-      pagina: "Crear propiedad",
-      barra: true,
-      propiedad:{
-        titulo,
-        descripcion,
-        categoria,
-        precio,
-        habitaciones,
-        estacionamiento,
-        wc
-      },
-      errores: errores.array(),
-      csrfToken: req.csrfToken()
+  try {
+    const propiedad = await Propiedad.create({
+      titulo,
+      descripcion,
+      habitaciones,
+      estacionamiento,
+      wc,
+      calle,
+      lat,
+      lng,
+      categoriaID: categoria,
+      precioID: precio,
+      usuarioID: usuarioId,
+      imagen: ''
     });
-  }
-  
-  const propiedad = await Propiedad.create({
-    titulo: titulo,
-    descripcion: descripcion,
-    habitaciones: habitaciones,
-    estacionamiento: estacionamiento,
-    wc: wc,
-    calle: calle,
-    lat: lat,
-    lng: lng,
-    imagen: "",
-    publicado: false
+
+    const { id } = propiedad;
+
+    res.redirect(`/propiedades/agregar-imagen/${id}`);
+
+  }catch (error) {
+    console.error(error)
+  } 
+}
+
+const agregarImagen = (req, res) => {
+  res.render("propiedades/agregar-imagen", {
+    pagina: "Crear propiedad",
+    csrfToken: req.csrfToken()
   });
 }
 
 export {
   admin,
   crear,
-  guardar
+  guardar,
+  agregarImagen
 }

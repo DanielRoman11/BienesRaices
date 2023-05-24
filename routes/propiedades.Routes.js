@@ -1,13 +1,14 @@
 import express from "express";
 import { body } from "express-validator"
 import { admin, crear, guardar } from "../controllers/propiedades.Controller.js"
+import protegerRuta from "../middleware/proteger.Routes.js";
 
 const ruta = express.Router();
 
-ruta.get("/propiedades", admin);
+ruta.get("/propiedades", protegerRuta, admin);
 
-ruta.get("/propiedades/crear", crear);
-ruta.post("/propiedades/crear", 
+ruta.get("/propiedades/crear", protegerRuta, crear);
+ruta.post("/propiedades/crear", protegerRuta, 
   body('titulo').notEmpty().withMessage("El título no puede estar vacio"),
   body("descripcion").notEmpty().withMessage("Realiza una descripción de tu propiedad")
     .isLength({max: 165}).withMessage("La descripcion es muy larga"),
@@ -19,5 +20,7 @@ ruta.post("/propiedades/crear",
   body("lat").notEmpty().withMessage("Ubica la casa en el mapa"),
   guardar
 );
+
+ruta.get("/subir-imagen", );
 
 export default ruta;
