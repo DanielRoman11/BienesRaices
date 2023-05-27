@@ -23,4 +23,8 @@ ruta.post("/propiedades/crear", protegerRuta,
 
 ruta.get("/propiedades/agregar-imagen/:id",protegerRuta, agregarImagen);
 
+ruta.post("/propiedades/agregar-imagen/:id", (req, res) => {
+  console.log("Hola mundo");
+})
+
 export default ruta;

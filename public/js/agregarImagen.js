@@ -26,7 +26,7 @@ eval("(function webpackUniversalModuleDefinition(root, factory) {\n\tif(true)\n\
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var dropzone__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! dropzone */ \"./node_modules/dropzone/dist/dropzone.js\");\n\r\n\r\ndropzone__WEBPACK_IMPORTED_MODULE_0__.Dropzone.options.imagen = {\r\n  dictDefaultMessage: \"Sube tus imágenes aquí\",\r\n  acceptFiles\r\n}\n\n//# sourceURL=webpack://node_bootcamp/./src/js/agregarImagen.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var dropzone__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! dropzone */ \"./node_modules/dropzone/dist/dropzone.js\");\n\r\n\r\ndropzone__WEBPACK_IMPORTED_MODULE_0__.Dropzone.options.imagen = {\r\n  dictDefaultMessage: \"Sube tus imágenes aquí\",\r\n  acceptFiles: \".png,.jpg,.jpeg\",\r\n  maxFilesize: 4,\r\n  maxFiles: 3,\r\n  parallelUploads: 3,\r\n  autoProcessQueue: false,\r\n  addRemoveLinks: true,\r\n  dictRemoveFile: \"Borrar Imágen\",\r\n  dictMaxFilesExceeded: \"El límite son 3 archivos\"\r\n}\n\n//# sourceURL=webpack://node_bootcamp/./src/js/agregarImagen.js?");
 
 /***/ })
 
