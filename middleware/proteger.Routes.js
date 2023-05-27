@@ -13,7 +13,7 @@ const protegerRutas = async(req, res, next) =>{
     const usuario = await Usuario.scope("eliminarPassword").findByPk(decoded.id) //? El scope estan en el modelo
   
     if(usuario){
-  
+      req.usuario = usuario
     }else{
       return res.redirect("/auth/login")
     }

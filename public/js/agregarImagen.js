@@ -26,7 +26,7 @@ eval("(function webpackUniversalModuleDefinition(root, factory) {\n\tif(true)\n\
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var dropzone__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! dropzone */ \"./node_modules/dropzone/dist/dropzone.js\");\n\r\n\r\n\n\n//# sourceURL=webpack://node_bootcamp/./src/js/agregarImagen.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var dropzone__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! dropzone */ \"./node_modules/dropzone/dist/dropzone.js\");\n\r\n\r\ndropzone__WEBPACK_IMPORTED_MODULE_0__.Dropzone.options.imagen = {\r\n  dictDefaultMessage: \"Sube tus imágenes aquí\",\r\n  acceptFiles\r\n}\n\n//# sourceURL=webpack://node_bootcamp/./src/js/agregarImagen.js?");
 
 /***/ })
 
