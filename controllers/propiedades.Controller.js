@@ -86,7 +86,7 @@ const guardar = async(req, res) => {
 
 const agregarImagen = (req, res) => {
   res.render("propiedades/agregar-imagen", {
-    pagina: "Crear propiedad",
+    pagina: "Agregar Imagen",
     csrfToken: req.csrfToken()
   });
 }
