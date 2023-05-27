@@ -24,6 +24,8 @@ ruta.post("/propiedades/crear", protegerRuta,
 
 ruta.get("/propiedades/agregar-imagen/:id",protegerRuta, agregarImagen);
 
-ruta.post("/propiedades/agregar-imagen/:id", upload.array())
+ruta.post("/propiedades/agregar-imagen/:id", 
+
+upload.array("imagen",3))
 
 export default ruta;

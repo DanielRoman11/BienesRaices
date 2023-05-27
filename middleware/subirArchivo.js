@@ -7,7 +7,7 @@ const storage = multer.diskStorage({
     callback(null, "./public/uploads/")
   },
   filename: function(req, file, callback){
-    cb(null, generarToken() + path.extname(file.originalname))
+    callback(null, generarToken() + path.extname(file.originalname)) //? Para que no hayan nombre iguales tendran un id único, pero conservando su extención
   }
 })
 
