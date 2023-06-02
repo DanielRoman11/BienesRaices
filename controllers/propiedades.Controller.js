@@ -123,10 +123,9 @@ const almacenarImagen = async(req, res, next) => {
   }
 
   try {
-    console.log(req.files);
-    next()
+    console.log(req.files)
     //TODO: Almacena la imagen y publicar propiedad
-    // propiedad.imagen = req.files.filename
+    propiedad.imagen = req.files.filename
     
   } catch (error) {
     console.error("Algo salio mal: " + error);

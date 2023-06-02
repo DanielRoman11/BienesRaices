@@ -17,7 +17,7 @@ block contenido
             p.text-normal= error.msg
       form(id="imagen" class="dropzone border-dashed border-2 w-full min:h-96 h-auto rounded flex-col justify-center items-center space-y-8 font-semibold" method="POST" action=`/propiedades/agregar-imagen/${propiedad.id}`)
         input(type="hidden", name="_csrf" value= csrfToken)
-      input(class="bg-[#4C4B16] hover:scale-[101%] rounded-md px-10 py-2 cursor-pointer text-white uppercase w-full mt-5" type="submit", value="Publicar Propiedad" form="imagen")  
+      button(id="btnPublicar" class="bg-[#4C4B16] hover:scale-[101%] rounded-md px-10 py-2 cursor-pointer text-white uppercase w-full mt-5" type="submit" form="imagen") Publicar Propiedad
 
 block scripts
    script(src="/js/agregarImagen.js") 
