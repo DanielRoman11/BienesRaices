@@ -10,7 +10,7 @@ Dropzone.options.imagen = {
   maxFilesize: 4,
   maxFiles: 3,
   parallelUploads: 3,
-  autoProcessQueue: true,
+  autoProcessQueue: false,
   addRemoveLinks: true,
   dictRemoveFile: "Borrar Imágen",
   dictMaxFilesExceeded: "El límite son 3 archivos",
