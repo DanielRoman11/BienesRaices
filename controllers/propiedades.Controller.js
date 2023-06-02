@@ -123,8 +123,7 @@ const almacenarImagen = async(req, res, next) => {
   }
 
   try {
-    const  [ image1, image2, image3 ] = JSON.stringify(req.files)
-    console.log(image1);
+    console.log(req.files);
     next()
     //TODO: Almacena la imagen y publicar propiedad
     // propiedad.imagen = req.files.filename
