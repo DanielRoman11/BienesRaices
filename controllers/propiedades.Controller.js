@@ -108,9 +108,36 @@ const agregarImagen = async(req, res) => {
   });
 }
 
+const almacenarImagen = async(req, res, next) => {
+  const { id } = req.params
+  const propiedad = await Propiedad.findByPk(id);
+
+  if(!propiedad){
+    return res.redirect("/propiedades");
+  }
+  if(propiedad.publicada){
+    return res.redirect("/propiedades");
+  }
+  if(propiedad.usuarioID.toString() !== req.usuario.id.toString()){
+    return res.redirect("/propiedades")
+  }
+
+  try {
+    const imgArr = []
+    imgArr.push(req.files)
+
+    //TODO: Almacena la imagen y publicar propiedad
+    // propiedad.imagen = req.files.filename
+    
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export {
   admin,
   crear,
   guardar,
-  agregarImagen
+  agregarImagen,
+  almacenarImagen
 }
