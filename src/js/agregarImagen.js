@@ -2,7 +2,6 @@ import { Dropzone } from "dropzone";
 
 const token = document.querySelector("meta[name='csrf-token']").content
 
-console.log(token);
 
 Dropzone.options.imagen = {
   dictDefaultMessage: "Sube tus imágenes aquí",
@@ -20,9 +19,12 @@ Dropzone.options.imagen = {
   paramName: 'imagen',
   init: function() {
     const dropzone = this;
-    const btnPublicar = document.getElementById("btnPublicar")
-    btnPublicar.addEventListener("click", e => {
-      dropzone.getQueuedFiles();
+    const btnPublicar = document.querySelector("#publicar")
+    
+    
+    btnPublicar.addEventListener("click", function () {
+      dropzone.processQueue();
     })
+    
   }
 }
