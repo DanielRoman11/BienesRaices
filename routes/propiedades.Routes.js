@@ -3,6 +3,7 @@ import { body } from "express-validator"
 import { admin, agregarImagen, almacenarImagen, crear, guardar } from "../controllers/propiedades.Controller.js"
 import protegerRuta from "../middleware/proteger.Routes.js";
 import upload from "../middleware/subirArchivo.js";
+import uploadFile from "../middleware/subirArchivo.js";
 
 const ruta = express.Router();
 
@@ -24,8 +25,7 @@ ruta.post("/propiedades/crear", protegerRuta,
 
 ruta.get("/propiedades/agregar-imagen/:id",protegerRuta, agregarImagen);
 
-ruta.post("/propiedades/agregar-imagen/:id", 
-  upload.array("imagen",3), protegerRuta, almacenarImagen
+ruta.post("/propiedades/agregar-imagen/:id", uploadFile(), protegerRuta, almacenarImagen
 )
 
 export default ruta;

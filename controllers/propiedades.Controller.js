@@ -123,13 +123,28 @@ const almacenarImagen = async(req, res) => {
   }
 
   try {
-    console.log(req.files)
+    const imagenes = req.files
+    const a = ""
 
+    a.to
+
+    // console.log(imagenes);
     //TODO: Almacena la imagen y publicar propiedad
-    // propiedad.imagen = req.files.filename
+    const imagesArr =  []
+    const imagePaths = req.files.map(image => {
+      rutasimage.path
+      console.log(image.path);
+    })
+    
+    res.json({ images: imagePaths });
+    // propiedad.imagen = imagenes.filename;
+    // propiedad.publicado = 1;
+
+
     
   } catch (error) {
-    console.error("Algo salio mal: " + error);
+    
+    console.error("Algo salió mal: "+error);
   }
 }
 
