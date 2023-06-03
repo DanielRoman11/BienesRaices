@@ -123,20 +123,23 @@ const almacenarImagen = async(req, res) => {
   }
 
   try {
-    const imagenes = req.files
-    const a = ""
-
-    a.to
-
-    // console.log(imagenes);
-    //TODO: Almacena la imagen y publicar propiedad
-    const imagesArr =  []
-    const imagePaths = req.files.map(image => {
-      rutasimage.path
-      console.log(image.path);
-    })
+    const files = req.files
     
-    res.json({ images: imagePaths });
+    console.log(files);
+    // arr.push(files[0])
+
+    // console.log(arr);
+
+    // //TODO: Almacena la imagen y publicar propiedad
+    // const images = arr.map(file => {
+    //     return {
+    //       ruta: file.path,
+    //       propiedadID: id
+    //     };
+    // });
+    
+    // console.log(images);
+
     // propiedad.imagen = imagenes.filename;
     // propiedad.publicado = 1;
 

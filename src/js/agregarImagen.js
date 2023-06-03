@@ -21,10 +21,9 @@ Dropzone.options.imagen = {
     const dropzone = this;
     const btnPublicar = document.querySelector("#publicar")
     
-    
-    btnPublicar.addEventListener("click", function () {
-      dropzone.processQueue();
+    btnPublicar.addEventListener("click", () => {
+      const archivosActivos = dropzone.getQueuedFiles();
+      console.log("Archivos activos: ", archivosActivos)
     })
-    
   }
 }
