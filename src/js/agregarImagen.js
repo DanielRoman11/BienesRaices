@@ -21,9 +21,20 @@ Dropzone.options.imagen = {
     const dropzone = this;
     const btnPublicar = document.querySelector("#publicar")
     
-    btnPublicar.addEventListener("click", () => {
-      const archivosActivos = dropzone.getQueuedFiles();
-      console.log("Archivos activos: ", archivosActivos)
-    })
+    function enviarImagenes() {
+      const archivosActivos = dropzone.getActiveFiles();
+      const archivosEnCola = dropzone.getQueuedFiles();
+      
+      archivosActivos.forEach(archivo => {
+        const archivoEncolado = file => file.name === archivo.name 
+        const archivoEnCola = archivosEnCola.find( archivoEncolado(archivo));
+
+        archivoEnCola ? console.warn("El archivo "+archivo.name+" ya estaba en cola") : dropzone.enqueueFile(archivo);
+      });
+
+      return dropzone.processQueue();
+    }
+
+    btnPublicar.addEventListener("click", enviarImagenes)
   }
 }
