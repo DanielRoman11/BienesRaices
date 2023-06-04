@@ -108,9 +108,35 @@ const agregarImagen = async(req, res) => {
   });
 }
 
+const publicarPropiedad = async(req, res) => {
+  const { id } = req.params
+  const propiedad = await Propiedad.findByPk(id);
+
+  if(!propiedad){
+    return res.redirect("/propiedades");
+  }
+
+  if(propiedad.publicada){
+    return res.redirect("/propiedades");
+  }
+
+  if(propiedad.usuarioID.toString() !== req.usuario.id.toString()){
+    return res.redirect("/propiedades")
+  }
+
+  const imagen = req.file;
+  console.log(imagen);
+
+  //TODO: Subir la ruta del archivo en la database
+  // propiedad.imagen = files.fieldname;
+  // propiedad.publicado = true;
+  // await propiedad.save()
+}
+
 export {
   admin,
   crear,
   guardar,
-  agregarImagen
+  agregarImagen,
+  publicarPropiedad
 }

@@ -8,14 +8,22 @@ Dropzone.options.imagen = {
   dictDefaultMessage: "Sube tus imágenes aquí",
   acceptedFiles: ".png,.jpg,.jpeg",
   maxFilesize: 4,
-  maxFiles: 3,
-  parallelUploads: 3,
+  maxFiles: 1,
+  parallelUploads: 1,
   autoProcessQueue: true,
   addRemoveLinks: true,
   dictRemoveFile: "Borrar Imágen",
-  dictMaxFilesExceeded: "El límite son 3 archivos",
+  dictMaxFilesExceeded: "Solo puedes subir una imagen",
   headers: {
     'CSRF-Token': token
   },
-  paramName: 'imagen'
+  paramName: 'imagen',
+  // init: function () {
+  //   const dropzone = this;
+  //   const btnUpload = document.getElementById("publicar");
+
+  //   btnUpload.addEventListener("click", () => {
+  //     dropzone.processQueue();
+  //   });
+  // }
 }
