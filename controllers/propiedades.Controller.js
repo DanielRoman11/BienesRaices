@@ -93,7 +93,7 @@ const agregarImagen = async(req, res) => {
     return res.redirect("/propiedades");
   }
 
-  if(propiedad.publicada){
+  if(propiedad.publicado){
     return res.redirect("/propiedades");
   }
 
@@ -116,7 +116,7 @@ const publicarPropiedad = async(req, res) => {
     return res.redirect("/propiedades");
   }
 
-  if(propiedad.publicada){
+  if(propiedad.publicado){
     return res.redirect("/propiedades");
   }
 
