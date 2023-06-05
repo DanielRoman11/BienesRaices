@@ -1,10 +1,15 @@
 import { check, validationResult } from "express-validator";
 import { Categoria, Propiedad, Precio } from "../models/index.js" 
 
-const admin = (req, res) => {
+const admin = async(req, res) => {
+  const { id } = req.usuario
+
+  const propiedades = await Propiedad.findAll({where: { usuarioID: id }})
+
   res.render("propiedades/admin", {
     pagina: "Mis propiedades",
-    barra: true
+    barra: true,
+    propiedades: propiedades
   });
 }
 
@@ -108,7 +113,7 @@ const agregarImagen = async(req, res) => {
   });
 }
 
-const publicarPropiedad = async(req, res) => {
+const publicarPropiedad = async(req, res, next) => {
   const { id } = req.params
   const propiedad = await Propiedad.findByPk(id);
 
@@ -131,6 +136,8 @@ const publicarPropiedad = async(req, res) => {
   propiedad.imagen = imagen.filename;
   propiedad.publicado = true;
   await propiedad.save()
+
+  next();
 }
 
 export {
