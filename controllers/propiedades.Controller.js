@@ -128,9 +128,9 @@ const publicarPropiedad = async(req, res) => {
   console.log(imagen);
 
   //TODO: Subir la ruta del archivo en la database
-  // propiedad.imagen = files.fieldname;
-  // propiedad.publicado = true;
-  // await propiedad.save()
+  propiedad.imagen = imagen.filename;
+  propiedad.publicado = true;
+  await propiedad.save()
 }
 
 export {
