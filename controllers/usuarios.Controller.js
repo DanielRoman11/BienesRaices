@@ -264,6 +264,14 @@ const nuevaPassword = async(req, res, next) => {
   });
 }
 
+const logout = (req, res) => {
+  res.cookie("_token", "", {
+    expires: new Date(0),
+  });
+  res.redirect("/auth/login");
+}
+
+
 export {
   formularioLogin,
   login,
@@ -273,5 +281,6 @@ export {
   confirmar,
   resetPassword,
   comprobarPasswordToken,
-  nuevaPassword
+  nuevaPassword,
+  logout
 }
