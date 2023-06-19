@@ -13,7 +13,7 @@ block contenido
   if propiedades.length
     div(class="w-full flex justify-evenly gap-2 md:gap-4 flex-wrap py-2")
       each propiedad in propiedades
-        div(class="bg-white w-full h-full sm:h-[500px] sm:w-72 md:w-80 rounded-md overflow-hidden border-2 border-gray-300 hover:border-yellow-300 hover:shadow-xl delay-100")
+        div(class="bg-white w-full h-full sm:h-[500px] sm:w-72 md:w-80 rounded-md overflow-hidden border-2 border-gray-300 hover:border-yellow-300 hover:shadow-xl delay-75")
           div(class="flex h-1/2 relative")
             img(src=`uploads/${propiedad.imagen}` alt=`Imagen propiedad ${propiedad.titulo}` class="block w-full flex-grow basis-0")
             p(class="absolute top-2 left-2 flex items-center text-ellipsis font-bold whitespace-pre-line overflow-hidden text-sm bg-white/40 backdrop-blur rounded-md px-4 py-1")
@@ -27,8 +27,12 @@ block contenido
             div(class="flex flex-col justify-items-end")
               p(class="text-ellipsis font-bold whitespace-pre-line overflow-hidden flex text-gray-700")= propiedad.precio.nombre
               p(class="border-t border-gray-400 font-semibold text-gray-600")= propiedad.calle
-            div
+            div(class="flex gap-2 sm:w-auto flex-col sm:flex-row sm:justify-between")
               form(action="#")
-                input(type="submit" class=`px-2 py-2 md:py-1 text-xs leading-5 font-semibold rounded-md cursor-pointer ${propiedad.publicado ? 'bg-green-200 text-green-800' : 'bg-red-200 text-red-800'}` value=`${propiedad.publicado ? 'Publicado' : 'No publicado'}`)
+                input(type="submit" class=`px-2 py-2 md:py-1 text-xs w-full sm:w-auto leading-5 font-semibold rounded-md cursor-pointer ${propiedad.publicado ? 'bg-green-200 text-green-800' : 'bg-orange-200 text-orange-800'}` value=`${propiedad.publicado ? 'Publicado' : 'No publicado'}`)
+              a(href="#" class="px-2 py-2 md:py-1 text-center text-xs leading-5 font-semibold rounded-md cursor-pointer bg-blue-200") Editar
+
+              form(action="#")
+                input(type="submit" class="px-2 py-2 md:py-1 text-xs w-full sm:w-auto leading-5 font-semibold rounded-md cursor-pointer bg-red-200 text-red-800" value="Eliminar")
   else
     p.text-center.font-bold.text-2xl No hay propiedades
