@@ -27,5 +27,8 @@ block contenido
             div(class="flex flex-col justify-items-end")
               p(class="text-ellipsis font-bold whitespace-pre-line overflow-hidden flex text-gray-700")= propiedad.precio.nombre
               p(class="border-t border-gray-400 font-semibold text-gray-600")= propiedad.calle
+            div
+              form(action="#")
+                input(type="submit" class=`px-2 py-2 md:py-1 text-xs leading-5 font-semibold rounded-md cursor-pointer ${propiedad.publicado ? 'bg-green-200 text-green-800' : 'bg-red-200 text-red-800'}` value=`${propiedad.publicado ? 'Publicado' : 'No publicado'}`)
   else
     p.text-center.font-bold.text-2xl No hay propiedades
