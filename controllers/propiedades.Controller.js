@@ -159,11 +159,11 @@ const editar = async(req, res) => {
     return res.redirect("/propiedades");
   }
 
-
   const [ categorias, precios ] = await Promise.all([
     Categoria.findAll(),
     Precio.findAll()
   ])
+
 
   res.render("propiedades/editar", {
     pagina: "Editar propiedad",
