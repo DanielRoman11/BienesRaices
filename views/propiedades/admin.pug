@@ -6,10 +6,9 @@ block contenido
       span.font-normal Raices
     h2.text-center.text-2xl.font-semibold= pagina
     .flex.pt-10
-      a(class="bg-[#4C4B16] px-10 py-2 hover:focus:outline-none focus:ring-4 focus:ring-opacity-75 transform hover:scale-105 text-xs md:text-base focus:ring-yellow-200 w-full text-center md:w-auto md:mb-5 rounded-md text-white font-bold" href="/propiedades/crear") Publicar una propiedad
+      a(class="bg-[#4C4B16] px-20 py-2 focus:outline-none focus:delay-75 focus:ring-4 focus:ring-opacity-75 text-xs md:text-base ring-yellow-200 w-full text-center md:w-auto md:mb-5 rounded-md text-white font-bold" href="/propiedades/crear") Publicar una propiedad
 
-  //- pre= JSON.stringify(propiedades, undefined, 3)
-    
+  //- pre= JSON.stringify(propiedades, undefined, 3)   
   if propiedades.length
     div(class="w-full flex justify-evenly gap-2 md:gap-4 flex-wrap py-2")
       each propiedad in propiedades
@@ -30,7 +29,7 @@ block contenido
             div(class="flex gap-2 sm:w-auto flex-col sm:flex-row sm:justify-between")
               form(action="#")
                 input(type="submit" class=`px-2 py-2 md:py-1 text-xs w-full sm:w-auto leading-5 font-semibold rounded-md cursor-pointer ${propiedad.publicado ? 'bg-green-200 text-green-800' : 'bg-orange-200 text-orange-800'}` value=`${propiedad.publicado ? 'Publicado' : 'No publicado'}`)
-              a(href="#" class="px-2 py-2 md:py-1 text-center text-xs leading-5 font-semibold rounded-md cursor-pointer bg-blue-200") Editar
+              a(href=`propiedades/editar/${propiedad.id}` class="px-2 py-2 md:py-1 text-center text-xs leading-5 font-semibold rounded-md cursor-pointer bg-blue-200") Editar
 
               form(action="#")
                 input(type="submit" class="px-2 py-2 md:py-1 text-xs w-full sm:w-auto leading-5 font-semibold rounded-md cursor-pointer bg-red-200 text-red-800" value="Eliminar")

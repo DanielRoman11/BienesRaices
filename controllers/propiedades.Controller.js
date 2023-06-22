@@ -1,3 +1,4 @@
+import { Sequelize } from "sequelize";
 import { check, validationResult } from "express-validator";
 import { Categoria, Propiedad, Precio } from "../models/index.js" 
 
@@ -9,8 +10,8 @@ const admin = async(req, res) => {
       { model: Categoria, as: 'categoria' },
       { model: Precio, as: 'precio' }
     ]
-  })
-
+  });
+  
   res.render("propiedades/admin", {
     pagina: "Mis propiedades",
     barra: true,
@@ -145,10 +146,39 @@ const publicarPropiedad = async(req, res, next) => {
   next();
 }
 
+const editar = async(req, res) => {
+  const { id } = req.params;
+
+  const propiedad = await Propiedad.findByPk(id);
+
+  if(!propiedad){
+    return res.redirect("/propiedades");
+  }
+
+  if(propiedad.usuarioID.toString() !== req.usuario.id.toString()){
+    return res.redirect("/propiedades");
+  }
+
+
+  const [ categorias, precios ] = await Promise.all([
+    Categoria.findAll(),
+    Precio.findAll()
+  ])
+
+  res.render("propiedades/editar", {
+    pagina: "Editar propiedad",
+    propiedad,
+    categorias,
+    precios,
+    csrfToken: req.csrfToken()
+  })
+}
+
 export {
   admin,
   crear,
   guardar,
   agregarImagen,
-  publicarPropiedad
+  publicarPropiedad,
+  editar
 }
