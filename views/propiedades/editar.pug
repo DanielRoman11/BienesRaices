@@ -10,14 +10,14 @@ block contenido
       span.font-normal Raices
     h2.text-center.text-2xl.font-semibold= pagina
 
-    pre= JSON.stringify(propiedad, undefined, 2)
+    //- pre= JSON.stringify(propiedad, undefined, 2)
 
     div(class="bg-white shadow py-8 px-4 md:px-10 rounded-md mx-auto max-w-4xl my-10")
       if errores
         each error in errores
           .text-center.text-white.bg-red-600.mx-auto.my-1.max-w-2xl.font-semibold
             p.text-normal= error.msg
-      form(method="POST" action="/propiedades/crear").space-y-8
+      form(method="patch" action="/propiedades/editar").space-y-8
         div.space-y-8
           h3.text-lg.leading-6.font-medium.text-gray-900 Información General
           p.text-gray-600 Añade Información sobre la propiedad en venta

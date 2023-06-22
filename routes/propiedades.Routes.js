@@ -25,7 +25,7 @@ ruta.post("/propiedades/crear", protegerRuta,
 ruta.get("/propiedades/agregar-imagen/:id",protegerRuta, agregarImagen);
 ruta.post("/propiedades/agregar-imagen/:id", upload.single("imagen"), protegerRuta, publicarPropiedad);
 
-ruta.get("/propiedades/editar/:id", protegerRuta, editar );
+ruta.get("/propiedades/editar/:id", protegerRuta, editar);
 
 
 export default ruta;
