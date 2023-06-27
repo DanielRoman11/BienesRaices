@@ -162,8 +162,7 @@ const editar = async(req, res) => {
   const [ categorias, precios ] = await Promise.all([
     Categoria.findAll(),
     Precio.findAll()
-  ])
-
+  ]);
 
   res.render("propiedades/editar", {
     pagina: "Editar propiedad",
@@ -174,11 +173,49 @@ const editar = async(req, res) => {
   })
 }
 
+const guardarCambios = async(req, res) => {
+  const errores = validationResult(req);
+
+  const { titulo, descripcion, categoria, precio, habitaciones, estacionamiento, wc, lat, lng, calle 
+  } = req.body
+  
+  if(!errores.isEmpty()){
+    const [ categorias, precios ] = await Promise.all([
+      Categoria.findAll(),
+      Precio.findAll()
+    ]);
+
+    return res.render("propiedades/editar", {
+      pagina: "Editar propiedad",
+      propiedad: {
+        titulo, descripcion, categoria, precio, habitaciones, estacionamiento, wc, lat, lng, calle
+      },
+      categorias,
+      precios,
+      errores: errores.array(),
+      csrfToken: req.csrfToken()
+    });
+  }
+
+  const { id } = req.params;
+  const propiedad = await Propiedad.findByPk(id);
+
+  if(!propiedad) return res.redirect("/propiedades");
+
+  if(propiedad.usuarioID.toString() !== req.usuario.id.toString()) return res.redirect("/propiedades");
+
+  res.render("propiedades/editar-imagen", {
+    pagina: "Editar propiedad",
+    csrfToken: req.csrfToken()
+  });
+}
+
 export {
   admin,
   crear,
   guardar,
   agregarImagen,
   publicarPropiedad,
-  editar
+  editar,
+  guardarCambios
 }
