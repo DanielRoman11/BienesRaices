@@ -188,7 +188,14 @@ const guardarCambios = async(req, res) => {
     return res.render("propiedades/editar", {
       pagina: "Editar propiedad",
       propiedad: {
-        titulo, descripcion, categoria, precio, habitaciones, estacionamiento, wc, lat, lng, calle
+        titulo, 
+        descripcion, categoriaID: categoria, 
+        precioID: precio, 
+        habitaciones, 
+        estacionamiento, 
+        wc, lat, 
+        lng, 
+        calle        
       },
       categorias,
       precios,
