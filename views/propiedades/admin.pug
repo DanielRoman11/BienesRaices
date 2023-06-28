@@ -12,7 +12,7 @@ block contenido
   if propiedades.length
     div(class="w-full flex justify-center gap-2 flex-wrap py-2")
       each propiedad in propiedades
-        div(class="bg-white w-full h-full sm:h-[400px] sm:w-60 md:w-72 rounded-md overflow-hidden border-2 border-gray-300 hover:border-yellow-300 hover:shadow-xl")
+        div(class="bg-white w-full h-full sm:h-[400px] sm:w-[20%] rounded-md overflow-hidden border-2 border-gray-300 hover:border-yellow-300 hover:shadow-xl")
           div(class="flex h-1/2 relative")
             img(src=`uploads/${propiedad.imagen}` alt=`Imagen propiedad ${propiedad.titulo}` class="block w-full flex-grow basis-0")
             p(class="absolute top-2 left-2 flex items-center text-ellipsis font-bold whitespace-pre-line overflow-hidden text-sm bg-white/40 backdrop-blur rounded-md px-4 py-1")

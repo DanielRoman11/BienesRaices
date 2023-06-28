@@ -1,6 +1,6 @@
 import express from "express";
 import { body } from "express-validator"
-import { admin, agregarImagen, crear, editar, guardar, guardarCambios, publicarPropiedad } from "../controllers/propiedades.Controller.js"
+import { admin, agregarImagen, crear, editar, editarImagen, guardar, guardarCambios, nuevaImagen, publicarPropiedad } from "../controllers/propiedades.Controller.js"
 import protegerRuta from "../middleware/proteger.Routes.js";
 import upload from "../middleware/subirArchivo.js";
 
@@ -37,6 +37,9 @@ ruta.post("/propiedades/editar/:id", protegerRuta,
   body("lat").notEmpty().withMessage("Ubica la casa en el mapa"),
   guardarCambios
 );
+
+ruta.get("/propiedades/editar-imagen/:id",protegerRuta, nuevaImagen);
+ruta.post("/propiedades/agregar-imagen/:id", upload.single("imagen"), protegerRuta, editarImagen);
 
 
 

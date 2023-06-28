@@ -165,7 +165,7 @@ const editar = async(req, res) => {
   ]);
 
   res.render("propiedades/editar", {
-    pagina: "Editar propiedad",
+    pagina: `Editar propiedad: ${propiedad.titulo}`,
     propiedad,
     categorias,
     precios,
@@ -211,10 +211,64 @@ const guardarCambios = async(req, res) => {
 
   if(propiedad.usuarioID.toString() !== req.usuario.id.toString()) return res.redirect("/propiedades");
 
+  propiedad.titulo = titulo;
+  propiedad.descripcion = descripcion;
+  propiedad.habitaciones = habitaciones;
+  propiedad.estacionamiento = estacionamiento;
+  propiedad.wc = wc;
+  propiedad.calle = calle;
+  propiedad.lat = lat;
+  propiedad.lng = lng;
+  await propiedad.save();
+
+
   res.render("propiedades/editar-imagen", {
-    pagina: "Editar propiedad",
+    pagina: `Editar propiedad: ${propiedad.titulo}`,
+    propiedad,
     csrfToken: req.csrfToken()
   });
+}
+
+const editarImagen = async(req, res) => {
+  
+  const { id } = req.params
+  const propiedad = await Propiedad.findByPk(id);
+
+  if(!propiedad){
+    return res.redirect("/propiedades");
+  }
+
+  if(propiedad.publicado){
+    return res.redirect("/propiedades");
+  }
+
+  if(propiedad.usuarioID.toString() !== req.usuario.id.toString()){
+    return res.redirect("/propiedades")
+  }
+  
+  res.render("propiedades/agregar-imagen", {
+    pagina: `Agregar Imagen para "${propiedad.titulo}"`,
+    propiedad,
+    csrfToken: req.csrfToken()
+  });
+}
+
+const nuevaImagen = async(req, res) => {
+  const { id } = req.params
+  const propiedad = await Propiedad.findByPk(id);
+
+  if(!propiedad){
+    return res.redirect("/propiedades");
+  }
+
+  if(propiedad.publicado){
+    return res.redirect("/propiedades");
+  }
+
+  if(propiedad.usuarioID.toString() !== req.usuario.id.toString()){
+    return res.redirect("/propiedades")
+  }
+  console.log("Subiendo...");
 }
 
 export {
@@ -224,5 +278,7 @@ export {
   agregarImagen,
   publicarPropiedad,
   editar,
-  guardarCambios
+  guardarCambios,
+  editarImagen,
+  nuevaImagen
 }
