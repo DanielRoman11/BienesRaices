@@ -1,5 +1,5 @@
-import { Sequelize } from "sequelize";
-import { check, validationResult } from "express-validator";
+import { unlink } from "node:fs/promises"; 
+import { validationResult } from "express-validator";
 import { Categoria, Propiedad, Precio } from "../models/index.js" 
 
 const admin = async(req, res) => {
@@ -15,7 +15,8 @@ const admin = async(req, res) => {
   res.render("propiedades/admin", {
     pagina: "Mis propiedades",
     barra: true,
-    propiedades: propiedades
+    propiedades: propiedades,
+    csrfToken: req.csrfToken()
   });
 }
 
@@ -176,7 +177,7 @@ const editar = async(req, res) => {
 const guardarCambios = async(req, res) => {
   const errores = validationResult(req);
 
-  const { titulo, descripcion, categoria, precio, habitaciones, estacionamiento, wc, lat, lng, calle 
+  const { titulo, descripcion, categoria: categoriaID, precio: precioID, habitaciones, estacionamiento, wc, lat, lng, calle 
   } = req.body
   
   if(!errores.isEmpty()){
@@ -189,8 +190,8 @@ const guardarCambios = async(req, res) => {
       pagina: "Editar propiedad",
       propiedad: {
         titulo, 
-        descripcion, categoriaID: categoria, 
-        precioID: precio, 
+        descripcion, categoriaID, 
+        precioID, 
         habitaciones, 
         estacionamiento, 
         wc, lat, 
@@ -211,65 +212,56 @@ const guardarCambios = async(req, res) => {
 
   if(propiedad.usuarioID.toString() !== req.usuario.id.toString()) return res.redirect("/propiedades");
 
-  propiedad.titulo = titulo;
-  propiedad.descripcion = descripcion;
-  propiedad.habitaciones = habitaciones;
-  propiedad.estacionamiento = estacionamiento;
-  propiedad.wc = wc;
-  propiedad.calle = calle;
-  propiedad.lat = lat;
-  propiedad.lng = lng;
+  try {
+    
+  } catch (error) {
+    console.error(error);
+  }
+
+  propiedad.set({
+    titulo,
+    precioID,
+    categoriaID,
+    descripcion,
+    habitaciones,
+    estacionamiento,
+    wc,
+    calle,
+    lat,
+    lng,
+  });
   await propiedad.save();
 
-
-  res.render("propiedades/editar-imagen", {
-    pagina: `Editar propiedad: ${propiedad.titulo}`,
-    propiedad,
-    csrfToken: req.csrfToken()
-  });
+  res.redirect("/propiedades");
 }
 
-const editarImagen = async(req, res) => {
-  
+const eliminar = async(req, res) => {
   const { id } = req.params
   const propiedad = await Propiedad.findByPk(id);
 
   if(!propiedad){
+    console.log("No existe la propiedad");
     return res.redirect("/propiedades");
   }
 
   if(propiedad.publicado){
+    console.log("La propiedad no ha sido publicada");
     return res.redirect("/propiedades");
   }
 
   if(propiedad.usuarioID.toString() !== req.usuario.id.toString()){
+    console.log("La propiedad no pertenece a este usuario");
     return res.redirect("/propiedades")
   }
-  
-  res.render("propiedades/agregar-imagen", {
-    pagina: `Agregar Imagen para "${propiedad.titulo}"`,
-    propiedad,
-    csrfToken: req.csrfToken()
-  });
+
+  //? Eliminando imagen
+  await unlink(`public/uploads/${propiedad.imagen}`);
+  console.log(`Imagen eliminada para: ${propiedad.titulo}, imagen: ${propiedad.imagen} `);
+
+  await propiedad.destroy();
+  res.redirect("/propiedades");
 }
 
-const nuevaImagen = async(req, res) => {
-  const { id } = req.params
-  const propiedad = await Propiedad.findByPk(id);
-
-  if(!propiedad){
-    return res.redirect("/propiedades");
-  }
-
-  if(propiedad.publicado){
-    return res.redirect("/propiedades");
-  }
-
-  if(propiedad.usuarioID.toString() !== req.usuario.id.toString()){
-    return res.redirect("/propiedades")
-  }
-  console.log("Subiendo...");
-}
 
 export {
   admin,
@@ -279,6 +271,5 @@ export {
   publicarPropiedad,
   editar,
   guardarCambios,
-  editarImagen,
-  nuevaImagen
+  eliminar
 }
