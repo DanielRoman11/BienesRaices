@@ -97,8 +97,7 @@ const guardar = async(req, res) => {
 }
 
 const agregarImagen = async(req, res) => {
-  
-  const { id } = req.params
+  const { id } = req.params;
   const propiedad = await Propiedad.findByPk(id);
 
   if(!propiedad){
@@ -232,7 +231,11 @@ const guardarCambios = async(req, res) => {
   });
   await propiedad.save();
 
-  res.redirect("/propiedades");
+  res.render("propiedades/agregar-imagen",{
+    propiedad,
+    csrfToken: req.csrfToken()
+    }
+  );
 }
 
 const eliminar = async(req, res) => {
@@ -244,7 +247,7 @@ const eliminar = async(req, res) => {
     return res.redirect("/propiedades");
   }
 
-  if(propiedad.publicado){
+  if(!propiedad.publicado){
     console.log("La propiedad no ha sido publicada");
     return res.redirect("/propiedades");
   }
