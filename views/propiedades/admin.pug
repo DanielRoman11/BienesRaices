@@ -4,25 +4,25 @@ block contenido
   .py-10
     h1.text-4xl.my-10.font-extrabold.text-center Bienes
       span.font-normal Raices
-    h2.text-center.text-2xl.font-semibold= pagina
+    h2.text-center.text-2xl.font-bold= pagina
     .flex.pt-10
-      a(class="bg-[#4C4B16] px-20 py-2 focus:outline-none focus:delay-75 focus:ring-4 focus:ring-opacity-75 text-xs md:text-base ring-yellow-200 w-full text-center md:w-auto md:mb-5 rounded-md text-white font-bold" href="/propiedades/crear") Publicar una propiedad
+      a(class="sm:max-w-[450px] lg:max-w-[500px] m-auto bg-[#4C4B16] px-20 py-2 focus:outline-none focus:delay-75 focus:ring-4 focus:ring-opacity-75 text-xs md:text-base ring-yellow-200 w-full text-center md:w-auto md:mb-5 rounded-md text-white font-bold" href="/propiedades/crear") Publica una propiedad🏠
 
   //- pre= JSON.stringify(propiedades, undefined, 3)   
   if propiedades.length
     div(class="w-full flex justify-center gap-2 flex-wrap py-2")
       each propiedad in propiedades
-        div(class="bg-white w-full h-full sm:h-[400px] md:w-1/2 lg:w-[500px] rounded-md overflow-hidden border-2 border-gray-300 hover:border-yellow-300 hover:shadow-xl")
+        div(class="bg-white w-full h-full sm:h-[500px] sm:w-[450px] md:w-1/2 lg:w-[500px] rounded-md overflow-hidden border-2 border-gray-300 hover:border-yellow-300 hover:shadow-xl")
           div(class="flex h-1/2 relative")
             img(src=`uploads/${propiedad.imagen}` alt=`Imagen propiedad ${propiedad.titulo}` class="block w-full flex-grow basis-0")
             p(class="absolute top-2 left-2 flex items-center text-ellipsis font-bold whitespace-pre-line overflow-hidden text-sm bg-white/40 backdrop-blur rounded-md px-4 py-1")
               svg(xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-5")
                 path(stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25")
               = propiedad.categoria.nombre
-          div(class="space-y-3 p-3 truncate flex flex-col justify-between h-1/2")
-            div.truncate
+          div(class="space-y-3 p-3 truncate flex flex-col justify-between h-1/2 ")
+            div.line-clamp-2.whitespace-pre-wrap
               a(class="text-lg font-extrabold text-[#898121] underline underline-offset-2" href="#")= propiedad.titulo
-              p(class="text-ellipsis font-semibold text-xs whitespace-pre-line overflow-hidden flex text-gray-500")= propiedad.descripcion
+              p(class="font-semibold text-xs whitespace-pre-wrap text-gray-500 line-clamp-3 overflow-hidden")= propiedad.descripcion
             div(class="flex flex-col justify-items-end text-sm")
               p(class="text-ellipsis font-bold whitespace-pre-line overflow-hidden flex text-gray-700")= propiedad.precio.nombre
               p(class="border-t border-gray-400 font-semibold text-gray-600")= propiedad.calle

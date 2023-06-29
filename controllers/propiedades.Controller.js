@@ -212,30 +212,28 @@ const guardarCambios = async(req, res) => {
   if(propiedad.usuarioID.toString() !== req.usuario.id.toString()) return res.redirect("/propiedades");
 
   try {
-    
+    propiedad.set({
+      titulo,
+      precioID,
+      categoriaID,
+      descripcion,
+      habitaciones,
+      estacionamiento,
+      wc,
+      calle,
+      lat,
+      lng,
+    });
+    await propiedad.save();
+  
+    res.render("propiedades/editar-imagen",{
+      propiedad,
+      csrfToken: req.csrfToken()
+      }
+    );
   } catch (error) {
     console.error(error);
   }
-
-  propiedad.set({
-    titulo,
-    precioID,
-    categoriaID,
-    descripcion,
-    habitaciones,
-    estacionamiento,
-    wc,
-    calle,
-    lat,
-    lng,
-  });
-  await propiedad.save();
-
-  res.render("propiedades/agregar-imagen",{
-    propiedad,
-    csrfToken: req.csrfToken()
-    }
-  );
 }
 
 const eliminar = async(req, res) => {
@@ -243,21 +241,31 @@ const eliminar = async(req, res) => {
   const propiedad = await Propiedad.findByPk(id);
 
   if(!propiedad){
-    console.log("No existe la propiedad");
     return res.redirect("/propiedades");
   }
 
   if(!propiedad.publicado){
-    console.log("La propiedad no ha sido publicada");
+    if(propiedad.imagen === ''){
+      await propiedad.destroy()
+      return res.redirect("/propiedades");
+    }
+    await unlink(`public/uploads/${propiedad.imagen}`);
+    console.log(`Imagen eliminada para: ${propiedad.titulo}, imagen: ${propiedad.imagen}`);
+  
+    await propiedad.destroy();
+
     return res.redirect("/propiedades");
   }
 
   if(propiedad.usuarioID.toString() !== req.usuario.id.toString()){
-    console.log("La propiedad no pertenece a este usuario");
     return res.redirect("/propiedades")
   }
 
   //? Eliminando imagen
+  if(propiedad.imagen === ''){
+    return await propiedad.destroy()
+  }
+
   await unlink(`public/uploads/${propiedad.imagen}`);
   console.log(`Imagen eliminada para: ${propiedad.titulo}, imagen: ${propiedad.imagen} `);
 

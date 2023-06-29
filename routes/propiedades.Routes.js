@@ -10,9 +10,9 @@ ruta.get("/propiedades", protegerRuta, admin);
 
 ruta.get("/propiedades/crear", protegerRuta, crear);
 ruta.post("/propiedades/crear", protegerRuta, 
-  body('titulo').notEmpty().withMessage("El título no puede estar vacio"),
+  body('titulo').notEmpty().withMessage("El título no puede estar vacio").isLength({max: 72}).withMessage("El título es demasiado grande"),
   body("descripcion").notEmpty().withMessage("Realiza una descripción de tu propiedad")
-    .isLength({max: 165}).withMessage("La descripcion es muy larga"),
+    .isLength({max: 400}).withMessage("La descripcion es muy larga"),
   body("categoria").isNumeric().withMessage("Selecciona una categoría"),
   body("precio").isNumeric().withMessage("Selecciona un precio"),
   body("habitaciones").isNumeric().withMessage("Selecciona la cantidad de habitaciones"),
@@ -27,8 +27,8 @@ ruta.post("/propiedades/agregar-imagen/:id", upload.single("imagen"), protegerRu
 
 ruta.get("/propiedades/editar/:id", protegerRuta, editar);
 ruta.post("/propiedades/editar/:id", protegerRuta, 
-  body('titulo').notEmpty().withMessage("El título no puede estar vacio"),
-  body("descripcion").notEmpty().withMessage("Realiza una descripción de tu propiedad").isLength({max: 165}).withMessage("La descripcion es muy larga"),
+  body('titulo').notEmpty().withMessage("El título no puede estar vacio").isLength({max: 72}).withMessage("El título es demasiado grande"),
+  body("descripcion").notEmpty().withMessage("Realiza una descripción de tu propiedad").isLength({max: 400}).withMessage("La descripcion es muy larga"),
   body("categoria").isNumeric().withMessage("Selecciona una categoría"),
   body("precio").isNumeric().withMessage("Selecciona un precio"),
   body("habitaciones").isNumeric().withMessage("Selecciona la cantidad de habitaciones"),
