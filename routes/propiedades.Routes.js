@@ -1,6 +1,6 @@
 import express from "express";
 import { body } from "express-validator"
-import { admin, agregarImagen, crear, editar, eliminar, guardar, guardarCambios,  publicarPropiedad } from "../controllers/propiedades.Controller.js"
+import { admin, agregarImagen, crear, editar, eliminar, guardar, guardarCambios,  mostrarPropiedad,  publicarPropiedad } from "../controllers/propiedades.Controller.js"
 import protegerRuta from "../middleware/proteger.Routes.js";
 import upload from "../middleware/subirArchivo.js";
 
@@ -40,6 +40,7 @@ ruta.post("/propiedades/editar/:id", protegerRuta,
 
 ruta.post('/propiedades/eliminar/:id', protegerRuta, eliminar)
 
-
+// Área pública
+ruta.get('/propiedad/:id', mostrarPropiedad)
 
 export default ruta;

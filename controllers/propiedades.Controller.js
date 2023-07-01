@@ -273,6 +273,10 @@ const eliminar = async(req, res) => {
   res.redirect("/propiedades");
 }
 
+const mostrarPropiedad = async(req, res) => {
+  
+}
+
 
 export {
   admin,
@@ -282,5 +286,6 @@ export {
   publicarPropiedad,
   editar,
   guardarCambios,
-  eliminar
+  eliminar,
+  mostrarPropiedad
 }
