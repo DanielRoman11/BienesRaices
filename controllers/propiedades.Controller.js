@@ -259,23 +259,24 @@ const nuevaImagen = async(req, res) => {
     const { id } = req.params
     const propiedad = await Propiedad.findByPk(id);
   
-    // if(!propiedad){
-    //   return res.redirect("/asd");
-    // }
+    if(!propiedad){
+      return res.redirect("/propiedad");
+    }
   
-    // if(propiedad.publicado){
-    //   return res.redirect("/abc");
-    // }
+    if(propiedad.publicado){
+      return res.redirect("/propiedad");
+    }
   
-    // if(propiedad.usuarioID.toString() !== req.usuario.id.toString()){
-    //   return res.redirect("/xyz")
-    // }
+    if(propiedad.usuarioID.toString() !== req.usuario.id.toString()){
+      return res.redirect("/propiedad")
+    }
   
     const imagen = req.file;
     console.log(imagen);
 
     //* Eliminar Imagen
     const rutaArchivo = `public/uploads/${propiedad.imagen}`;
+
     eliminarArchivo(rutaArchivo);
   
     //TODO: Subir la ruta del archivo en la database
@@ -283,9 +284,8 @@ const nuevaImagen = async(req, res) => {
     propiedad.publicado = true;
     await propiedad.save()
 
-    console.log(propiedad.imagen);
-  
-    // next(); 
+    // console.log(propiedad.imagen);
+    next(); 
   } catch (error) {
    console.error(error); 
   }
