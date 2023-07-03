@@ -263,10 +263,6 @@ const nuevaImagen = async(req, res) => {
       return res.redirect("/propiedad");
     }
   
-    if(propiedad.publicado){
-      return res.redirect("/propiedad");
-    }
-  
     if(propiedad.usuarioID.toString() !== req.usuario.id.toString()){
       return res.redirect("/propiedad")
     }
@@ -284,8 +280,8 @@ const nuevaImagen = async(req, res) => {
     propiedad.publicado = true;
     await propiedad.save()
 
-    // console.log(propiedad.imagen);
-    next(); 
+    console.log(propiedad.imagen);
+    res.redirect("/propiedades")
   } catch (error) {
    console.error(error); 
   }
