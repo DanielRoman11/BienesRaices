@@ -1,6 +1,7 @@
-import { unlink } from "node:fs/promises"; 
+import { unlink } from "node:fs/promises";
 import { validationResult } from "express-validator";
 import { Categoria, Propiedad, Precio } from "../models/index.js" 
+import eliminarArchivo from "../helpers/eliminarImagen.js";
 
 const admin = async(req, res) => {
   const { id } = req.usuario
@@ -225,14 +226,68 @@ const guardarCambios = async(req, res) => {
       lng,
     });
     await propiedad.save();
-  
-    res.render("propiedades/editar-imagen",{
-      propiedad,
-      csrfToken: req.csrfToken()
-      }
-    );
+
+    res.redirect(`/propiedades/editar-imagen/${id}`);
   } catch (error) {
     console.error(error);
+  }
+}
+
+const verImagen = async(req, res) => {
+  const { id } = req.params;
+
+  const propiedad = await Propiedad.findByPk(id);
+
+  if(!propiedad){
+    return res.redirect("/propiedades");
+  }
+
+  if(propiedad.usuarioID.toString() !== req.usuario.id.toString()){
+    return res.redirect("/propiedades");
+  }
+
+  res.render("propiedades/editar-imagen",{
+    propiedad,
+    csrfToken: req.csrfToken()
+    }
+  );
+}
+
+const nuevaImagen = async(req, res) => {
+  try {
+    console.log("Cargando...");
+    const { id } = req.params
+    const propiedad = await Propiedad.findByPk(id);
+  
+    // if(!propiedad){
+    //   return res.redirect("/asd");
+    // }
+  
+    // if(propiedad.publicado){
+    //   return res.redirect("/abc");
+    // }
+  
+    // if(propiedad.usuarioID.toString() !== req.usuario.id.toString()){
+    //   return res.redirect("/xyz")
+    // }
+  
+    const imagen = req.file;
+    console.log(imagen);
+
+    //* Eliminar Imagen
+    const rutaArchivo = `public/uploads/${propiedad.imagen}`;
+    eliminarArchivo(rutaArchivo);
+  
+    //TODO: Subir la ruta del archivo en la database
+    propiedad.imagen = imagen.filename;
+    propiedad.publicado = true;
+    await propiedad.save()
+
+    console.log(propiedad.imagen);
+  
+    // next(); 
+  } catch (error) {
+   console.error(error); 
   }
 }
 
@@ -303,5 +358,7 @@ export {
   editar,
   guardarCambios,
   eliminar,
+  verImagen,
+  nuevaImagen,
   mostrarPropiedad
 }
