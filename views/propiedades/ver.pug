@@ -1,7 +1,7 @@
 extends ../layout/app
 
 block contenido
-  div(class="w-screen")
-    img(src=`/uploads/${propiedad.imagen}`, alt=`${propiedad.titulo}` class="h-[calc(60vh_-_7.6rem)] md:h-[calc(100vh_-_7.6rem)] w-full")
+  .flex.relative.justify-center
+    img(src=`/uploads/${propiedad.imagen}`, alt=`${propiedad.titulo}` class="h-[40em] rounded-tl-3xl rounded-br-3xl")
   div(class="container flex justify-center items-center flex-col mx-auto w-full")
     h1.text-4xl.text-center.font-bold.w-full= pagina
