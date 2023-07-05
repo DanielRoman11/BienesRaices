@@ -4,7 +4,8 @@ block contenido
   //- pre= JSON.stringify(propiedad, undefined, 3)
 
   h1(class="text-[#4c460e] drop-shadow-lg").text-3xl.font-bold.py-2= pagina
-  p= propiedad.categoria.nombre
+  p Categoria
+    span= propiedad.categoria.nombre
   p= propiedad.calle
   .flex.relative.justify-center
     img(src=`/uploads/${propiedad.imagen}`, alt=`${propiedad.titulo}` class="h-[40em] rounded-tl-3xl rounded-br-3xl w-full")
