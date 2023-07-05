@@ -120,44 +120,22 @@ const agregarImagen = async(req, res) => {
   });
 }
 
-<<<<<<< HEAD
-const almacenarImagen = async(req, res, next) => {
-=======
 const publicarPropiedad = async(req, res, next) => {
->>>>>>> 1a87c01cdaa6de02955d3462fe60f1ad495308e9
   const { id } = req.params
   const propiedad = await Propiedad.findByPk(id);
 
   if(!propiedad){
     return res.redirect("/propiedades");
   }
-<<<<<<< HEAD
-  if(propiedad.publicada){
-    return res.redirect("/propiedades");
-  }
-=======
 
   if(propiedad.publicado){
     return res.redirect("/propiedades");
   }
 
->>>>>>> 1a87c01cdaa6de02955d3462fe60f1ad495308e9
   if(propiedad.usuarioID.toString() !== req.usuario.id.toString()){
     return res.redirect("/propiedades")
   }
 
-<<<<<<< HEAD
-  try {
-    console.log(req.files)
-    //TODO: Almacena la imagen y publicar propiedad
-    propiedad.imagen = req.files.filename
-    
-  } catch (error) {
-    console.error("Algo salio mal: " + error);
-  }
-}
-
-=======
   const imagen = req.file;
   console.log(imagen);
 
@@ -371,15 +349,11 @@ const mostrarPropiedad = async(req, res) => {
 }
 
 
->>>>>>> 1a87c01cdaa6de02955d3462fe60f1ad495308e9
 export {
   admin,
   crear,
   guardar,
   agregarImagen,
-<<<<<<< HEAD
-  almacenarImagen
-=======
   publicarPropiedad,
   editar,
   guardarCambios,
@@ -387,5 +361,4 @@ export {
   verImagen,
   nuevaImagen,
   mostrarPropiedad
->>>>>>> 1a87c01cdaa6de02955d3462fe60f1ad495308e9
 }
