@@ -2,7 +2,10 @@ import { Dropzone } from "dropzone";
 
 const token = document.querySelector("meta[name='csrf-token']").content
 
+<<<<<<< HEAD
 // console.log(token);
+=======
+>>>>>>> e8d41e9672cb992cb55b0777a7876a4f88a49e52
 
 Dropzone.options.imagen = {
   dictDefaultMessage: "Sube tu imagen aquí",
@@ -26,10 +29,23 @@ Dropzone.options.imagen = {
 <<<<<<< HEAD
   init: function() {
     const dropzone = this;
-    const btnPublicar = document.getElementById("btnPublicar")
-    btnPublicar.addEventListener("click", e => {
-      dropzone.getQueuedFiles();
-    })
+    const btnPublicar = document.querySelector("#publicar")
+    
+    function enviarImagenes() {
+      const archivosActivos = dropzone.getActiveFiles();
+      const archivosEnCola = dropzone.getQueuedFiles();
+      
+      archivosActivos.forEach(archivo => {
+        const archivoEncolado = file => file.name === archivo.name 
+        const archivoEnCola = archivosEnCola.find( archivoEncolado(archivo));
+
+        archivoEnCola ? console.warn("El archivo "+archivo.name+" ya estaba en cola") : dropzone.enqueueFile(archivo);
+      });
+
+      return dropzone.processQueue();
+    }
+
+    btnPublicar.addEventListener("click", enviarImagenes)
   }
 }
 =======

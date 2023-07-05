@@ -15,7 +15,7 @@
   \*********************************/
 /***/ (() => {
 
-eval("throw new Error(\"Module parse failed: Unexpected token (11:0)\\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\\n|   acceptedFiles: \\\".png,.jpg,.jpeg\\\",\\n|   maxFilesize: 4,\\n> <<<<<<< HEAD\\n|   maxFiles: 3,\\n|   parallelUploads: 3,\");\n\n//# sourceURL=webpack://node_bootcamp/./src/js/agregarImagen.js?");
+eval("throw new Error(\"Module parse failed: Unexpected token (5:2)\\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\\n| const token = document.querySelector(\\\"meta[name='csrf-token']\\\").content\\n| \\n> <<<<<<< HEAD\\n| // console.log(token);\\n| =======\");\n\n//# sourceURL=webpack://node_bootcamp/./src/js/agregarImagen.js?");
 
 /***/ })
 

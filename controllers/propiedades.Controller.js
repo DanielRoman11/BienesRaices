@@ -121,10 +121,14 @@ const agregarImagen = async(req, res) => {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 const almacenarImagen = async(req, res, next) => {
 =======
 const publicarPropiedad = async(req, res, next) => {
 >>>>>>> 1a87c01cdaa6de02955d3462fe60f1ad495308e9
+=======
+const almacenarImagen = async(req, res) => {
+>>>>>>> e8d41e9672cb992cb55b0777a7876a4f88a49e52
   const { id } = req.params
   const propiedad = await Propiedad.findByPk(id);
 
@@ -148,12 +152,31 @@ const publicarPropiedad = async(req, res, next) => {
 
 <<<<<<< HEAD
   try {
-    console.log(req.files)
-    //TODO: Almacena la imagen y publicar propiedad
-    propiedad.imagen = req.files.filename
+    const files = req.files
+    
+    console.log(files);
+    // arr.push(files[0])
+
+    // console.log(arr);
+
+    // //TODO: Almacena la imagen y publicar propiedad
+    // const images = arr.map(file => {
+    //     return {
+    //       ruta: file.path,
+    //       propiedadID: id
+    //     };
+    // });
+    
+    // console.log(images);
+
+    // propiedad.imagen = imagenes.filename;
+    // propiedad.publicado = 1;
+
+
     
   } catch (error) {
-    console.error("Algo salio mal: " + error);
+    
+    console.error("Algo salió mal: "+error);
   }
 }
 

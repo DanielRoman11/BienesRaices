@@ -7,6 +7,7 @@ import { admin, agregarImagen, crear, editar, eliminar, guardar, guardarCambios,
 >>>>>>> 1a87c01cdaa6de02955d3462fe60f1ad495308e9
 import protegerRuta from "../middleware/proteger.Routes.js";
 import upload from "../middleware/subirArchivo.js";
+import uploadFile from "../middleware/subirArchivo.js";
 
 const ruta = express.Router();
 
@@ -30,10 +31,14 @@ ruta.get("/propiedades/agregar-imagen/:id",protegerRuta, agregarImagen);
 ruta.post("/propiedades/agregar-imagen/:id", upload.single("imagen"), protegerRuta, publicarPropiedad);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ruta.post("/propiedades/agregar-imagen/:id", 
   upload.array("imagen", 3),
   protegerRuta,
   almacenarImagen
+=======
+ruta.post("/propiedades/agregar-imagen/:id", uploadFile(), protegerRuta, almacenarImagen
+>>>>>>> e8d41e9672cb992cb55b0777a7876a4f88a49e52
 )
 =======
 ruta.get("/propiedades/editar/:id", protegerRuta, editar);
