@@ -4,8 +4,27 @@ block contenido
   //- pre= JSON.stringify(propiedad, undefined, 3)
 
   h1(class="text-[#4c460e] drop-shadow-lg").text-3xl.font-bold.py-2= pagina
-    p.text-lg= propiedad.calle
-  div(class="flex relative sm:justify-center md:justify-start w-2/3 flex-col")
-    img(src=`/uploads/${propiedad.imagen}`, alt=`${propiedad.titulo}` class="h-[40em] rounded-t-lg w-full mt-10")
-    h4(class="bg-transparent/20 z-10 px-10 py-2 absolute left-4 font-semibold rounded-t-3xl text-white")= propiedad.categoria.nombre
-    p(class="font font-medium text-md bg-slate-300 py-5 px-2 rounded-b-md")= propiedad.descripcion
+    div.flex.items-center.space-x-2
+      svg(xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6")
+        path(stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z")
+        path(stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z")
+      p.text-lg=propiedad.calle
+
+  div(class="flex relative md:justify-start w-full md:w-2/3 flex-col py-5")
+    img(src=`/uploads/${propiedad.imagen}`, alt=`${propiedad.titulo}` class="md:h-[30em] lg:h-[36em] rounded-t-lg w-full mt-10")
+    div(class="flex absolute items-center rounded-t-3xl space-x-2 bg-transparent/20 z-10 px-10 py-2 left-4 text-white font-semibold")
+      svg(xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6")
+        path(stroke-linecap="round" stroke-linejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205l3 1m1.5.5l-1.5-.5M6.75 7.364V3h-3v18m3-13.636l10.5-3.819")
+      h1= propiedad.categoria.nombre
+    div(class="text-md py-5 px-2 rounded-b-md bg-white space-y-5")
+      p= propiedad.descripcion
+      h2(class="text-2xl leading-6 font-semibold text-gray-900 text-center") Información de la propiedad
+      div(class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 text-center")
+        p(class="text-gray-600 font-semibold text-xs") Precio
+          span(class="text-gray-800 block text-base")= propiedad.precio.nombre
+        p(class="text-gray-600 font-semibold text-xs") Habitaciones
+          span(class="text-gray-800 block text-base")= propiedad.habitaciones
+        p(class="text-gray-600 font-semibold text-xs") Estacionamiento
+          span(class="text-gray-800 block text-base")= propiedad.estacionamiento
+        p(class="text-gray-600 font-semibold text-xs") Baños
+          span(class="text-gray-800 block text-base")= propiedad.wc
