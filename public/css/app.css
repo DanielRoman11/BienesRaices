@@ -1210,6 +1210,10 @@ video {
     height: 30em;
   }
 
+  .md\:h-\[27em\] {
+    height: 27em;
+  }
+
   .md\:w-auto {
     width: auto;
   }
