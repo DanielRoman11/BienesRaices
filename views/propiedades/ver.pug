@@ -1,5 +1,8 @@
 extends ../layout/app
 
+block styles
+  link(rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css")
+
 block contenido
   //- pre= JSON.stringify(propiedad, undefined, 3)
 
@@ -27,11 +30,11 @@ block contenido
           p.text-gray-600.font-semibold.text-xs Baños
             span.text-gray-800.block.text-base= propiedad.wc
 
-    div(class="w-full md:w-1/3")
+    div(class="w-full md:w-1/3 bg-red-100")
       h3.text-center.py-10.leading-6.text-2xl.font-bold.text-gray-900 Ubicación
       div(class="h-96" id="mapa")
-        p.hidden= propiedad.lat
-        p.hidden= propiedad.lng
+        p(id="lng").hidden= propiedad.lng
+        p(id="lat").hidden= propiedad.lat
 
       div.px-5.py-10
         p.text-gray-600.font-bold.text-xs Dirección
@@ -39,4 +42,8 @@ block contenido
             svg(xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6")
               path(stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z")
               path(stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z")
-            p.text-lg=propiedad.calle
+            p(id="calle").text-lg=propiedad.calle
+
+block scripts
+  script(src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js")
+  script(src="/js/mostrarMapa.js")

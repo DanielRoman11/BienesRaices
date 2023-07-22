@@ -1,7 +1,10 @@
 (function() {
   const lat = document.getElementById("lat").textContent;
   const lng = document.getElementById("lng").textContent;
+  const calle = document.getElementById("calle").textContent;
+
   var mapa = L.map('mapa').setView([lat, lng ], 13);
+
 
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -13,4 +16,7 @@
     fillColor: '#2ADB3B',
     draggable: false,
   }).addTo(mapa);
-})
+
+  marker.bindPopup(`Dirección: ${calle}`);
+
+})();
