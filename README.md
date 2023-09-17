@@ -29,15 +29,18 @@ Por último, es importante tener en cuenta que la aplicación aún no ha sido de
 Cualquier comentario que ayude a la mejora de esta página es recibido es recibido, mi correo de contacto es daker.dev@gmail.com
 
 
-Las variables de entorno son: // Estas pueden que cambien dependiendo de la versión del proyecto, por lo cual puede que esten incompletas
--->Database:
+Las variables de entorno son: 
+.
+// Estas pueden que cambien dependiendo de la versión del proyecto, por lo cual puede que esten incompletas
+.
+Database (MySql):
 BD_NOMBRE, BD_USER, BD_PASS, BD_HOST
-
+.
 -->Nodemailer:
 EMAIL_HOST, EMAIL_PORT, EMAIL_USER, EMAIL_PASS
-
--->JsonWebTokens:
+.
+-->JWT:
 SECRET_JWT
-
+.
 -->General:
 BACKEND_URL, PORT
