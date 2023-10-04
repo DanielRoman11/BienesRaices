@@ -18,11 +18,11 @@ block contenido
       //- pre= JSON.stringify(propiedad, undefined, 2)
 
       div.w-full.py-2.flex.flex-col.justify-center.overflow-hidden
-        legend(class="font-semibold text-md float-right") Antigua Imagen
+        legend(class="font-bold mx-auto text-md ") Antigua Imagen
         img(src=`/uploads/${propiedad.imagen}`, alt= propiedad.titulo class="h-60 sm:h-96 border-dashed border-2 rounded-md border-gray-400")
       svg(width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full tex-center transform scale-125")
         path(d="M11.0001 3.67157L13.0001 3.67157L13.0001 16.4999L16.2426 13.2574L17.6568 14.6716L12 20.3284L6.34314 14.6716L7.75735 13.2574L11.0001 16.5001L11.0001 3.67157Z" fill="currentColor")
-      form(id="imagen" class="dropzone border-dashed border-2 w-full min:h-96 h-auto rounded flex-col justify-center items-center space-y-8 font-semibold" method="post" action=`/propiedades/editar-imagen/${propiedad.id}`)
+      form(id="imagen" class="dropzone border-dashed border-2 w-full min:h-96 h-auto rounded flex-col justify-center items-center space-y-8 font-semibold hover:bg-slate-100" method="post" action=`/propiedades/editar-imagen/${propiedad.id}`)
         input(type="hidden", name="_csrf" value= csrfToken)
       div.flex.w-full.items-center.gap-2.text-center.font-semibold.uppercase.text-sm
         button(id="publicar" class="border border-[#4C4B16] hover:scale-[101%] uppercase rounded-md px-10 py-1 text-[#4C4B16] w-full mt-5" type="button") Cambiar Imagen

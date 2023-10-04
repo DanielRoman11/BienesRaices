@@ -17,7 +17,7 @@ const admin = async(req, res) => {
   try {
     const { id } = req.usuario
 
-    const limit = 6
+    const limit = 5
     const offset = ((paginaActual * limit) - limit)
 
     const [propiedades, total] = await Promise.all([await Propiedad.findAll({
@@ -46,6 +46,9 @@ const admin = async(req, res) => {
       propiedades: propiedades,
       paginaActual,
       paginas:Math.ceil(total / limit),
+      offset,
+      limit,
+      total,
       csrfToken: req.csrfToken()
     }); 
   } catch (error) {
