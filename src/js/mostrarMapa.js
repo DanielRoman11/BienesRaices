@@ -2,7 +2,7 @@
   const lat = document.getElementById("lat").textContent;
   const lng = document.getElementById("lng").textContent;
 
-  const calle = document.getElementById("calle").textContent;
+  const titulo = document.getElementById("titulo").textContent;
 
   var mapa = L.map('mapa', {
     fullscreenControl: {
@@ -22,5 +22,5 @@
     draggable: false,
   }).addTo(mapa);
 
-  marker.bindPopup(`Dirección: ${calle}`);
+  marker.bindPopup(titulo);
 })();
