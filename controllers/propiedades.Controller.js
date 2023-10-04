@@ -4,21 +4,53 @@ import { Categoria, Propiedad, Precio } from "../models/index.js"
 import eliminarArchivo from "../helpers/eliminarImagen.js";
 
 const admin = async(req, res) => {
-  const { id } = req.usuario
 
-  const propiedades = await Propiedad.findAll({where: { usuarioID: id },
-    include: [
-      { model: Categoria, as: 'categoria' },
-      { model: Precio, as: 'precio' }
-    ]
-  });
-  
-  res.render("propiedades/admin", {
-    pagina: "Mis propiedades",
-    barra: true,
-    propiedades: propiedades,
-    csrfToken: req.csrfToken()
-  });
+  const { pagina: paginaActual } = req.query;  
+  console.log(paginaActual);
+
+  const expReg = /^[0-9]$/g;
+
+  if(!expReg.test(paginaActual)){
+    return res.redirect('/propiedades?pagina=1')
+  }
+
+  try {
+    const { id } = req.usuario
+
+    const limit = 6
+    const offset = ((paginaActual * limit) - limit)
+
+    const [propiedades, total] = await Promise.all([await Propiedad.findAll({
+        limit,
+        offset,
+        where: { usuarioID: id },
+        include: [
+          { model: Categoria, as: 'categoria' },
+          { model: Precio, as: 'precio' }
+        ],
+        order: [
+          ['updatedAt', 'DESC']
+        ]
+      },),
+      Propiedad.count({
+        where: {
+          usuarioID : id
+        }
+      })
+    ]);
+    
+
+    res.render("propiedades/admin", {
+      pagina: "Mis propiedades",
+      barra: true,
+      propiedades: propiedades,
+      paginaActual,
+      paginas:Math.ceil(total / limit),
+      csrfToken: req.csrfToken()
+    }); 
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 const crear = async(req, res) => {
