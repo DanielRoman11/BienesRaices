@@ -665,6 +665,15 @@ video {
 .max-w-2xl {
   max-width: 42rem;
 }
+.max-w-\[500px\] {
+  max-width: 500px;
+}
+.max-w-\[450px\] {
+  max-width: 450px;
+}
+.max-w-\[425px\] {
+  max-width: 425px;
+}
 .flex-1 {
   flex: 1 1 0%;
 }
