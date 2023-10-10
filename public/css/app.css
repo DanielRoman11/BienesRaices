@@ -712,6 +712,9 @@ video {
 .justify-items-end {
   justify-items: end;
 }
+.justify-items-center {
+  justify-items: center;
+}
 .gap-2 {
   gap: 0.5rem;
 }
@@ -974,6 +977,9 @@ video {
 }
 .pb-16 {
   padding-bottom: 4rem;
+}
+.pb-20 {
+  padding-bottom: 5rem;
 }
 .text-center {
   text-align: center;
