@@ -26,7 +26,7 @@ const emailRegistro = async (datos) => {
       <p>Hola ${nombre}, comprueba tu cuenta en BienesRaices.com</p>
 
       <p>Tu cuenta ya esta lista, solo debes confirmarla en el siguiente enlace: 
-      <a href="${process.env.BACKEND_URL}:${process.env.PORT ?? 3000}/auth/confirmar/${token}">Confirmar cuenta</a> </p>
+      <a href="${process.env.BACKEND_URL}/auth/confirmar/${token}">Confirmar cuenta</a> </p>
 
       <p>Si no creaste esta cuenta ignora este mensaje</p>
     `
@@ -58,7 +58,7 @@ const emailOlvidePassword = async (datos) => {
       <p>Hola ${nombre}, comprueba tu cuenta en BienesRaices.com</p>
 
       <p>Tu cuenta ya casi esta lista, sigue el siguiente enlace para restablecerla: 
-      <a href="${process.env.BACKEND_URL}:${process.env.PORT ?? 3000}/auth/olvide-password/${token}">Restablecer contraseña</a> </p>
+      <a href="${process.env.BACKEND_URL}/auth/olvide-password/${token}">Restablecer contraseña</a> </p>
 
       <p> Si no buscas restablecer tu cuenta ignora este mensaje</p>
     `
