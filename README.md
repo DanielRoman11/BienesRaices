@@ -73,16 +73,23 @@ Se definieron las siguientes variables de entorno (`DotEnv`) para la ejecución 
 > Estas pueden que cambien dependiendo de la versión del proyecto
 
 1.  Database (MySql):
-    - `BD_NOMBRE, BD_USER, BD_PASS, BD_HOST`
+    - `BD_NOMBRE`
+    - `BD_USER`
+    - `BD_PASS`
+    - `BD_HOST`
 
 2.  Nodemailer:
-    - `EMAIL_HOST, EMAIL_PORT, EMAIL_USER, EMAIL_PASS`
+    - `EMAIL_HOST`
+    - `EMAIL_PORT`
+    - `MAIL_USER`
+    - `EMAIL_PASS`
 
 3.  JWT:
     - `SECRET_JWT`
 
 4.  General:
-    - `BACKEND_URL, PORT`
+    - `BACKEND_URL`
+    - `PORT`
 
 ## Tecnologías utilizadas
 **Dependencias:**
