@@ -44,7 +44,7 @@ const admin = async(req, res) => {
       pagina: "Mis propiedades",
       barra: true,
       propiedades: propiedades,
-      paginaActual,
+      paginaActual: Number(paginaActual),
       paginas:Math.ceil(total / limit),
       offset,
       limit,
