@@ -8,7 +8,7 @@ const admin = async(req, res) => {
   const { pagina: paginaActual } = req.query;  
   console.log(paginaActual);
 
-  const expReg = /^[0-9]$/g;
+  const expReg = /^(?!0)\d+$/g;
 
   if(!expReg.test(paginaActual)){
     return res.redirect('/propiedades?pagina=1')
@@ -21,17 +21,17 @@ const admin = async(req, res) => {
     const offset = ((paginaActual * limit) - limit)
 
     const [propiedades, total] = await Promise.all([await Propiedad.findAll({
-        limit,
-        offset,
-        where: { usuarioID: id },
-        include: [
-          { model: Categoria, as: 'categoria' },
-          { model: Precio, as: 'precio' }
-        ],
-        order: [
-          ['updatedAt', 'DESC']
-        ]
-      },),
+      limit,
+      offset,
+      where: { usuarioID: id },
+      include: [
+        { model: Categoria, as: 'categoria' },
+        { model: Precio, as: 'precio' }
+      ],
+      order: [
+        ['updatedAt', 'DESC']
+      ]
+    }),
       Propiedad.count({
         where: {
           usuarioID : id
