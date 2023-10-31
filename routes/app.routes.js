@@ -1,6 +1,11 @@
 import express from 'express';
-const appRouter = express.Router()
+import { buscador, categoria, home, notEncontrado } from '../controllers/app.Controller.js';
 
-app.get('/', (req, res) => res.send('Hello World!'))
+const app = express.Router()
 
-export default appRouter;
+app.get('/', home);
+app.get('/categorias/:id', categoria);
+app.get('/404', notEncontrado);
+app.get('/buscador', buscador);
+
+export default app;
