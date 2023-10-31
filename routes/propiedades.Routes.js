@@ -6,10 +6,10 @@ import upload from "../middleware/subirArchivo.js";
 
 const ruta = express.Router();
 
-ruta.get("/propiedades", protegerRuta, admin);
+ruta.get("/", protegerRuta, admin);
 
-ruta.get("/propiedades/crear", protegerRuta, crear);
-ruta.post("/propiedades/crear", protegerRuta, 
+ruta.get("/crear", protegerRuta, crear);
+ruta.post("/crear", protegerRuta, 
   body('titulo').notEmpty().withMessage("El título no puede estar vacio").isLength({max: 72}).withMessage("El título es demasiado grande"),
   body("descripcion").notEmpty().withMessage("Realiza una descripción de tu propiedad")
     .isLength({max: 400}).withMessage("La descripcion es muy larga"),
@@ -22,11 +22,11 @@ ruta.post("/propiedades/crear", protegerRuta,
   guardar
 );
 
-ruta.get("/propiedades/agregar-imagen/:id",protegerRuta, agregarImagen);
-ruta.post("/propiedades/agregar-imagen/:id", upload.single("imagen"), protegerRuta, publicarPropiedad);
+ruta.get("/agregar-imagen/:id",protegerRuta, agregarImagen);
+ruta.post("/agregar-imagen/:id", upload.single("imagen"), protegerRuta, publicarPropiedad);
 
-ruta.get("/propiedades/editar/:id", protegerRuta, editar);
-ruta.post("/propiedades/editar/:id", protegerRuta, 
+ruta.get("/editar/:id", protegerRuta, editar);
+ruta.post("/editar/:id", protegerRuta, 
   body('titulo').notEmpty().withMessage("El título no puede estar vacio").isLength({max: 72}).withMessage("El título es demasiado grande"),
   body("descripcion").notEmpty().withMessage("Realiza una descripción de tu propiedad").isLength({max: 400}).withMessage("La descripcion es muy larga"),
   body("categoria").isNumeric().withMessage("Selecciona una categoría"),
@@ -38,10 +38,10 @@ ruta.post("/propiedades/editar/:id", protegerRuta,
   guardarCambios
 );
 
-ruta.get("/propiedades/editar-imagen/:id", protegerRuta, verImagen)
-ruta.post("/propiedades/editar-imagen/:id", protegerRuta,  upload.single("imagen"),nuevaImagen);
+ruta.get("/editar-imagen/:id", protegerRuta, verImagen)
+ruta.post("/editar-imagen/:id", protegerRuta,  upload.single("imagen"),nuevaImagen);
 
-ruta.post('/propiedades/eliminar/:id', protegerRuta, eliminar)
+ruta.post('/eliminar/:id', protegerRuta, eliminar)
 
 //! Área pública
 ruta.get('/propiedad/:id', mostrarPropiedad)

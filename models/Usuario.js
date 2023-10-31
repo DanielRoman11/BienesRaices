@@ -20,8 +20,12 @@ const Usuario = db.define('usuarios', {
 }, {
   hooks: {
     beforeCreate: async function(usuario) {
-      const salt = await bcrypt.genSalt(10)
-      usuario.password = await bcrypt.hash( usuario.password, salt);
+      await bcrypt.genSalt(10)
+        .then(async (salt) => {
+          usuario.password = await bcrypt.hash(usuario.password, salt);
+        }).catch((err) => {
+          console.error("Hubo un error! ", err);
+        });
     }
   },
   scopes: { //? Elimina ciertos campos cuando se consulta a un objeto 'Usuario'

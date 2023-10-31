@@ -32,7 +32,7 @@ app.set('views', './views');
 
 //* Routes 
 app.use('/auth', rutasUsuarios); // Esto es lo que se conoce como middleware
-app.use('/', rutasPropiedades);
+app.use('/propiedades', rutasPropiedades);
 
 //* Carpeta pública   
 app.use(express.static('public'));  //? Contenedor de archivos estáticos
