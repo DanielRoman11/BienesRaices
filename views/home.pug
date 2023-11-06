@@ -1,4 +1,13 @@
 extends layout/app
 
+block styles
+  link(rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css")
+
 block contenido
-  h1= pagina
+  div(class="py-3")
+    h1(class="text-center text-3xl sm:text-4xl font-extrabold") Ubicación en el mapa
+
+    div(id="mapaHome" class="h-96 md:h-[600px] mt-5")
+block scripts
+  script(src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js")
+  script(src="/js/Mapahome.js") 

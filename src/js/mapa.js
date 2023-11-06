@@ -8,7 +8,7 @@
 
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(mapa);
+  }).addTo(mapa);
 
   //* Crear Marcador
   let marker = new L.marker([lat, lng], {

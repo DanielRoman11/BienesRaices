@@ -1,9 +1,10 @@
 import express from 'express'
 import csrf from 'csurf'
 import cookieParser from 'cookie-parser'
+import db from './config/dbs.js'
 import rutasUsuarios from './routes/usuario.Routes.js'
 import rutasPropiedades from './routes/propiedades.Routes.js'
-import db from './config/dbs.js'
+import rutasApi from './routes/api.Routes.js'
 import rutasApp from './routes/app.routes.js'
 
 //* Crear app
@@ -34,6 +35,7 @@ app.set('views', './views');
 //* Routes 
 app.use('/auth', rutasUsuarios); // Esto es lo que se conoce como middleware
 app.use('/propiedades', rutasPropiedades);
+app.use('/api', rutasApi);
 app.use('/', rutasApp);
 
 //* Carpeta pública   
