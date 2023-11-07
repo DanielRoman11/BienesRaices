@@ -29,15 +29,15 @@
         <br>
         - <strong>Dirección:</strong> ${propiedad.calle != "" ? propiedad.calle : "Sin dirección establecida"} <br> 
         - <strong>Precio:</strong> ${propiedad.precio.nombre} <br>
-        <a href="/propiedades/propiedad/${propiedad.id}" class="bg-[#CCCBA1] block p-2 text-center font-bold uppercase text-white">Ver Propiedad</a>`
+        <a href="/propiedades/propiedad/${propiedad.id}" class="bg-[#706f2b] block p-2 text-center font-bold uppercase">Ver Propiedad</a>`
         )
       });
     }
     
     const obtenerPropiedades = async() => {
     try {
-      const url = 'api/propiedades'
-      const respuesta = await fetch(url)
+      const url = 'api/propiedades';
+      const respuesta = await fetch(url);
       const propiedades = await respuesta.json();
 
       console.log(propiedades);
