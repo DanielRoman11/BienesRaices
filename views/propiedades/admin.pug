@@ -23,7 +23,7 @@ block contenido
               = propiedad.categoria.nombre
           div(class="space-y-3 p-3 truncate flex flex-col justify-between h-1/2 ")
             div.line-clamp-2.whitespace-pre-wrap
-              a(class="text-lg font-bold text-[#4c460e] underline underline-offset-2 decoration-wavy" href=`propiedad/${propiedad.id}`)= propiedad.titulo
+              a(class="text-lg font-bold text-[#4c460e] underline underline-offset-2 decoration-wavy" href=`propiedades/propiedad/${propiedad.id}`)= propiedad.titulo
               p(class="font-semibold text-xs whitespace-pre-wrap text-[#4c460e]/90 line-clamp-3 overflow-hidden")= propiedad.descripcion
             div(class="flex flex-col justify-items-end text-sm")
               p(class="text-ellipsis font-bold whitespace-pre-line overflow-hidden flex text-[#4c460e]")= propiedad.precio.nombre
