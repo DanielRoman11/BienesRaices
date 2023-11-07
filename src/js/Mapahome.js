@@ -24,12 +24,15 @@
           icon: markerIcon
         })
         .addTo(mapa)
-        .bindPopup(`
-        <img src="/uploads/${propiedad.imagen}" alt="${propiedad.descripcion}"/>
+        .bindPopup(`<div class="text-xs">
+        <img src="/uploads/${propiedad.imagen}" class="max-h-32 block mx-auto" alt="${propiedad.descripcion}"/>
         <br>
-        --> <strong>Dirección:</strong> ${propiedad.calle != "" ? propiedad.calle : "Sin dirección establecida"} <br> 
-        --> <strong>Precio:</strong> ${propiedad.precio.nombre} <br>
-        <a href="/propiedades/propiedad/${propiedad.id}" class="border-2 border-[#706f2b] block p-2 text-center font-bold uppercase">Ver Propiedad</a>`
+        <strong>Dirección:</strong> ${propiedad.calle != "" ? propiedad.calle : "Dirección no disponible"} <br> 
+        <strong>Precio:</strong> ${propiedad.precio.nombre} <br>
+        <strong>Tratante:</strong> ${propiedad.usuario.nombre} <br>
+        <strong>Última Actualización:</strong> ${new Date(propiedad.updatedAt).toLocaleDateString()} <br>
+        <a href="/propiedades/propiedad/${propiedad.id}" class="border-2 border-[#706f2b] block p-2 text-center font-bold uppercase">Ver Propiedad</a>
+        </div>`
         )
       });
     }

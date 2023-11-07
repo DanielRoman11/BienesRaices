@@ -605,6 +605,9 @@ video {
 .h-6 {
   height: 1.5rem;
 }
+.max-h-32 {
+  max-height: 8rem;
+}
 .min-h-screen {
   min-height: 100vh;
 }
