@@ -27,9 +27,9 @@
         .bindPopup(`
         <img src="/uploads/${propiedad.imagen}" alt="${propiedad.descripcion}"/>
         <br>
-        - <strong>Dirección:</strong> ${propiedad.calle != "" ? propiedad.calle : "Sin dirección establecida"} <br> 
-        - <strong>Precio:</strong> ${propiedad.precio.nombre} <br>
-        <a href="/propiedades/propiedad/${propiedad.id}" class="bg-[#706f2b] block p-2 text-center font-bold uppercase">Ver Propiedad</a>`
+        --> <strong>Dirección:</strong> ${propiedad.calle != "" ? propiedad.calle : "Sin dirección establecida"} <br> 
+        --> <strong>Precio:</strong> ${propiedad.precio.nombre} <br>
+        <a href="/propiedades/propiedad/${propiedad.id}" class="border-2 border-[#706f2b] block p-2 text-center font-bold uppercase">Ver Propiedad</a>`
         )
       });
     }

@@ -1,4 +1,4 @@
-import { Categoria, Precio, Propiedad } from "../models/index.js";
+import { Categoria, Precio, Propiedad, Usuario } from "../models/index.js";
 
 const propiedades = async(req, res) =>{
   try {
@@ -6,7 +6,8 @@ const propiedades = async(req, res) =>{
       limit: 10, 
       include: [
         {model: Precio, as: 'precio'},
-        {model: Categoria, as: 'categoria'}
+        {model: Categoria, as: 'categoria'},
+        {model: Usuario, as: 'usuario'}
       ],
     })
   
