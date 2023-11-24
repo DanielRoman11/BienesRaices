@@ -48,10 +48,10 @@
     }
 
     categoriasSelect.addEventListener("change", (e) =>{
-      console.log(e.target.value)
+      filtrarPropiedades()
     })
     preciosSelect.addEventListener("change", (e) =>{
-      console.log(e.target.value)
+      filtrarPropiedades()
     })
     
     const obtenerPropiedades = async() => {
@@ -66,6 +66,10 @@
       } catch (error) {
         console.log(error);
       }
+  }
+
+  const filtrarPropiedades =() =>{
+    console.log("filtrando")
   }
 
   obtenerPropiedades()

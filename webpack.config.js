@@ -1,4 +1,4 @@
-import path from "path"
+import path from "path";
 
 export default {
   mode: "development",
@@ -10,6 +10,6 @@ export default {
   },
   output:{
     path: path.resolve("public/js"),
-    filename: "[name].js"
+    filename: "[name].js",
   }
 }
