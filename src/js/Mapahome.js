@@ -5,6 +5,16 @@
 
   let markers = new L.FeatureGroup().addTo(mapa)
 
+  let propiedades = [];
+
+  const filtros = {
+    categoria: '',
+    precio: ''
+  }
+
+  const categoriasSelect = document.getElementById('categorias');
+  const preciosSelect = document.getElementById('precios');
+
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(mapa);
@@ -36,19 +46,26 @@
         )
       });
     }
+
+    categoriasSelect.addEventListener("change", (e) =>{
+      console.log(e.target.value)
+    })
+    preciosSelect.addEventListener("change", (e) =>{
+      console.log(e.target.value)
+    })
     
     const obtenerPropiedades = async() => {
-    try {
-      const url = 'api/propiedades';
-      const respuesta = await fetch(url);
-      const propiedades = await respuesta.json();
+      try {
+        const url = 'api/propiedades';
+        const respuesta = await fetch(url);
+        const propiedades = await respuesta.json();
 
-      console.log(propiedades);
-      mostrarPropiedades(propiedades)
+        console.log(propiedades);
+        mostrarPropiedades(propiedades)
 
-    } catch (error) {
-      console.log(error);
-    }
+      } catch (error) {
+        console.log(error);
+      }
   }
 
   obtenerPropiedades()

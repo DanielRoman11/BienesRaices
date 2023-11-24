@@ -17,7 +17,7 @@ const admin = async(req, res) => {
   try {
     const { id } = req.usuario
 
-    const limit = 5
+    const limit = 6
     const offset = ((paginaActual * limit) - limit)
 
     const [propiedades, total] = await Promise.all([await Propiedad.findAll({
