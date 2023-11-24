@@ -45,7 +45,7 @@ Se esta utilizando el siguiente schema para los usuarios:
       - El usuario tendrá la capacidad ver las propiedades de otros usuarios. Si este usuario está autenticado en la página tendrá la capacidad de consultar a detalle las propiedades del inmueble y al mismo tiempo comunicarse con el dueño de este si es que presenta interés en realizar algún trato o comunicación en particular.
 
 > [!IMPORTANT]
-> Aún se encuentra en desarrollo el acceso público a las propiedades de los otros usuarios.
+> Aún se encuentra en desarrollo el acceso público a las propiedades de los otros usuarios. Aunque ya se tiene acceso se esta trabajando en la separación con usuarios autenticados y no autenticados en el inicio de la página.
 
 Los usuarios pueden crear una lista de propiedades que deseen vender y actualizar su estado a medida que las propiedades se venden o se retiran de la lista. Al mismo tiempo es posible editar la imagen de la propiedad, la información y la ubicación de la propiedad. El Schema utilizado es el siguiente:
   
