@@ -47,31 +47,35 @@
       });
     }
 
-    categoriasSelect.addEventListener("change", (e) =>{
-      filtrarPropiedades()
-    })
-    preciosSelect.addEventListener("change", (e) =>{
-      filtrarPropiedades()
-    })
-    
-    const obtenerPropiedades = async() => {
-      try {
-        const url = 'api/propiedades';
-        const respuesta = await fetch(url);
-        const propiedades = await respuesta.json();
+  categoriasSelect.addEventListener("change", (e) =>{
+    filtros.categoria = +e.target.value;
+    filtrarPropiedades();
+  })
+  preciosSelect.addEventListener("change", (e) =>{
+    filtros.precios = +e.target.value
+    filtrarPropiedades();
+  })
 
-        console.log(propiedades);
-        mostrarPropiedades(propiedades)
+  const obtenerPropiedades = async() => {
+    try {
+      const url = 'api/propiedades';
+      const respuesta = await fetch(url);
+      propiedades = await respuesta.json();
 
-      } catch (error) {
-        console.log(error);
-      }
+      mostrarPropiedades(propiedades)
+
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   const filtrarPropiedades =() =>{
-    console.log("filtrando")
+    const resultado = propiedades.filter(propiedad => 
+      filtros.categoria ? propiedad.categoriaId === filtros.categoria : propiedad );
+    
+    console.log(resultado);
   }
 
-  obtenerPropiedades()
+  obtenerPropiedades();
 
   })();
