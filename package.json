@@ -1,7 +1,7 @@
 {
   "name": "node_bootcamp",
   "version": "1.0.0",
-  "description": "Mi primer proyecto NodeJs MVC",
+  "description": "NodeJs MVC",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -18,7 +18,9 @@
     "Pug",
     "Tailwind",
     "MySQL",
-    "Sequelize"
+    "Sequelize",
+    "webpack",
+    ""
   ],
   "author": "Daniel Román",
   "license": "ISC",

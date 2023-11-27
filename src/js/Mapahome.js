@@ -73,9 +73,10 @@
     const resultado = propiedades.filter(propiedad => 
       filtros.categoria ? propiedad.categoriaId === filtros.categoria : propiedad );
     
-    console.log(resultado);
+      console.log(resultado);
   }
 
   obtenerPropiedades();
 
   })();
+  
