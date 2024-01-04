@@ -9,51 +9,56 @@ import { emailOlvidePassword, emailRegistro } from '../helpers/emails.js'
 const formularioLogin = (req, res) => {
   res.render('auth/login', {
     pagina: 'Iniciar Sesión',
-    csrfToken: req.csrfToken()
+    // // csrfToken: req.csrfToken()
   });
 }
 const login = async(req, res) => {
-  await check("email").isEmail().withMessage("Eso no parece un email").run(req);
-  await check("password").notEmpty().withMessage("La contraseña no puede ir vacia").run(req);
-
-  const { email, password } = req.body
-
-  const errores = validationResult(req);
-  if(!errores.isEmpty()){
-    return res.render('auth/login', {
-      email: email,
-      pagina: 'Iniciar Sesión',
-      errores: errores.array(),
-      csrfToken: req.csrfToken()
-    });
-  }
-
-  const usuario = await Usuario.findOne({where: {email}});
-  if(!usuario){
-    return res.render('auth/login', {
-      email: email,
-      pagina: 'Iniciar Sesión',
-      errores: [{msg: "El email no se ha registrado"}],
-      csrfToken: req.csrfToken()
-    });
-  }
-
-  if(!usuario.confirmado){
-    return res.render('auth/login', {
-      email: email,
-      pagina: 'Iniciar Sesión',
-      errores: [{msg: "Esta cuenta no ha sido confirmada"}],
-      csrfToken: req.csrfToken()
-    });
-  }
-
-  if(!usuario.verficarPassword(password)){
-    return res.render('auth/login', {
-      email: email,
-      pagina: 'Iniciar Sesión',
-      errores: [{msg: "Contraseña incorrecta"}],
-      csrfToken: req.csrfToken()
-    });
+  try {
+    await check("email").isEmail().withMessage("Eso no parece un email").run(req);
+    await check("password").notEmpty().withMessage("La contraseña no puede ir vacia").run(req);
+  
+    const { email, password } = req.body
+  
+    const errores = validationResult(req);
+    if(!errores.isEmpty()){
+      return res.render('auth/login', {
+        email: email,
+        pagina: 'Iniciar Sesión',
+        errores: errores.array(),
+        // // csrfToken: req.csrfToken()
+      });
+    }
+  
+    const usuario = await Usuario.findOne({where: {email}});
+    if(!usuario){
+      return res.render('auth/login', {
+        email: email,
+        pagina: 'Iniciar Sesión',
+        errores: [{msg: "El email no se ha registrado"}],
+        // // csrfToken: req.csrfToken()
+      });
+    }
+  
+    if(!usuario.confirmado){
+      return res.render('auth/login', {
+        email: email,
+        pagina: 'Iniciar Sesión',
+        errores: [{msg: "Esta cuenta no ha sido confirmada"}],
+        // // csrfToken: req.csrfToken()
+      });
+    }
+  
+    if(!usuario.verficarPassword(password)){
+      return res.render('auth/login', {
+        email: email,
+        pagina: 'Iniciar Sesión',
+        errores: [{msg: "Contraseña incorrecta"}],
+        // // csrfToken: req.csrfToken()
+      });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json(error.name ?? error);
   }
 
   const token = generarJWT({ id: usuario.id, nombre: usuario.nombre });
@@ -73,7 +78,7 @@ const login = async(req, res) => {
 const formularioRegistro = (req, res) => {
   res.render('auth/registro', {
     pagina: 'Crear Cuenta',
-    // csrfToken: req.csrfToken()
+    // // csrfToken: req.csrfToken()
   })
 }
 
@@ -92,7 +97,7 @@ const registroRespuesta = async (req, res) => {
     return res.render('auth/registro', {
       pagina: 'Crear Cuenta',
       errores: resultado.array(),
-      // csrfToken: req.csrfToken(),
+      // // csrfToken: req.csrfToken(),
       usuario: {
         nombre: req.body.nombre,
         email: req.body.email
@@ -107,7 +112,7 @@ const registroRespuesta = async (req, res) => {
   if(existeUsuario){
     return res.render('auth/registro', {
       pagina: 'Crear Cuenta',
-      // csrfToken: req.csrfToken(),
+      // // csrfToken: req.csrfToken(),
       errores: [{msg: "El usuario ya esta Registrado"}],
       usuario: {
         nombre: req.body.nombre,
@@ -166,7 +171,7 @@ const confirmar = async(req, res) => {
 const formularioOlvidePassword = (req, res) => {
   res.render('auth/olvide-password', {
     pagina: 'Recupera tu acceso',
-    // csrfToken: req.csrfToken()
+    // // csrfToken: req.csrfToken()
   });
 }
 
@@ -179,7 +184,7 @@ const resetPassword = async(req, res) => {
     return res.render('auth/olvide-password', {
       pagina: 'Recupera tu acceso',
       errores: resultado.array(),
-      // csrfToken: req.csrfToken()
+      // // csrfToken: req.csrfToken()
     });
   }
 
@@ -192,7 +197,7 @@ const resetPassword = async(req, res) => {
       pagina: 'Recupera tu acceso',
       email: email,
       errores: [{msg: 'El email no pertenece a un usuario'}],
-      // csrfToken: req.csrfToken()
+      // // csrfToken: req.csrfToken()
     })
   }
 
@@ -230,7 +235,7 @@ const comprobarPasswordToken = async(req, res) => {
 
   return res.render("auth/reiniciar-password", {
     pagina: "Reinicia tu contraseña",
-    // csrfToken: req.csrfToken()
+    // // csrfToken: req.csrfToken()
   });
 }
 
@@ -244,7 +249,7 @@ const nuevaPassword = async(req, res, next) => {
     return res.render("auth/reiniciar-password", {
       pagina: "Reinicia tu contraseña",
       errores: errores.array(),
-      // csrfToken: req.csrfToken()
+      // // csrfToken: req.csrfToken()
     });
   }
   const { token } = req.params;

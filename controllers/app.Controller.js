@@ -22,7 +22,7 @@ export const categoria = async(req,res) => {
 
 }
 
-export const notEncontrado = (req, res) => {
+export const noEncontrado = (req, res) => {
 
 }
 

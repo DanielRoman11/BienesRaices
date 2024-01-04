@@ -34,7 +34,7 @@ block contenido
               a(href=`propiedades/editar/${propiedad.id}` class="px-2 py-2 md:py-1 text-center text-xs leading-5 font-semibold rounded-md cursor-pointer bg-blue-200") Editar
 
               form(method="post" action=`/propiedades/eliminar/${propiedad.id}`)
-                input(type="hidden", name="_csrf" value= csrfToken)
+                //- input(type="hidden", name="_csrf" value= csrfToken)
                 input(type="submit" class="px-2 py-2 md:py-1 text-xs w-full sm:w-auto leading-5 font-semibold rounded-md cursor-pointer bg-red-200 text-red-800" value="Eliminar")
     div(class="fixed w-full bottom-0 inset-x-0 bg-white/0 backdrop-blur-2xl p-2 flex items-center justify-evenly border-t border-gray-400 sm:px-6 overflow-x-auto gap-2")
       div(class="flex flex-1 justify-between sm:hidden")

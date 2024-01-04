@@ -49,7 +49,7 @@ const admin = async(req, res) => {
       offset,
       limit,
       total,
-      // csrfToken: req.csrfToken()
+      // // // csrfToken: req.csrfToken()
     }); 
   } catch (error) {
     console.error(error);
@@ -67,7 +67,7 @@ const crear = async(req, res) => {
     barra: true,
     categorias,
     precios,
-    // csrfToken: req.csrfToken()
+    // // // csrfToken: req.csrfToken()
   });
   
 }
@@ -101,7 +101,7 @@ const guardar = async(req, res) => {
         lng
       },
       errores: errores.array(),
-      // csrfToken: req.csrfToken()
+      // // // csrfToken: req.csrfToken()
     });
   }
 
@@ -151,7 +151,7 @@ const agregarImagen = async(req, res) => {
   res.render("propiedades/agregar-imagen", {
     pagina: `Agregar Imagen para "${propiedad.titulo}"`,
     propiedad,
-    // csrfToken: req.csrfToken()
+    // // // csrfToken: req.csrfToken()
   });
 }
 
@@ -205,7 +205,7 @@ const editar = async(req, res) => {
     propiedad,
     categorias,
     precios,
-    // csrfToken: req.csrfToken()
+    // // // csrfToken: req.csrfToken()
   })
 }
 
@@ -236,7 +236,7 @@ const guardarCambios = async(req, res) => {
       categorias,
       precios,
       errores: errores.array(),
-      // csrfToken: req.csrfToken()
+      // // // csrfToken: req.csrfToken()
     });
   }
 
@@ -283,7 +283,7 @@ const verImagen = async(req, res) => {
 
   res.render("propiedades/editar-imagen",{
     propiedad,
-    // csrfToken: req.csrfToken()
+    // // // csrfToken: req.csrfToken()
     }
   );
 }

@@ -16,7 +16,7 @@ const protegerRutas = async(req, res, next) =>{
       req.usuario = usuario
     }
     else{
-      return res.redirect("/auth/login");
+      return res.clearCookie("_token").redirect("/auth/login");
     }
     return next();  
   } catch (error) {
