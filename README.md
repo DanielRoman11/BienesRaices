@@ -1,7 +1,7 @@
 # <h1 align="center"> Bienes Raices </h1>
 
 ## Resumen del Proyecto
-Plataforma de anuncios inmobiliarios que tiene como propósito facilitar la compra, venta y consulta de bienes inmuebles. La aplicación no cuenta con pagos virtuales, la venta se hace entre ambas partes facilitando el contacto del vendedor; en donde se publica una propiedad y una vez autenticado el cliente este deberá contactar directamente al vendedor. Para la UI se buscó un diseño refrescante para que el usuario sienta tranquilidad al ingresar a la aplicación web.
+Plataforma de anuncios inmobiliarios que tiene como propósito facilitar la compra, venta y consulta de bienes inmuebles. La aplicación no cuenta con pagos virtuales, la venta se hace entre ambas partes facilitando el contacto del vendedor; en donde se publica una propiedad y una vez autenticado el cliente este deberá contactar directamente al vendedor.
 
 
 ## Estado del proyecto
