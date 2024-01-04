@@ -6,10 +6,10 @@
   "type": "module",
   "scripts": {
     "start": "node index.js",
-    "server": "node --env-file=.env --watch index.js",
+    "start:server": "node --env-file=.env --watch index.js",
     "css": "postcss public/css/tailwind.css -o public/css/app.css --watch",
     "js": "webpack --watch",
-    "dev": "concurrently \"pnpm run css\" \"pnpm run js\" ",
+    "start:dev": "concurrently \"pnpm run css\" \"pnpm run js\" ",
     "db:importar": "node ./seed/seeder.js -i",
     "db:eliminar": "node ./seed/seeder.js -e"
   },
@@ -24,10 +24,8 @@
   "author": "Daniel Román",
   "license": "ISC",
   "dependencies": {
-    "@tailwindcss/line-clamp": "^0.4.4",
     "bcrypt": "^5.1.0",
     "cookie-parser": "^1.4.6",
-    "csurf": "^1.11.0",
     "dropzone": "^5.9.3",
     "express": "^4.18.2",
     "express-validator": "^6.14.3",
