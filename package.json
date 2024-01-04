@@ -19,8 +19,7 @@
     "Tailwind",
     "MySQL",
     "Sequelize",
-    "webpack",
-    ""
+    "webpack"
   ],
   "author": "Daniel Román",
   "license": "ISC",

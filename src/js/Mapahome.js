@@ -43,18 +43,18 @@
         <strong>Última Actualización:</strong> ${new Date(propiedad.updatedAt).toLocaleDateString()} <br>
         <a href="/propiedades/propiedad/${propiedad.id}" class="border-2 border-[#706f2b] block p-2 text-center font-bold uppercase">Ver Propiedad</a>
         </div>`
-        )
-      });
-    }
+       )
+    });
+  }
 
   categoriasSelect.addEventListener("change", (e) =>{
     filtros.categoria = +e.target.value;
     filtrarPropiedades();
-  })
+  });
   preciosSelect.addEventListener("change", (e) =>{
     filtros.precios = +e.target.value
     filtrarPropiedades();
-  })
+  });
 
   const obtenerPropiedades = async() => {
     try {

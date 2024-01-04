@@ -16,8 +16,8 @@ app.use( express.urlencoded({extended: true}));
 //* Habilitar Cookie Parser
 app.use( cookieParser());
 
-//* Habilitar CSRF
-app.use( csrf({ cookie: true }));
+//! Habilitar CSRF DEPRECATED
+// app.use( csrf({ cookie: true }));
 
 //* Conexión a la base de datos
 try {

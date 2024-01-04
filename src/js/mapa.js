@@ -39,6 +39,8 @@
     marker.setLatLng(e.latlng)
     const posicion = marker.getLatLng();
 
+    console.log(posicion);
+
     geocodeService.reverse().latlng(posicion, 12).run(function(error, resultado){//? Esto regresa las propiedades de la ubicación del marcador 
       marker.bindPopup(resultado.address.LongLabel).openPopup(); //? Obtener Información de la ubicación
 
