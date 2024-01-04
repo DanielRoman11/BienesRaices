@@ -73,7 +73,7 @@ const login = async(req, res) => {
 const formularioRegistro = (req, res) => {
   res.render('auth/registro', {
     pagina: 'Crear Cuenta',
-    csrfToken: req.csrfToken()
+    // csrfToken: req.csrfToken()
   })
 }
 
@@ -92,7 +92,7 @@ const registroRespuesta = async (req, res) => {
     return res.render('auth/registro', {
       pagina: 'Crear Cuenta',
       errores: resultado.array(),
-      csrfToken: req.csrfToken(),
+      // csrfToken: req.csrfToken(),
       usuario: {
         nombre: req.body.nombre,
         email: req.body.email
@@ -107,7 +107,7 @@ const registroRespuesta = async (req, res) => {
   if(existeUsuario){
     return res.render('auth/registro', {
       pagina: 'Crear Cuenta',
-      csrfToken: req.csrfToken(),
+      // csrfToken: req.csrfToken(),
       errores: [{msg: "El usuario ya esta Registrado"}],
       usuario: {
         nombre: req.body.nombre,
@@ -166,7 +166,7 @@ const confirmar = async(req, res) => {
 const formularioOlvidePassword = (req, res) => {
   res.render('auth/olvide-password', {
     pagina: 'Recupera tu acceso',
-    csrfToken: req.csrfToken()
+    // csrfToken: req.csrfToken()
   });
 }
 
@@ -179,7 +179,7 @@ const resetPassword = async(req, res) => {
     return res.render('auth/olvide-password', {
       pagina: 'Recupera tu acceso',
       errores: resultado.array(),
-      csrfToken: req.csrfToken()
+      // csrfToken: req.csrfToken()
     });
   }
 
@@ -192,7 +192,7 @@ const resetPassword = async(req, res) => {
       pagina: 'Recupera tu acceso',
       email: email,
       errores: [{msg: 'El email no pertenece a un usuario'}],
-      csrfToken: req.csrfToken()
+      // csrfToken: req.csrfToken()
     })
   }
 
@@ -230,7 +230,7 @@ const comprobarPasswordToken = async(req, res) => {
 
   return res.render("auth/reiniciar-password", {
     pagina: "Reinicia tu contraseña",
-    csrfToken: req.csrfToken()
+    // csrfToken: req.csrfToken()
   });
 }
 
@@ -244,7 +244,7 @@ const nuevaPassword = async(req, res, next) => {
     return res.render("auth/reiniciar-password", {
       pagina: "Reinicia tu contraseña",
       errores: errores.array(),
-      csrfToken: req.csrfToken()
+      // csrfToken: req.csrfToken()
     });
   }
   const { token } = req.params;
