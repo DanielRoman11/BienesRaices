@@ -53,5 +53,6 @@
       let lng = document.getElementById("lng").value = resultado?.latlng?.lng ?? "";
     });
   }
+  
   mapa.on('click', onMapClick);
 })();
