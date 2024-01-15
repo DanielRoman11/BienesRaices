@@ -290,7 +290,7 @@ const verImagen = async(req, res) => {
 
 const nuevaImagen = async(req, res) => {
   try {
-    console.log("Cargando...");
+    // console.log("Cargando...");
     const { id } = req.params
     const propiedad = await Propiedad.findByPk(id);
   
@@ -301,12 +301,14 @@ const nuevaImagen = async(req, res) => {
     if(propiedad.usuarioID.toString() !== req.usuario.id.toString()){
       return res.redirect("/propiedad")
     }
-  
+    
+    
     const imagen = req.file;
-    console.log(imagen);
-
+    // console.log(imagen);
+    
     //* Eliminar Imagen
-    const rutaArchivo = `public/uploads/${propiedad.imagen}`;
+    const rutaCarpeta = "public/uploads/"
+    const rutaArchivo = rutaCarpeta + propiedad.imagen;
 
     eliminarArchivo(rutaArchivo);
   

@@ -5,6 +5,10 @@
 
   let markers = new L.FeatureGroup().addTo(mapa)
 
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(mapa);
+
   let propiedades = [];
 
   const filtros = {
@@ -14,10 +18,6 @@
 
   const categoriasSelect = document.getElementById('categorias');
   const preciosSelect = document.getElementById('precios');
-
-  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-  }).addTo(mapa);
 
   const mostrarPropiedades = propiedades =>{
     var markerIcon = new L.Icon({
@@ -75,6 +75,8 @@
     
       console.log(resultado);
   }
+
+  const filtrarCategoria = propiedad => filtros.categoria ? propiedad.categoriaId === filtros.categoria : propiedad
 
   obtenerPropiedades();
 
