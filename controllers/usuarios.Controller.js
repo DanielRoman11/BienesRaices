@@ -56,21 +56,21 @@ const login = async(req, res) => {
         // // csrfToken: req.csrfToken()
       });
     }
+
+    const token = generarJWT({ id: usuario.id, nombre: usuario.nombre });
+
+    console.log(token);
+
+    //Almacenar en un Cookie
+    return res.cookie('_token', token, {
+      httpOnly: true,
+      // secure: true, //? Solo si tiene certificado SSL
+      // sameSite:true //? Solo si tiene certificado SSL
+    }).redirect('/propiedades');
   } catch (error) {
     console.error(error);
     res.status(500).json(error.name ?? error);
   }
-
-  const token = generarJWT({ id: usuario.id, nombre: usuario.nombre });
-
-  console.log(token);
-
-  //Almacenar en un Cookie
-  return res.cookie('_token', token, {
-    httpOnly: true,
-    // secure: true, //? Solo si tiene certificado SSL
-    // sameSite:true //? Solo si tiene certificado SSL
-  }).redirect('/propiedades');
 }
 
 //* Formulario de registro
