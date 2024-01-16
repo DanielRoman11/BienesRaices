@@ -9,7 +9,7 @@
     "start:server": "node --env-file=.env --watch index.js",
     "css": "postcss public/css/tailwind.css -o public/css/app.css --watch",
     "js": "webpack --watch",
-    "start:dev": "concurrently \"pnpm run css\" \"pnpm run js\" ",
+    "start:dev": "concurrently \"pnpm run css\" \"pnpm run js\" -w",
     "db:importar": "node ./seed/seeder.js -i",
     "db:eliminar": "node ./seed/seeder.js -e"
   },
