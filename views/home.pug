@@ -22,6 +22,9 @@ block contenido
           each precio in precios
             option(value=precio.id)= precio.nombre
     div(id="mapaHome" class="h-96 md:h-[600px] mt-5")
+
+    pre= JSON.stringify(casas, undefined, 1)
+
 block scripts
   script(src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js")
   script(src="/js/Mapahome.js") 
