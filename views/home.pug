@@ -4,11 +4,10 @@ block styles
   link(rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css")
 
 block contenido
-  div(class="py-3")
+  section(class="py-3")
     h1(class="text-center text-3xl sm:text-4xl font-extrabold")= pagina
-    div(class="flex flex-col md:flex-row items-center py-10 gap-4")
     h4(class="font-bold text-sm uppercase text-gray-800") Filtrar propiedades:
-    div(class="grid grid-cols-1 md:grid-cols-2 gap-2" id="filterbox")
+    nav(class="grid grid-cols-1 md:grid-cols-2 gap-2" id="filterbox")
       div(class="w-full md:w-auto flex items-center gap-2")
         label(for="categorias" class="text-sm w-24 uppercase text-gray-500") Categorías
         select#categorias(class="flex-1 w-full bg-white px-3 py-2 border border-gray-300 rounded-md shadow-md") 
@@ -22,8 +21,8 @@ block contenido
           each precio in precios
             option(value=precio.id)= precio.nombre
     div(id="mapaHome" class="h-96 md:h-[600px] mt-5")
-
-    //- pre= JSON.stringify(casas, undefined, 1)
+  
+  section
 
 block scripts
   script(src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js")
