@@ -1,49 +1,23 @@
-/*
- * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
- * This devtool is neither made for production nor for readable output files.
- * It uses "eval()" calls to create a separate source file in the browser devtools.
- * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
- * or disable the default devtool with "devtool: false".
- * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
- */
-/******/ (() => { // webpackBootstrap
-/******/ 	"use strict";
-/******/ 	var __webpack_modules__ = ({
-
-/***/ "./src/js/mostrarMapa.js":
-/*!*******************************!*\
-  !*** ./src/js/mostrarMapa.js ***!
-  \*******************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n(function() {\r\n  const lat = document.getElementById(\"lat\").textContent;\r\n  const lng = document.getElementById(\"lng\").textContent;\r\n\r\n  const titulo = document.getElementById(\"titulo\").textContent;\r\n\r\n  var mapa = L.map('mapa', {\r\n    fullscreenControl: {\r\n      pseudoFullscreen: false\r\n    }\r\n  }).setView([lat, lng ], 15);\r\n\r\n  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {\r\n    attribution: '&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors'\r\n  }).addTo(mapa);\r\n\r\n  //* Crear Marcador\r\n  let marker = new L.marker([lat, lng], {\r\n    color: 'red',\r\n    fillColor: '#fffff',\r\n    fillOpacity: 0.4,\r\n    draggable: false,\r\n  }).addTo(mapa);\r\n\r\n  marker.bindPopup(titulo);\r\n})();\n\n//# sourceURL=webpack://node_bootcamp/./src/js/mostrarMapa.js?");
-
-/***/ })
-
-/******/ 	});
-/************************************************************************/
-/******/ 	// The require scope
-/******/ 	var __webpack_require__ = {};
-/******/ 	
-/************************************************************************/
-/******/ 	/* webpack/runtime/make namespace object */
-/******/ 	(() => {
-/******/ 		// define __esModule on exports
-/******/ 		__webpack_require__.r = (exports) => {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/************************************************************************/
-/******/ 	
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
-/******/ 	// This entry module can't be inlined because the eval devtool is used.
-/******/ 	var __webpack_exports__ = {};
-/******/ 	__webpack_modules__["./src/js/mostrarMapa.js"](0, __webpack_exports__, __webpack_require__);
-/******/ 	
-/******/ })()
-;
+(() => {
+  // src/js/mostrarMapa.js
+  (function() {
+    const lat = document.getElementById("lat").textContent;
+    const lng = document.getElementById("lng").textContent;
+    const titulo = document.getElementById("titulo").textContent;
+    var mapa = L.map("mapa", {
+      fullscreenControl: {
+        pseudoFullscreen: false
+      }
+    }).setView([lat, lng], 15);
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(mapa);
+    let marker = new L.marker([lat, lng], {
+      color: "red",
+      fillColor: "#fffff",
+      fillOpacity: 0.4,
+      draggable: false
+    }).addTo(mapa);
+    marker.bindPopup(titulo);
+  })();
+})();

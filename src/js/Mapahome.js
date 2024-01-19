@@ -95,5 +95,6 @@
     }
   }
 
-    obtenerPropiedades();
+  
+  obtenerPropiedades();
 })();

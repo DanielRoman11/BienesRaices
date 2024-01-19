@@ -8,7 +8,7 @@
     "start": "node index.js",
     "start:server": "node --env-file=.env --watch index.js",
     "css": "postcss public/css/tailwind.css -o public/css/app.css --watch",
-    "js": "pnpm exec webpack watch --mode development -c ./webpack.config.js",
+    "js": "node build.js",
     "start:dev": "concurrently \"pnpm run css\" \"pnpm run js\"",
     "db:importar": "node ./seed/seeder.js -i",
     "db:eliminar": "node ./seed/seeder.js -e"
@@ -38,11 +38,10 @@
   "devDependencies": {
     "autoprefixer": "^10.4.13",
     "concurrently": "^8.0.1",
+    "esbuild": "^0.19.11",
     "nodemailer": "^6.9.1",
     "postcss": "^8.4.21",
     "postcss-cli": "^10.1.0",
-    "tailwindcss": "^3.4.1",
-    "webpack": "^5.89.0",
-    "webpack-cli": "^5.1.4"
+    "tailwindcss": "^3.4.1"
   }
 }
