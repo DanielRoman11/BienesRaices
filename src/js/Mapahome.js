@@ -72,16 +72,27 @@
       mostrarPropiedades(propiedades)
 
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
+  const cantidad_propiedades = document.createElement("p");
+  cantidad_propiedades.classList.add('pt-5')
   const filtrarPropiedades = () => {
     const resultado = propiedades
       .filter(propiedad => filtros.categoria ? filtros.categoria === propiedad.categoriaID : propiedad)
       .filter(propiedad => filtros.precio ? filtros.precio === propiedad.precioID : propiedad)
     
     mostrarPropiedades(resultado)
+
+    const filterbox = document.getElementById("filterbox");
+    
+    if(cantidad_propiedades.innerText == ""){
+      filterbox.insertAdjacentElement('afterend', cantidad_propiedades)
+      cantidad_propiedades.innerText = `Propiedades mostradas: ${resultado.length}`;
+    } else {
+      cantidad_propiedades.innerText = `Propiedades mostradas: ${resultado.length}`;
+    }
   }
 
 
