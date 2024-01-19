@@ -5,7 +5,6 @@ export const home = async(req,res) => {
     Categoria.findAll({raw: true}),
     Precio.findAll({raw: true}),
     Propiedad.findAll({
-      limit: 3,
       include:[{
         model: Precio,
         as: 'precio'

@@ -1147,15 +1147,6 @@ video {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
-.underline {
-  text-decoration-line: underline;
-}
-.decoration-wavy {
-  text-decoration-style: wavy;
-}
-.underline-offset-2 {
-  text-underline-offset: 2px;
-}
 .placeholder-gray-400::-moz-placeholder {
   --tw-placeholder-opacity: 1;
   color: rgb(156 163 175 / var(--tw-placeholder-opacity));
@@ -1431,6 +1422,11 @@ video {
   .sm\:text-4xl {
     font-size: 2.25rem;
     line-height: 2.5rem;
+  }
+
+  .sm\:text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
   }
 }
 @media (min-width: 768px) {

@@ -50,7 +50,6 @@ const admin = async(req, res) => {
       offset,
       limit,
       total,
-      casas
       // // // csrfToken: req.csrfToken()
     }); 
   } catch (error) {
