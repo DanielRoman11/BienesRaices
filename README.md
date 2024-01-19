@@ -94,11 +94,8 @@ Se definieron las siguientes variables de entorno (`DotEnv`) para la ejecución 
 ## Tecnologías utilizadas
 **Dependencias:**
 
-- `@tailwindcss/line-clamp`: ^0.4.4
 - `bcrypt`: ^5.1.0
 - `cookie-parser`: ^1.4.6
-- `csurf`: ^1.11.0
-- `dotenv`: ^16.0.3
 - `dropzone`: ^5.9.3
 - `express`: ^4.18.2
 - `express-validator`: ^6.14.3
@@ -113,10 +110,9 @@ Se definieron las siguientes variables de entorno (`DotEnv`) para la ejecución 
 - `autoprefixer`: ^10.4.13
 - `concurrently`: ^8.0.1
 - `nodemailer`: ^6.9.1
-- `nodemon`: ^2.0.20
 - `postcss`: ^8.4.21
 - `postcss-cli`: ^10.1.0
-- `tailwindcss`: ^3.2.4
+- `tailwindcss`: ^3.4.1
 - `webpack`: ^5.78.0
 - `webpack-cli`: ^5.0.1
 
