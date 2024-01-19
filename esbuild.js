@@ -1,7 +1,6 @@
 import { context } from 'esbuild';
 import { resolve } from 'path';
 
-// Define tus puntos de entrada
 const entryPoints = ['mapa', 'agregarImagen', 'mostrarMapa', 'mapaHome'].map(name => `./src/js/${name}.js`);
 
 (async function(){
@@ -10,6 +9,6 @@ const entryPoints = ['mapa', 'agregarImagen', 'mostrarMapa', 'mapaHome'].map(nam
     bundle: true,
     outdir: resolve('public/js'),
   }).catch(() => process.exit(1));
-  await ctx.watch();
+  await ctx.watch().catch(() => process.exit(1));
   console.log("ESBuild Watching...");
 })()
