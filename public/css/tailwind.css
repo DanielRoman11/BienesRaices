@@ -14,3 +14,13 @@
 .leaflet-container a{
   color: #706f2b;
 }
+
+@media (max-width: 639px){
+  .parent :nth-child(1){
+    transform: translateY(25px);
+  }
+  .parent :nth-child(2) {
+    transform: translateY(15px);
+  }
+}
+

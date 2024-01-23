@@ -17,4 +17,4 @@ const entryPoints = ['mapa', 'agregarImagen', 'mostrarMapa', 'mapaHome'].map(nam
   } catch (error) {
     process.exit(1)
   }
-})()
+})();

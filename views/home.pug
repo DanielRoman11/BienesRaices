@@ -22,7 +22,24 @@ block contenido
             option(value=precio.id)= precio.nombre
     div(id="mapaHome" class="h-96 md:h-[600px] mt-5")
   
-  section
+  section.py-5
+    h2.text-center.text-4xl.font-extrabold.pt-10 Casas en venta
+    div(class="grid sm:grid-cols-3 gap-5 mt-5 parent w-full place-items-center")
+      each casa in casas
+        //- pre= JSON.stringify(casa, undefined, 3)
+
+        article(class="relative flex w-56 md:w-96 py-5 sm:py-0 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md hover:z-20 transition-all mt-10 group h-96")
+          header.relative.mx-4.-mt-6.h-full.rounded-xl.bg-clip-border.overflow-hidden
+            img(src=`/uploads/${casa.imagen}` alt=`Imagen de ${casa.titulo}` class="group-hover:scale-125 transition-transform w-full h-full")
+          div(class="p-6 line-clamp-2 whitespace-pre-wrap flex flex-col h-full")
+            h5.mb-2.block.font-semibold.text-xl.whitespace-pre-wrap.leading-snug.tracking-normal.text-blue-gray-900.antialiased.text-balance(class="text-[#4c460e]")= casa.titulo
+            p(class="font-semibold text-xs whitespace-pre-wrap text-pretty line-clamp-1  lg:line-clamp-3")= casa.descripcion
+          .p-6.pt-0.flex.flex-col.gap-y-5
+            a.w-fit.select-none.rounded-lg.bg-pink-500.py-3.px-6.text-center.align-middle.font-sans.text-xs.font-bold.uppercase.text-white.shadow-md.transition-all(class='shadow-pink-500/20 hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none' href=`/propiedades/propiedad/${casa.id}`)
+              | Leer más
+            p.text-xs.float-right= casa.updatedAt.toLocaleString('es-CO')
+
+
 
 block scripts
   script(src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js")

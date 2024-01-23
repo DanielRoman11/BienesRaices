@@ -11,7 +11,7 @@ export const home = async(req,res) => {
         as: 'precio'
       }],
       where: {
-        categoriaID: 2
+        categoriaID: 1
       },
       order: [
         ['createdAt', 'DESC']
@@ -24,7 +24,7 @@ export const home = async(req,res) => {
         as: 'precio'
       }],
       where: {
-        categoriaID: 1
+        categoriaID: 2
       },
       order: [
         ['createdAt', 'DESC']
