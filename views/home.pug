@@ -23,30 +23,33 @@ block contenido
     div(id="mapaHome" class="h-96 md:h-[600px] mt-5")
   
   section.py-5
-    h2.text-center.text-4xl.font-extrabold.pt-10 Casas en venta
-      //- each casa in casas
-      //-   pre= JSON.stringify(casa, undefined, 3)
-    div(class="grid sm:grid-cols-3 gap-5 mt-5 parent w-full")
+    h2.text-center.text-4xl.font-extrabold.py-10.pb-5 Casas en venta
+    div(class="flex flex-col sm:flex-row flex-wrap items-start h-full")
       each casa in casas
         //- pre= JSON.stringify(casa, undefined, 3)
+        article(class="px-5 w-full sm:w-1/2 md:w-1/3 flex justify-center relative my-2 h-fit")
+          p.absolute.flex.flex-wrapright-0.top-2.text-xs.text-center.z-20.font-semibold(class="w-1/2 bg-white/50 backdrop-blur-sm rounded-b-md px-2")= casa.precio.nombre
+          .max-w-xs.rounded-lg.bg-white.p-2.shadow(class="h-[inherit]")
+            img.w-full.rounded-lg.object-cover.object-center(src=`/uploads/${casa.imagen}` alt= casa.titulo class="h-1/3")
+            div.flex.flex-col.justify-between
+              .my-6.flex.items-center.justify-between.px-4
+                p.font-extrabold.text-gray-500.text-balance.line-clamp-2.whitespace-pre-wrap= casa.titulo
+              .my-4.flex.items-center.justify-between.px-4
+                p.text-sm.font-semibold.text-gray-500 Habitaciones
+                p.rounded-full.bg-gray-200.px-2.text-xs.font-semibold.text-gray-600(class='py-0.5')= casa.habitaciones
+              .my-4.flex.items-center.justify-between.px-4
+                p.text-sm.font-semibold.text-gray-500 Baños
+                p.rounded-full.bg-gray-200.px-2.text-xs.font-semibold.text-gray-600(class='py-0.5')= casa.wc
+              .my-4.flex.items-center.justify-between.px-4
+                p.text-sm.font-semibold.text-gray-500 Estacionamiento
+                p.rounded-full.bg-gray-200.px-2.text-xs.font-semibold.text-gray-600(class='py-0.5')= casa.estacionamiento
+              .my-4.flex.items-center.justify-between.px-4
+                .p-6.pt-0.flex.flex-col.gap-y-5
+                a.w-fit.select-none.rounded-lg.bg-pink-500.py-3.px-6.text-center.align-middle.font-sans.text-xs.font-bold.uppercase.text-white.shadow-md.transition-all(class='shadow-pink-500/20 hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none' href=`/propiedades/propiedad/${casa.id}`)
+                  | Leer más
 
-        article(class="relative flex w-56 md:w-full py-5 sm:py-0 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md hover:z-20 transition-all mt-10 group items-start justify-between")
-          header.relative.mx-4.-mt-6.bg-clip-border.overflow-hidden.mx-0.px-5
-            div.overflow-hidden.rounded-xl.w-full
-              img(src=`/uploads/${casa.imagen}` alt=`Imagen de ${casa.titulo}` class="group-hover:scale-125 transition-transform w-full h-60 max-h-full")
-          div(class="p-6 line-clamp-2 whitespace-pre-wrap flex flex-col h-52")
-            h5.mb-2.block.font-semibold.text-xl.whitespace-pre-wrap.leading-snug.tracking-normal.text-blue-gray-900.antialiased.text-balance(class="text-[#4c460e]")= casa.titulo
-            p(class="font-semibold text-xs whitespace-pre-wrap text-pretty line-clamp-2 lg:line-clamp-2")= casa.descripcion
-          .flex.flex-wrap.px-5.w-full.flex-col.justifify-between.py-10.pt-5
-            p(class="font-semibold text-base mt-1")= "🧭 Ubicación: "+ casa.calle
-            p(class="font-semibold text-base mt-1")= "🚽 Baños: "+ casa.wc
-            p(class="font-semibold text-base mt-1")= "🛌🏻 Habitaciones: "+ casa.habitaciones
-            p(class="font-semibold text-base mt-1")= "🚗 Estacionamiento: "+ casa.estacionamiento
-            p(class="font-semibold text-base mt-1")= "💰 Precio: "+ casa.precio.nombre
-          .p-6.pt-0.flex.flex-col.gap-y-5
-            a.w-fit.select-none.rounded-lg.bg-pink-500.py-3.px-6.text-center.align-middle.font-sans.text-xs.font-bold.uppercase.text-white.shadow-md.transition-all(class='shadow-pink-500/20 hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none' href=`/propiedades/propiedad/${casa.id}`)
-              | Leer más
-            p.text-xs.float-right= casa.updatedAt.toLocaleString('es-CO')
+          
+          
 
 
 
