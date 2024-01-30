@@ -24,13 +24,13 @@ block contenido
   
   section.py-5
     h2.text-center.text-4xl.font-extrabold.py-10.pb-5 Casas en venta
-    div(class="flex flex-col sm:flex-row flex-wrap items-start h-full")
+    div(class="flex flex-col sm:flex-row flex-wrap items-start")
       each casa in casas
         //- pre= JSON.stringify(casa, undefined, 3)
-        article(class="px-5 w-full sm:w-1/2 md:w-1/3 flex justify-center relative my-2 h-fit")
+        article(class="px-5 w-full sm:w-1/2 md:w-1/3 flex justify-center relative my-2 h-[630px]")
           p.absolute.flex.flex-wrapright-0.top-2.text-xs.text-center.z-20.font-semibold(class="w-1/2 bg-white/50 backdrop-blur-sm rounded-b-md px-2")= casa.precio.nombre
-          .max-w-xs.rounded-lg.bg-white.p-2.shadow(class="h-[inherit]")
-            img.w-full.rounded-lg.object-cover.object-center(src=`/uploads/${casa.imagen}` alt= casa.titulo class="h-1/3")
+          .max-w-xs.rounded-lg.bg-white.p-2.shadow.flex.flex-col.justify-between
+            img.w-full.rounded-lg.object-cover.object-center(src=`/uploads/${casa.imagen}` alt= casa.titulo class="h-72")
             div.flex.flex-col.justify-between
               .my-6.flex.items-center.justify-between.px-4
                 p.font-extrabold.text-gray-500.text-balance.line-clamp-2.whitespace-pre-wrap= casa.titulo
@@ -44,7 +44,6 @@ block contenido
                 p.text-sm.font-semibold.text-gray-500 Estacionamiento
                 p.rounded-full.bg-gray-200.px-2.text-xs.font-semibold.text-gray-600(class='py-0.5')= casa.estacionamiento
               .my-4.flex.items-center.justify-between.px-4
-                .p-6.pt-0.flex.flex-col.gap-y-5
                 a.w-fit.select-none.rounded-lg.bg-pink-500.py-3.px-6.text-center.align-middle.font-sans.text-xs.font-bold.uppercase.text-white.shadow-md.transition-all(class='shadow-pink-500/20 hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none' href=`/propiedades/propiedad/${casa.id}`)
                   | Leer más
 
