@@ -49,11 +49,32 @@ export const home = async(req,res) => {
 }
 
 export const categoria = async(req,res) => {
+  const { id } = req.params;
+  
+  const categoria = await Categoria.findByPk(id);
+  if(!categoria) return res.redirect('/404');
+
+  const propiedades = await Propiedad.findAll({
+    where: {
+      categoriaID: id
+    },
+    include: [{
+      model: Precio, as: 'precio'
+    }]
+  })
+
+  res.render('categoria', {
+    pagina: categoria.nombre+"s en venta",
+    propiedades
+  })
+
 
 }
 
 export const noEncontrado = (req, res) => {
-
+  res.render('404', {
+    pagina: "No encontrada"
+  })
 }
 
 export const buscador = (req, res) =>{
