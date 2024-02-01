@@ -1,4 +1,5 @@
 import { Categoria, Precio, Propiedad } from "../models/index.js"
+import { Op } from "sequelize";
 
 export const home = async(req,res) => {
   const [ categorias, precios, casas, apartamentos ] = await Promise.all([
@@ -77,6 +78,28 @@ export const noEncontrado = (req, res) => {
   })
 }
 
-export const buscador = (req, res) =>{
+export const buscador = async(req, res) =>{
+  const { termino } = req.body;
 
+  if(!termino.trim()){
+    return res.redirect('back');
+  }
+
+  const propiedades = await Propiedad.findAll({
+    where: {
+      titulo: {
+        [Op.like] : "%"+termino+"%"
+      }
+    },
+    include: [{
+      model: Precio, as: 'precio'
+    },{model: Categoria, as: 'categoria'}]
+  })
+
+  console.log(propiedades);
+
+  res.render('busqueda', {
+    pagina: 'Resultado Busqueda',
+    propiedades
+  })
 }

@@ -6,6 +6,6 @@ const app = express.Router()
 app.get('/', home);
 app.get('/categoria/:id', categoria);
 app.get('/404', noEncontrado);
-app.get('/buscador', buscador);
+app.post('/buscador', buscador);
 
 export default app;
