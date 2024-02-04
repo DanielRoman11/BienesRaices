@@ -875,8 +875,9 @@ video {
   --tw-border-opacity: 1;
   border-color: rgb(76 75 22 / var(--tw-border-opacity));
 }
-.border-\[\#4c460e\]\/20 {
-  border-color: rgb(76 70 14 / 0.2);
+.border-\[\#4c460e\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(76 70 14 / var(--tw-border-opacity));
 }
 .border-\[\#4c460e\]\/25 {
   border-color: rgb(76 70 14 / 0.25);
@@ -913,9 +914,6 @@ video {
 .bg-\[\#4C4B16\] {
   --tw-bg-opacity: 1;
   background-color: rgb(76 75 22 / var(--tw-bg-opacity));
-}
-.bg-\[\#4C4B16\]\/70 {
-  background-color: rgb(76 75 22 / 0.7);
 }
 .bg-\[\#615a18\]\/40 {
   background-color: rgb(97 90 24 / 0.4);
@@ -1232,6 +1230,12 @@ video {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
+.decoration-2 {
+  text-decoration-thickness: 2px;
+}
+.underline-offset-2 {
+  text-underline-offset: 2px;
+}
 .placeholder-gray-400::-moz-placeholder {
   --tw-placeholder-opacity: 1;
   color: rgb(156 163 175 / var(--tw-placeholder-opacity));
@@ -1400,6 +1404,14 @@ video {
 .hover\:bg-slate-100:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(241 245 249 / var(--tw-bg-opacity));
+}
+
+.hover\:underline:hover {
+  text-decoration-line: underline;
+}
+
+.hover\:decoration-wavy:hover {
+  text-decoration-style: wavy;
 }
 
 .hover\:shadow-lg:hover {
@@ -1708,6 +1720,11 @@ video {
   .md\:text-base {
     font-size: 1rem;
     line-height: 1.5rem;
+  }
+
+  .md\:text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
   }
 }
 

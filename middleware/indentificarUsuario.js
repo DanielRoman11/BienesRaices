@@ -6,7 +6,7 @@ export const identificarUsuario = async( req, res, next) =>{
 
   if(!_token){
     req.usuario = null
-    return next;
+    return next();
   }
-  return next
+  return next()
 }

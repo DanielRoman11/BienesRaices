@@ -12,7 +12,7 @@ block contenido
   div(class="py-5 pb-16 text-center md:flex flex-col mx-auto justify-center items-center ")
     h1(class="text-[#4c460e] drop-shadow-lg text-xl sm:text-2xl font-bold py-2" id="titulo")= pagina
     h2(class="text-[#4c460e] drop-shadow-lg text-xs sm:text-md font-bold px-10" id="titulo")= propiedad.precio.nombre
-    div(class="w-full mx-auto flex relative md:justify-start flex-col")
+    article(class="w-full mx-auto flex relative md:justify-start flex-col")
       img(src=`/uploads/${propiedad.imagen}`, alt=`Imagen ${propiedad.titulo}` class="rounded-t w-full mt-10 border-[#4c460e]/25 border")
       div(class="flex absolute items-center rounded-full space-x-2 bg-[#615a18]/40 backdrop-blur-md z-10 px-10 py-2 left-1 top-5 sm:left-4 text-white font-semibold")
         svg(xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 sm:size-6")
@@ -31,12 +31,20 @@ block contenido
         p(class="text-[#4c460e] text-center")= propiedad.descripcion
 
 
-    div(class="w-full mx-auto mt-10 sm:mt-0")
+    article(class="w-full mx-auto mt-10 sm:mt-0")
       div(class="h-96 rounded-md border border-double border-[#4c460e]/25" id="mapa")
         p(id="lng").hidden= propiedad.lng
         p(id="lat").hidden= propiedad.lat
       p(class="text-md py-2 text-center text-[#4c460e] font-semibold") 📌Dirección: 
         span.font-bold=propiedad.calle
+    
+    h4(class="text-2xl text-center text-[#3a360f] leading-6 font-bold") Información de contacto
+    if !usuario
+      .flex.justify-center.gap-2.mt-10(class="text-[#3a360f]")
+        p Para contactar al vendendedor debes 
+        a(class="font-bold" href="/auth/registro") Crear una cuenta
+    else
+
 
 block scripts
   script(src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js")

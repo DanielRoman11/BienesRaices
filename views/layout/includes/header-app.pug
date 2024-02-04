@@ -1,20 +1,20 @@
 header(class="sm:bg-transparent bg-[#898121]")
-  div(class="justify-evenly md:justify-around 2xl:justify-between container mx-auto flex items-center")
+  div(class="justify-between container mx-auto flex items-center")
       a(class="md:text-2xl text-xl text-[#615a18] font-extrabold text-center" href="/") Bienes 
         span.font-normal Raices
       nav(class="my-5 text-sm hidden sm:!flex md:items-center sm:gap-4 font-bold text-[#615a18] gap-x-2")
-        a(href="/auth/registro" class="border-2 border-[#4c460e]/20 rounded-lg px-3 py-1 bg-[#4C4B16]/70 text-white hover:scale-105") Crear cuenta
-        a(href="/auth/login" class="border-2 border-[#4c460e]/20 rounded-lg px-3 py-1 bg-[#4C4B16]/70 text-white hover:scale-105") Iniciar sesión
+        a(href="/auth/registro" class="border-2 border-[#4c460e] rounded-lg px-3 py-1 text-[#4c460e] hover:scale-105") Crear cuenta
+        a(href="/auth/login" class="border-2 border-[#4c460e] rounded-lg px-3 py-1 text-[#4c460e] hover:scale-105") Iniciar sesión
 
 header(class="border-2 border-y-[#4C4B16] hidden sm:block py-3 w-full px-2")
   div(class="container  mx-auto flex justify-between gap-6")
     nav.space-x-2
-      a(href="/categoria/1" class="text-sm font-bold uppercase text-[#4C4B16]") Casas
-      a(href="/categoria/2" class="text-sm font-bold uppercase text-[#4C4B16]") Departamentos
-      a(href="/categoria/3" class="text-sm font-bold uppercase text-[#4C4B16]") Bodegas
-      a(href="/categoria/4" class="text-sm font-bold uppercase text-[#4C4B16]") Terrenos
-      a(href="/categoria/5" class="text-sm font-bold uppercase text-[#4C4B16]") Cabañas
+      a(href="/categoria/1" class="text-xs md:text-sm font-bold uppercase text-[#4C4B16] hover:underline underline-offset-2 hover:decoration-wavy decoration-2") Casas
+      a(href="/categoria/2" class="text-xs md:text-sm font-bold uppercase text-[#4C4B16] hover:underline underline-offset-2 hover:decoration-wavy decoration-2") Departamentos
+      a(href="/categoria/3" class="text-xs md:text-sm font-bold uppercase text-[#4C4B16] hover:underline underline-offset-2 hover:decoration-wavy decoration-2") Bodegas
+      a(href="/categoria/4" class="text-xs md:text-sm font-bold uppercase text-[#4C4B16] hover:underline underline-offset-2 hover:decoration-wavy decoration-2") Terrenos
+      a(href="/categoria/5" class="text-xs md:text-sm font-bold uppercase text-[#4C4B16] hover:underline underline-offset-2 hover:decoration-wavy decoration-2") Cabañas
     form(action="/buscador" method="POST" class="flex gap-4 items-center")
-      input(type="text", id="termino" name="termino" placeholder="Buscar Propiedades" class="p-2 rounded-lg shadow text-sm")
+      input(type="text", id="termino" name="termino" placeholder="Buscar Propiedades" class="p-2 rounded-lg shadow text-xs")
 
       input(type="submit", class="bg-[#4C4B16] hover:scale-105 px-2 py-1 rounded-lg text-white uppercase font-bold cursor-pointer text-sm")

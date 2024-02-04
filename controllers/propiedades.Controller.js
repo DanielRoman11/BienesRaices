@@ -8,7 +8,7 @@ const admin = async(req, res) => {
   const { pagina: paginaActual } = req.query;  
   console.log(paginaActual);
 
-  const expReg = /^(?!0)\d+$/g;
+  const expReg = /^(?!0)\d+$/g; //? Regex para comprobar que sean números 
 
   if(!expReg.test(paginaActual)){
     return res.redirect('/propiedades?pagina=1')
@@ -382,7 +382,8 @@ const mostrarPropiedad = async(req, res) => {
     pagina: propiedad.titulo,
     propiedad,
     categorias,
-    precios
+    precios,
+    usuario: req.usuario
   });
 }
 
