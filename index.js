@@ -35,14 +35,19 @@ app.set('views', './views');
 app.use('/auth', rutasUsuarios); // Esto es lo que se conoce como middleware
 app.use('/propiedades', rutasPropiedades);
 app.use('/api', rutasApi);
-app.use('/', rutasApp);
 
-//* Carpeta pública   
+//* Carpeta pública
 app.use(express.static('public'));  //? Contenedor de archivos estáticos
 
 
+console.log(process.env.BD_NOMBRE);
+console.log(process.env.BD_USER);
+console.log(process.env.BD_PASS);
+console.log(process.env.BD_PORT);
+
+
 //* Definir un puerto y arrancar proyecto
-const port = process.env.PORT || 3001;
+const port = process.env.PORT;
 app.listen(port, () => {
   console.log(`El servidor en puerto ${port}`);
 });
