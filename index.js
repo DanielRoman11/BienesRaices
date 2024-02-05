@@ -20,11 +20,13 @@ app.use( cookieParser());
 
 //* Conexión a la base de datos
 try {
-  await db.authenticate();
-  db.sync();
-  console.log('Conexión exitosa a la base de datos');
+  await db.authenticate()
+    .then(()=>{
+      console.log("Conexión establecida");
+    })
+  await db.sync();
 } catch (error) {
-  console.log(error);
+  console.error("Hubo un error en la conexión a la base de datos", err);
 }
 
 //* Habilitar el template engine (PUG)

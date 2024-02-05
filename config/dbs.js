@@ -15,16 +15,8 @@ const db = new Sequelize(process.env.BD_NOMBRE, process.env.BD_USER, process.env
     idle: 10000
   },
   operatorAliases: false
-});
+});  
 
-await db.authenticate()
-  .then(()=>{
-    console.log("Conexión establecida");
-  })
-  .catch((err) =>{
-    console.error("Hubo un error en la conexión a la base de datos", err);
-  })
-
-manejarDesconexion(db)
+// manejarDesconexion(db)
 
 export default db;
