@@ -17,6 +17,6 @@ const db = new Sequelize(process.env.BD_NOMBRE, process.env.BD_USER, process.env
   operatorAliases: false
 });  
 
-// manejarDesconexion(db)
+manejarDesconexion(db)
 
 export default db;

@@ -4,7 +4,7 @@ import db from './config/dbs.js'
 import rutasUsuarios from './routes/usuario.Routes.js'
 import rutasPropiedades from './routes/propiedades.Routes.js'
 import rutasApi from './routes/api.Routes.js'
-import rutasApp from './routes/app.routes.js'
+import rutasApp from './routes/app.Routes.js'
 
 //* Crear app
 const app = express()
@@ -22,7 +22,7 @@ app.use( cookieParser());
 try {
   await db.authenticate()
     .then(()=>{
-      console.log("Conexión establecida");
+      console.log("Conexión establecida ✅");
     })
   await db.sync();
 } catch (error) {
@@ -37,16 +37,10 @@ app.set('views', './views');
 app.use('/auth', rutasUsuarios); // Esto es lo que se conoce como middleware
 app.use('/propiedades', rutasPropiedades);
 app.use('/api', rutasApi);
+app.use('/', rutasApp)
 
 //* Carpeta pública
 app.use(express.static('public'));  //? Contenedor de archivos estáticos
-
-
-console.log(process.env.BD_NOMBRE);
-console.log(process.env.BD_USER);
-console.log(process.env.BD_PASS);
-console.log(process.env.BD_PORT);
-
 
 //* Definir un puerto y arrancar proyecto
 const port = process.env.PORT;
