@@ -7,7 +7,6 @@ import usuarios from "./usuarios.js"
 
 import { Categoria, Precio, Usuario } from "../models/index.js"
 
-
 const importarDatos = async () =>{
     try {
         // Autenticar en la base de datos

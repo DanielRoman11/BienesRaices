@@ -41,7 +41,7 @@ app.use('/', rutasApp);
 app.use(express.static('public'));  //? Contenedor de archivos estáticos
 
 
-//* Definir un puerto y arrancar proyecto
+// * Definir un puerto y arrancar proyecto
 const port = process.env.PORT || 3001;
 app.listen(port, () => {
   console.log(`El servidor en puerto ${port}`);
