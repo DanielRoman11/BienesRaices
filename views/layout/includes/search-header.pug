@@ -1,0 +1,12 @@
+header(class="border-2 border-y-[#4C4B16] hidden sm:block py-3 w-full px-2")
+  div(class="container  mx-auto flex justify-between gap-6")
+    nav.space-x-2
+      a(href="/categoria/1" class="text-xs md:text-sm font-bold uppercase text-[#4C4B16] hover:underline underline-offset-2 hover:decoration-wavy decoration-2") Casas
+      a(href="/categoria/2" class="text-xs md:text-sm font-bold uppercase text-[#4C4B16] hover:underline underline-offset-2 hover:decoration-wavy decoration-2") Apartamentos
+      a(href="/categoria/3" class="text-xs md:text-sm font-bold uppercase text-[#4C4B16] hover:underline underline-offset-2 hover:decoration-wavy decoration-2") Bodegas
+      a(href="/categoria/4" class="text-xs md:text-sm font-bold uppercase text-[#4C4B16] hover:underline underline-offset-2 hover:decoration-wavy decoration-2") Terrenos
+      a(href="/categoria/5" class="text-xs md:text-sm font-bold uppercase text-[#4C4B16] hover:underline underline-offset-2 hover:decoration-wavy decoration-2") Cabañas
+    form(action="/buscador" method="POST" class="flex gap-4 items-center")
+      input(type="text", id="termino" name="termino" placeholder="Buscar Propiedades" class="p-2 rounded-lg shadow text-xs")
+
+      input(type="submit", class="bg-[#4C4B16] hover:scale-105 px-2 py-1 rounded-lg text-white uppercase font-bold cursor-pointer text-sm")

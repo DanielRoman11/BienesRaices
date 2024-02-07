@@ -1,20 +1,8 @@
-header(class="sm:bg-transparent bg-[#898121]")
-  div(class="justify-between container mx-auto flex items-center")
-      a(class="md:text-2xl text-xl text-[#615a18] font-extrabold text-center" href="/") Bienes 
+header(class="py-2 sm:bg-transparent bg-[#898121] w-full")
+  div(class="justify-between container px-2 mx-auto flex items-center h-20")
+      a(class="md:text-2xl text-xl text-[#4C4B16] font-extrabold" href="/") Bienes 
         span.font-normal Raices
-      nav(class="my-5 text-sm hidden sm:!flex md:items-center sm:gap-4 font-bold text-[#615a18] gap-x-2")
-        a(href="/auth/registro" class="border-2 border-[#4c460e] rounded-lg px-3 py-1 text-[#4c460e] hover:scale-105") Crear cuenta
-        a(href="/auth/login" class="border-2 border-[#4c460e] rounded-lg px-3 py-1 text-[#4c460e] hover:scale-105") Iniciar sesión
-
-header(class="border-2 border-y-[#4C4B16] hidden sm:block py-3 w-full px-2")
-  div(class="container  mx-auto flex justify-between gap-6")
-    nav.space-x-2
-      a(href="/categoria/1" class="text-xs md:text-sm font-bold uppercase text-[#4C4B16] hover:underline underline-offset-2 hover:decoration-wavy decoration-2") Casas
-      a(href="/categoria/2" class="text-xs md:text-sm font-bold uppercase text-[#4C4B16] hover:underline underline-offset-2 hover:decoration-wavy decoration-2") Departamentos
-      a(href="/categoria/3" class="text-xs md:text-sm font-bold uppercase text-[#4C4B16] hover:underline underline-offset-2 hover:decoration-wavy decoration-2") Bodegas
-      a(href="/categoria/4" class="text-xs md:text-sm font-bold uppercase text-[#4C4B16] hover:underline underline-offset-2 hover:decoration-wavy decoration-2") Terrenos
-      a(href="/categoria/5" class="text-xs md:text-sm font-bold uppercase text-[#4C4B16] hover:underline underline-offset-2 hover:decoration-wavy decoration-2") Cabañas
-    form(action="/buscador" method="POST" class="flex gap-4 items-center")
-      input(type="text", id="termino" name="termino" placeholder="Buscar Propiedades" class="p-2 rounded-lg shadow text-xs")
-
-      input(type="submit", class="bg-[#4C4B16] hover:scale-105 px-2 py-1 rounded-lg text-white uppercase font-bold cursor-pointer text-sm")
+      nav(class="my-5 text-sm hidden sm:!flex md:items-center sm:gap-4 font-bold text-[#4C4B16] gap-x-2")
+        a(href="/auth/registro" class="border-2 border-[#4C4B16] rounded-lg px-3 py-1 text-[#4C4B16] hover:scale-105") Crear cuenta
+        a(href="/auth/login" class="border-2 border-[#4C4B16] rounded-lg px-3 py-1 text-[#4C4B16] hover:scale-105") Iniciar sesión
+include search-header

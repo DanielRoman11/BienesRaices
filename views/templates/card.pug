@@ -1,6 +1,6 @@
-article(class="px-5 w-full sm:w-1/2 md:w-1/3 flex justify-center relative my-2 h-[630px]")
-  p.absolute.flex.flex-wrapright-0.top-2.text-xs.text-center.z-20.font-semibold(class="bg-white/50 backdrop-blur-sm rounded-b-md px-2")= propiedad.precio.nombre
-  .rounded-lg.bg-white.p-2.shadow.flex.flex-col.justify-between.w-full
+article(class="p-2 w-full sm:w-1/2 md:w-fit flex-1 justify-center relative my-2 h-[630px] flex-wrap bg-white rounded-lg")
+  p.flex.flex-wrap.h-fit.text-center.top-2.text-xs.z-20.font-semibold(class="bg-white/60 backdrop-blur-sm rounded-b-md px-2 absolute w-3/5 lg:w-auto self-center")= propiedad.precio.nombre
+  .flex.flex-col.justify-between.w-full
     img.w-full.rounded-lg.object-cover.object-center(src=`/uploads/${propiedad.imagen}` alt= propiedad.titulo class="h-72")
     div.flex.flex-col.justify-between
       .my-6.flex.items-center.justify-between.px-4
