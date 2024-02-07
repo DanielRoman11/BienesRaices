@@ -1,18 +1,30 @@
-version: "3.8"
+version: '3.1'
 
 services:
-  bienesraices:
-    image: mysql:8.2.0
-    container_name: "bienesraices"
+  db:
+    image: mysql
     command: --default-authentication-plugin=caching_sha2_password
     restart: always
-    ports:
-      - '3306:3307'
     environment:
       MYSQL_ROOT_PASSWORD: secret
-      
+      MYSQL_USER: daker
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: bienesraices
+
   adminer:
     image: adminer
     restart: always
     ports:
       - 8080:8080
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 3001:3001
+    volumes:
+      - .:/app
+    depends_on:
+      - db
