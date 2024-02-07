@@ -4,8 +4,9 @@ import { Categoria, Propiedad, Precio } from "../models/index.js"
 import eliminarArchivo from "../helpers/eliminarImagen.js";
 
 const admin = async(req, res) => {
-
-  const { pagina: paginaActual } = req.query;  
+  const { pagina: paginaActual } = req.query;
+  const { id } = req.usuario
+  
   console.log(paginaActual);
 
   const expReg = /^(?!0)\d+$/g; //? Regex para comprobar que sean números 
@@ -15,7 +16,6 @@ const admin = async(req, res) => {
   }
 
   try {
-    const { id } = req.usuario
 
     const limit = 6
     const offset = ((paginaActual * limit) - limit)

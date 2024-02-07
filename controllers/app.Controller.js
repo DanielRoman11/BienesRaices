@@ -34,13 +34,15 @@ export const home = async(req,res) => {
 
   ])
 
+  const usuario = req.usuario;
+
   res.render('home', {
     pagina: "Home",
     categorias,
     precios,
     casas,
     apartamentos,
-    
+    usuario
   })
  
  
@@ -51,6 +53,7 @@ export const home = async(req,res) => {
 
 export const categoria = async(req,res) => {
   const { id } = req.params;
+  const usuario = req.usuario;
   
   const categoria = await Categoria.findByPk(id);
   if(!categoria) return res.redirect('/404');
@@ -66,20 +69,26 @@ export const categoria = async(req,res) => {
 
   res.render('categoria', {
     pagina: categoria.nombre+"s en venta",
-    propiedades
+    propiedades,
+    usuario
   })
 
 
 }
 
 export const noEncontrado = (req, res) => {
+  req.usuario = usuario;
+
   res.render('404', {
-    pagina: "No encontrada"
+    pagina: "No encontrada",
+    usuario
   })
+
 }
 
 export const buscador = async(req, res) =>{
   const { termino } = req.body;
+  const usuario = req.usuario;
 
   if(!termino.trim()){
     return res.redirect('back');
@@ -100,6 +109,7 @@ export const buscador = async(req, res) =>{
 
   res.render('busqueda', {
     pagina: 'Resultado Busqueda',
-    propiedades
+    propiedades,
+    usuario
   })
 }
