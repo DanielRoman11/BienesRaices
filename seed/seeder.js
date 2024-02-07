@@ -26,7 +26,7 @@ const importarDatos = async () =>{
         exit();
 
     } catch (error) {
-        console.error(error);
+        console.error("Hubo un error al enviar la consulta SQL", error);
         exit(1);
     }
 }
@@ -42,7 +42,7 @@ const eliminarDatos = async() => {
         console.log("Datos eliminados correctamente 🧹");
         exit()
     } catch (error) {
-        console.error();
+        console.error("Hubo un error al enviar la consulta SQL", error);
         exit(1);
     }
 }
