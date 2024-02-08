@@ -2,6 +2,7 @@ import { unlink } from "node:fs/promises";
 import { validationResult } from "express-validator";
 import { Categoria, Propiedad, Precio } from "../models/index.js" 
 import eliminarArchivo from "../helpers/eliminarImagen.js";
+import { esVendedor } from "../helpers/esVendedor.js";
 
 const admin = async(req, res) => {
   const { pagina: paginaActual } = req.query;
@@ -378,12 +379,15 @@ const mostrarPropiedad = async(req, res) => {
     Precio.findAll()
   ])
 
+  console.log(esVendedor(req.usuario?.id, propiedad.usuarioID));
+
   res.render("propiedades/ver", {
     pagina: propiedad.titulo,
     propiedad,
     categorias,
     precios,
-    usuario: req.usuario
+    usuario: req.usuario,
+    esVendedor: esVendedor(req.usuario?.id, propiedad.usuarioID)
   });
 }
 

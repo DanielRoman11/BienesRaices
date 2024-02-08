@@ -38,14 +38,18 @@ block contenido
       p(class="text-md py-2 text-center text-[#4c460e] font-semibold") 📌Dirección: 
         span.font-bold=propiedad.calle
     
-    h4(class="text-2xl text-center text-[#3a360f] leading-6 font-bold") Información de contacto
-    if !usuario
-      .flex.justify-center.gap-2.mt-10(class="text-[#3a360f]")
-        p Para contactar al vendendedor debes 
-        a(class="font-bold" href="/auth/registro") Crear una cuenta
-    else
+    if !esVendedor
+      h4(class="text-2xl text-center text-[#3a360f] leading-6 font-bold mt-5") Información de contacto
+      if !usuario
+        .flex.justify-center.gap-2.mt-10(class="text-[#3a360f]")
+          p Para contactar al vendedor debes 
+          a(class="font-bold" href="/auth/registro") Crear una cuenta
+      else
+        form.mt-10.w-full(method= "post")
+          label(for="mensaje") Mensaje
+          textarea(id="mensaje" name="mensaje" class="w-full p-2 border rounded-lg shadow-md border-slate-200 placeholder-slate-400 contrast-more:border-slate-500 contrast-more:placeholder-slate-600 h-32" placeholder ="Escribe tu mensaje al vendedor de la propiedad")
 
-
+          input(type="submit", value="Envía un mensaje" class="bg-[#3a360f] w-full text-white font-bold uppercase text-sm p-2 cursor-pointer rounded-md")
 block scripts
   script(src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js")
   script(src="/js/mostrarMapa.js")
