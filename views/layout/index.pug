@@ -7,8 +7,9 @@ html(lang="es")
     title Bienes Raices | #{pagina}
     link(rel="stylesheet", href="/css/app.css")
     block styles
-  body(class=" min-h-screen bg-[#F7F1E5]" )
-    main(class="mx-auto container mt-5 px-2")  
+  body(class=" min-h-screen bg-[#F7F1E5]")
+    include includes/header-app  
+    main(class="mx-auto container mt-5 px-2")
       block contenido
 
     block scripts
