@@ -6,8 +6,6 @@ block styles
 
 block contenido
   //- pre= JSON.stringify(propiedad, undefined, 3)
-
-  
   
   div(class="py-5 pb-16 text-center md:flex flex-col mx-auto justify-center items-center ")
     h1(class="text-[#4c460e] drop-shadow-lg text-xl sm:text-2xl font-bold py-2" id="titulo")= pagina
@@ -38,18 +36,29 @@ block contenido
       p(class="text-md py-2 text-center text-[#4c460e] font-semibold") 📌Dirección: 
         span.font-bold=propiedad.calle
     
+    
     if !esVendedor
       h4(class="text-2xl text-center text-[#3a360f] leading-6 font-bold mt-5") Información de contacto
+
+      if errores
+        each error in errores
+          #error.bg-red-600.px-2.py-1.rounded-sm.mt-2
+            p.text-center.text-red-200.font-bold.text-sm ⚠️ #{error.msg}
+        
       if !usuario
-        .flex.justify-center.gap-2.mt-10(class="text-[#3a360f]")
+        .flex.justify-center.gap-2.mt-10(class="text-[#3a360f")
           p Para contactar al vendedor debes 
           a(class="font-bold" href="/auth/registro") Crear una cuenta
       else
         form.mt-10.w-full(method= "post")
-          label(for="mensaje") Mensaje
+          label(for="mensaje") ¿Te interesa esta propiedad? 📩 Envía un mensaje! 🚀
           textarea(id="mensaje" name="mensaje" class="w-full p-2 border rounded-lg shadow-md border-slate-200 placeholder-slate-400 contrast-more:border-slate-500 contrast-more:placeholder-slate-600 h-32" placeholder ="Escribe tu mensaje al vendedor de la propiedad")
 
           input(type="submit", value="Envía un mensaje" class="bg-[#3a360f] w-full text-white font-bold uppercase text-sm p-2 cursor-pointer rounded-md")
+  
 block scripts
   script(src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js")
   script(src="/js/mostrarMapa.js")
+  
+  if errores
+    script(type="module" src="/js/scrollDown.js")

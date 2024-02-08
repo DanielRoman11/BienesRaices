@@ -391,6 +391,44 @@ const mostrarPropiedad = async(req, res) => {
   });
 }
 
+const enviarMensaje = async(req, res) =>{
+  const { id } = req.params;
+  const { mensaje } = req.body;
+
+  const propiedad = await Propiedad.findByPk(id, {
+    include: [
+      { model: Categoria, as: 'categoria' },
+      { model: Precio, as: 'precio' }
+    ]
+  });
+  
+  if(!propiedad) res.redirect("/404");
+
+  const [ categorias, precios ] = await Promise.all([
+    Categoria.findAll(),
+    Precio.findAll()
+  ])
+
+  console.log(esVendedor(req.usuario?.id, propiedad.usuarioID));
+
+  const errores = validationResult(req);
+  
+  if(!errores.isEmpty()){
+    console.log(errores.array());
+    return res.render("propiedades/ver", {
+      pagina: propiedad.titulo,
+      propiedad,
+      categorias,
+      precios,
+      usuario: req.usuario,
+      esVendedor: esVendedor(req.usuario?.id, propiedad.usuarioID),
+      errores: errores.array()
+    })
+  }
+
+  
+}
+
 
 export {
   admin,
@@ -403,5 +441,6 @@ export {
   eliminar,
   verImagen,
   nuevaImagen,
-  mostrarPropiedad
+  mostrarPropiedad,
+  enviarMensaje
 }
