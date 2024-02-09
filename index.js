@@ -42,6 +42,7 @@ app.use('/', identificarUsuario, rutasApp)
 
 //* Carpeta pública
 app.use(express.static('public'));  //? Contenedor de archivos estáticos
+app.use(express.static("node_modules"));
 
 //* Definir un puerto y arrancar proyecto
 const port = process.env.PORT;

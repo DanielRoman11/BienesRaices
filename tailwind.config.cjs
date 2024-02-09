@@ -1,15 +1,12 @@
 /** @type {import('tailwindcss').Config} */
-const colors = require("tailwindcss/colors");
 
 module.exports = {
-  content: ['./views/**/*.pug', './src/js/*.js'],
-  theme: {
-    extend: {
-      colors: {
-        "dark-pink": "#B38192",
-        "light-pink": "#FFABC8",
-      }
-    },
-  },
-  plugins: [],
+  content: [
+    './views/**/*.pug', 
+    './src/js/*.js', 
+    './node_modules/tw-elements/dist/js/**/*.js',
+  ],
+  darkMode: "class",
+  plugins: [require("tw-elements/dist/plugin.js")],
+  theme: { },
 }

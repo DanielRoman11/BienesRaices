@@ -12,7 +12,7 @@ Propiedad.belongsTo(Usuario, { foreignKey: 'usuarioID' });
 Mensaje.belongsTo(Propiedad, { foreignKey: 'propiedadID' });
 Mensaje.belongsTo(Usuario, { foreignKey: 'usuarioID' });
 
-Imagen.belongsTo(Propiedad, {foreignKey: 'propiedadID' });
+Propiedad.hasMany(Imagen, {foreignKey: 'propiedadID' });
 
 export {
   Propiedad, 

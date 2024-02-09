@@ -3,6 +3,7 @@ import { validationResult } from "express-validator";
 import { Categoria, Propiedad, Precio, Mensaje, Imagen } from "../models/index.js" 
 import { esVendedor } from "../helpers/esVendedor.js";
 import cloudinary from "../config/cloudinary.js";
+import { Sequelize } from "sequelize";
 
 const admin = async(req, res) => {
   const { pagina: paginaActual } = req.query;
@@ -28,7 +29,8 @@ const admin = async(req, res) => {
         where: { usuarioID: id },
         include: [
           { model: Categoria, as: 'categoria' },
-          { model: Precio, as: 'precio' }
+          { model: Precio, as: 'precio' },
+          { model: Imagen, required: false, where: { propiedadID: Sequelize.col('propiedades.id')} }
         ],
         order: [
           ['updatedAt', 'DESC']
@@ -40,7 +42,12 @@ const admin = async(req, res) => {
         }
       }),
     ]);
-    
+
+    const propiedadImagenes = await Propiedad.findAll({
+      include: []
+    })
+
+    console.log(propiedadImagenes);
 
     res.render("propiedades/admin", {
       pagina: "Mis propiedades",
@@ -419,7 +426,8 @@ const mostrarPropiedad = async(req, res) => {
   const propiedad = await Propiedad.findByPk(id, {
     include: [
       { model: Categoria, as: 'categoria' },
-      { model: Precio, as: 'precio' }
+      { model: Precio, as: 'precio' },
+      { model: Imagen, required: false, where: { propiedadID: Sequelize.col('propiedades.id')} }
     ]
   });
   
