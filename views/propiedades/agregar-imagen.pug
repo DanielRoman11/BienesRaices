@@ -14,6 +14,7 @@ block contenido
         each error in errores
           .text-center.text-white.bg-red-600.mx-auto.my-1.max-w-2xl.font-semibold
             p.text-normal= error.msg
+
       form(id="imagen" method="POST" action=`/propiedades/agregar-imagen/${propiedad.id}` enctype="multipart/form-data")
         div(class="border-dashed border-2 w-full min:h-96 h-auto rounded flex-col justify-center items-center space-y-8 font-semibold py-5")
           input(type="file" name="images" multiple class="px-2 w-full")

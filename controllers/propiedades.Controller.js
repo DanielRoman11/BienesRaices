@@ -182,7 +182,7 @@ const publicarPropiedad = async(req, res, next) => {
     });
   }));
 
-  console.log(imagesArr);
+  // console.log(imagesArr);
 
   //? Manejo de errores
   imagesArr.forEach(async(result, index) => {
@@ -322,7 +322,33 @@ const nuevaImagen = async(req, res) => {
     return res.redirect("/propiedad")
   }
 
-  // console.log(req.files);
+  const imagenesPropiedad = await Imagen.findAll({
+    where: {
+      propiedadID: propiedad.id
+    }
+  });
+
+  console.log(imagenesPropiedad);
+  
+  if(imagenesPropiedad){
+    const imageBeforeArr = new Array();
+
+    imagenesPropiedad.forEach(imagen =>{
+      imageBeforeArr.push(imagen.recurso);
+    })
+
+    await cloudinary.api.delete_resources(imageBeforeArr, {
+      type: 'upload', resource_type: 'image'
+    })
+    
+    console.log("Se reemplazaran las imágenes de: ", propiedad.id );
+  }
+
+  await Imagen.destroy({
+    where: {
+      propiedadID: propiedad.id
+    }
+  });
 
   const imagesArr = await Promise.allSettled(req.files.map(file => {
     return cloudinary.uploader.upload(file.path, {
@@ -332,58 +358,23 @@ const nuevaImagen = async(req, res) => {
     });
   }));
 
-  //? Manejo de errores
+  // console.log(imagesArr);
+
+  // //? Manejo de errores
   imagesArr.forEach(async(result, index) => {
     if (result.status === 'rejected') {
         console.error(`Error al subir el archivo ${req.files[index].filename}: ${result.reason}`);
     } else {
       await Imagen.create({
         ruta: result.value.secure_url,
-        propiedadID: propiedad.id
+        recurso: result.value.public_id,
+        propiedadID: propiedad.id,
       })
       console.log(`Archivo ${req.files[index].filename} subido correctamente: ${result.value.secure_url}`);
     }
   });
 
-  propiedad.publicado = true;
-  await propiedad.save();
-
   res.redirect('/propiedades')
-
-  
-  // try {
-  //   // console.log("Cargando...");
-  //   const { id } = req.params
-  //   const propiedad = await Propiedad.findByPk(id);
-  
-  //   if(!propiedad){
-  //     return res.redirect("/propiedad");
-  //   }
-  
-  //   if(propiedad.usuarioID.toString() !== req.usuario.id.toString()){
-  //     return res.redirect("/propiedad")
-  //   }
-    
-    
-  //   const imagen = req.file;
-  //   // console.log(imagen);
-    
-  //   //* Eliminar Imagen
-  //   const rutaCarpeta = "public/uploads/"
-  //   const rutaArchivo = rutaCarpeta + propiedad.imagen;
-
-  //   eliminarArchivo(rutaArchivo);
-  
-  //   //TODO: Subir la ruta del archivo en la database
-  //   propiedad.imagen = imagen.filename;
-  //   propiedad.publicado = true;
-  //   await propiedad.save()
-
-  //   console.log(propiedad.imagen);
-  //   res.redirect("/propiedades")
-  // } catch (error) {
-  //  console.error(error); 
-  // }
 }
 
 const eliminar = async(req, res) => {
