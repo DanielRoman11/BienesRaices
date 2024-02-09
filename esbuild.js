@@ -1,7 +1,7 @@
 import { context } from 'esbuild';
 import { resolve } from 'path';
 
-const entryPoints = ['mapa', 'agregarImagen', 'mostrarMapa', 'mapaHome', 'scrollDown'].map(name => `./src/js/${name}.js`);
+const entryPoints = ['mapa', 'mostrarMapa', 'mapaHome', 'scrollDown'].map(name => `./src/js/${name}.js`);
 
 (async function(){
   try {

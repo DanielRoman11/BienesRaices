@@ -14,9 +14,6 @@ dependencies:
   cookie-parser:
     specifier: ^1.4.6
     version: 1.4.6
-  dropzone:
-    specifier: ^5.9.3
-    version: 5.9.3
   express:
     specifier: ^4.18.2
     version: 4.18.2
@@ -853,10 +850,6 @@ packages:
 
   /dottie@2.0.6:
     resolution: {integrity: sha512-iGCHkfUc5kFekGiqhe8B/mdaurD+lakO9txNnTvKtA6PISrw86LgqHvRzWYPyoE2Ph5aMIrCw9/uko6XHTKCwA==}
-    dev: false
-
-  /dropzone@5.9.3:
-    resolution: {integrity: sha512-Azk8kD/2/nJIuVPK+zQ9sjKMRIpRvNyqn9XwbBHNq+iNuSccbJS6hwm1Woy0pMST0erSo0u4j+KJaodndDk4vA==}
     dev: false
 
   /ecdsa-sig-formatter@1.0.11:

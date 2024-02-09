@@ -2,7 +2,6 @@ import express from "express";
 import { body } from "express-validator"
 import { admin, agregarImagen, crear, editar, eliminar, enviarMensaje, guardar, guardarCambios,  mostrarPropiedad,  nuevaImagen,  publicarPropiedad, verImagen } from "../controllers/propiedades.Controller.js"
 import protegerRuta from "../middleware/proteger.Routes.js";
-import upload from "../middleware/subirArchivo.js";
 import { identificarUsuario } from "../middleware/indentificarUsuario.js";
 import { subirImagen } from "../middleware/subirImagenes.js";
 
