@@ -5,6 +5,10 @@ const Imagen = db.define("imagenes", {
   ruta: {
     type: DataTypes.STRING,
     allowNull: false
+  },
+  recurso: {
+    type: DataTypes.STRING(50),
+    allowNull: false
   }
 });
 

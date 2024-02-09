@@ -182,7 +182,7 @@ const publicarPropiedad = async(req, res, next) => {
     });
   }));
 
-  // console.log(imagesArr);
+  console.log(imagesArr);
 
   //? Manejo de errores
   imagesArr.forEach(async(result, index) => {
@@ -191,7 +191,8 @@ const publicarPropiedad = async(req, res, next) => {
     } else {
       await Imagen.create({
         ruta: result.value.secure_url,
-        propiedadID: propiedad.id
+        recurso: result.value.public_id,
+        propiedadID: propiedad.id,
       })
       console.log(`Archivo ${req.files[index].filename} subido correctamente: ${result.value.secure_url}`);
     }
@@ -200,7 +201,7 @@ const publicarPropiedad = async(req, res, next) => {
   propiedad.publicado = true;
   await propiedad.save();
 
-  next();
+  res.redirect('/propiedades')
 }
 
 const editar = async(req, res) => {
@@ -321,18 +322,33 @@ const nuevaImagen = async(req, res) => {
     return res.redirect("/propiedad")
   }
 
-  console.log(req.file);
+  // console.log(req.files);
 
-  const imagesArr = req.file.forEach(file =>{
-    cloudinary.uploader.upload(file.path,{
-      folder: 'bienesraices/',
-      resource_type: 'raw',
-      public_id: `${req.file.filename}`
+  const imagesArr = await Promise.allSettled(req.files.map(file => {
+    return cloudinary.uploader.upload(file.path, {
+        folder: 'bienesraices/',
+        resource_type: 'image',
+        public_id: file.filename.slice(0, file.filename.length - 4)
     });
-  })
+  }));
 
-  console.log(imagesArr);
+  //? Manejo de errores
+  imagesArr.forEach(async(result, index) => {
+    if (result.status === 'rejected') {
+        console.error(`Error al subir el archivo ${req.files[index].filename}: ${result.reason}`);
+    } else {
+      await Imagen.create({
+        ruta: result.value.secure_url,
+        propiedadID: propiedad.id
+      })
+      console.log(`Archivo ${req.files[index].filename} subido correctamente: ${result.value.secure_url}`);
+    }
+  });
 
+  propiedad.publicado = true;
+  await propiedad.save();
+
+  res.redirect('/propiedades')
 
   
   // try {
