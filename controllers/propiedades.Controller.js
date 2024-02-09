@@ -1,7 +1,6 @@
 import { unlink } from "node:fs/promises";
 import { validationResult } from "express-validator";
-import { Categoria, Propiedad, Precio, Mensaje } from "../models/index.js" 
-import eliminarArchivo from "../helpers/eliminarImagen.js";
+import { Categoria, Propiedad, Precio, Mensaje, Imagen } from "../models/index.js" 
 import { esVendedor } from "../helpers/esVendedor.js";
 import cloudinary from "../config/cloudinary.js";
 
@@ -173,41 +172,35 @@ const publicarPropiedad = async(req, res, next) => {
   if(propiedad.usuarioID.toString() !== req.usuario.id.toString()){
     return res.redirect("/propiedades")
   }
-  console.log("Están cargando las imágenes");
-  console.log(req.files);
+  // console.log(req.files);
 
   const imagesArr = await Promise.allSettled(req.files.map(file => {
     return cloudinary.uploader.upload(file.path, {
         folder: 'bienesraices/',
         resource_type: 'image',
-        public_id: `${file.filename}`
+        public_id: file.filename.slice(0, file.filename.length - 4)
     });
   }));
 
-  console.log(imagesArr);
+  // console.log(imagesArr);
 
-  // Manejo de errores
-  imagesArr.forEach((result, index) => {
+  //? Manejo de errores
+  imagesArr.forEach(async(result, index) => {
     if (result.status === 'rejected') {
         console.error(`Error al subir el archivo ${req.files[index].filename}: ${result.reason}`);
     } else {
-        console.log(`Archivo ${req.files[index].filename} subido correctamente: ${result.value.url}`);
+      await Imagen.create({
+        ruta: result.value.secure_url,
+        propiedadID: propiedad.id
+      })
+      console.log(`Archivo ${req.files[index].filename} subido correctamente: ${result.value.secure_url}`);
     }
   });
 
-  
+  propiedad.publicado = true;
+  await propiedad.save();
 
-
-
-  // const imagen = req.file;
-  // console.log(imagen);
-
-  // //TODO: Subir la ruta del archivo en la database
-  // propiedad.imagen = imagen.filename;
-  // propiedad.publicado = true;
-  // await propiedad.save()
-
-  // next();
+  next();
 }
 
 const editar = async(req, res) => {

@@ -40,10 +40,6 @@ const Propiedad = db.define("propiedades", {
     type: DataTypes.STRING(60),
     allowNull: false
   },
-  imagen: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
   publicado: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
