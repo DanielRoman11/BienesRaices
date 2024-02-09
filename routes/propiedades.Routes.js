@@ -41,7 +41,7 @@ ruta.post("/editar/:id", protegerRuta,
 );
 
 ruta.get("/editar-imagen/:id", protegerRuta, verImagen)
-ruta.post("/editar-imagen/:id", protegerRuta, upload.array("images", 5), nuevaImagen);
+ruta.post("/editar-imagen/:id", protegerRuta, subirImagen.array("images", 5), nuevaImagen);
 
 ruta.post('/eliminar/:id', protegerRuta, eliminar)
 
