@@ -32,6 +32,9 @@ dependencies:
   mysql2:
     specifier: ^3.6.5
     version: 3.6.5
+  nanoid:
+    specifier: '3'
+    version: 3.3.7
   pug:
     specifier: ^3.0.2
     version: 3.0.2
@@ -1590,7 +1593,6 @@ packages:
     resolution: {integrity: sha512-eSRppjcPIatRIMC1U6UngP8XFcz8MQWGQdt1MTBQ7NaAmvXDfvNxbvWV3x2y6CdEUciCSsDHDQZbhYaB8QEo2g==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
-    dev: true
 
   /negotiator@0.6.3:
     resolution: {integrity: sha512-+EUsqGPLsM+j/zdChZjsnX51g4XrHFOIXwfnCVPGlQk/k5giakcKsuxCObBRu6DSm9opw/O6slWbJdghQM4bBg==}

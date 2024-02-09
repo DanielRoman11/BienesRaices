@@ -3,6 +3,7 @@ import { validationResult } from "express-validator";
 import { Categoria, Propiedad, Precio, Mensaje } from "../models/index.js" 
 import eliminarArchivo from "../helpers/eliminarImagen.js";
 import { esVendedor } from "../helpers/esVendedor.js";
+import cloudinary from "../config/cloudinary.js";
 
 const admin = async(req, res) => {
   const { pagina: paginaActual } = req.query;
@@ -172,16 +173,41 @@ const publicarPropiedad = async(req, res, next) => {
   if(propiedad.usuarioID.toString() !== req.usuario.id.toString()){
     return res.redirect("/propiedades")
   }
+  console.log("Están cargando las imágenes");
+  console.log(req.files);
 
-  const imagen = req.file;
-  console.log(imagen);
+  const imagesArr = await Promise.allSettled(req.files.map(file => {
+    return cloudinary.uploader.upload(file.path, {
+        folder: 'bienesraices/',
+        resource_type: 'image',
+        public_id: `${file.filename}`
+    });
+  }));
 
-  //TODO: Subir la ruta del archivo en la database
-  propiedad.imagen = imagen.filename;
-  propiedad.publicado = true;
-  await propiedad.save()
+  console.log(imagesArr);
 
-  next();
+  // Manejo de errores
+  imagesArr.forEach((result, index) => {
+    if (result.status === 'rejected') {
+        console.error(`Error al subir el archivo ${req.files[index].filename}: ${result.reason}`);
+    } else {
+        console.log(`Archivo ${req.files[index].filename} subido correctamente: ${result.value.url}`);
+    }
+  });
+
+  
+
+
+
+  // const imagen = req.file;
+  // console.log(imagen);
+
+  // //TODO: Subir la ruta del archivo en la database
+  // propiedad.imagen = imagen.filename;
+  // propiedad.publicado = true;
+  // await propiedad.save()
+
+  // next();
 }
 
 const editar = async(req, res) => {
@@ -291,39 +317,64 @@ const verImagen = async(req, res) => {
 }
 
 const nuevaImagen = async(req, res) => {
-  try {
-    // console.log("Cargando...");
-    const { id } = req.params
-    const propiedad = await Propiedad.findByPk(id);
-  
-    if(!propiedad){
-      return res.redirect("/propiedad");
-    }
-  
-    if(propiedad.usuarioID.toString() !== req.usuario.id.toString()){
-      return res.redirect("/propiedad")
-    }
-    
-    
-    const imagen = req.file;
-    // console.log(imagen);
-    
-    //* Eliminar Imagen
-    const rutaCarpeta = "public/uploads/"
-    const rutaArchivo = rutaCarpeta + propiedad.imagen;
+  const { id } = req.params
+  const propiedad = await Propiedad.findByPk(id);
 
-    eliminarArchivo(rutaArchivo);
-  
-    //TODO: Subir la ruta del archivo en la database
-    propiedad.imagen = imagen.filename;
-    propiedad.publicado = true;
-    await propiedad.save()
-
-    console.log(propiedad.imagen);
-    res.redirect("/propiedades")
-  } catch (error) {
-   console.error(error); 
+  if(!propiedad){
+    return res.redirect("/propiedad");
   }
+
+  if(propiedad.usuarioID.toString() !== req.usuario.id.toString()){
+    return res.redirect("/propiedad")
+  }
+
+  console.log(req.file);
+
+  const imagesArr = req.file.forEach(file =>{
+    cloudinary.uploader.upload(file.path,{
+      folder: 'bienesraices/',
+      resource_type: 'raw',
+      public_id: `${req.file.filename}`
+    });
+  })
+
+  console.log(imagesArr);
+
+
+  
+  // try {
+  //   // console.log("Cargando...");
+  //   const { id } = req.params
+  //   const propiedad = await Propiedad.findByPk(id);
+  
+  //   if(!propiedad){
+  //     return res.redirect("/propiedad");
+  //   }
+  
+  //   if(propiedad.usuarioID.toString() !== req.usuario.id.toString()){
+  //     return res.redirect("/propiedad")
+  //   }
+    
+    
+  //   const imagen = req.file;
+  //   // console.log(imagen);
+    
+  //   //* Eliminar Imagen
+  //   const rutaCarpeta = "public/uploads/"
+  //   const rutaArchivo = rutaCarpeta + propiedad.imagen;
+
+  //   eliminarArchivo(rutaArchivo);
+  
+  //   //TODO: Subir la ruta del archivo en la database
+  //   propiedad.imagen = imagen.filename;
+  //   propiedad.publicado = true;
+  //   await propiedad.save()
+
+  //   console.log(propiedad.imagen);
+  //   res.redirect("/propiedades")
+  // } catch (error) {
+  //  console.error(error); 
+  // }
 }
 
 const eliminar = async(req, res) => {
