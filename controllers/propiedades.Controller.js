@@ -1,6 +1,6 @@
 import { unlink } from "node:fs/promises";
 import { validationResult } from "express-validator";
-import { Categoria, Propiedad, Precio } from "../models/index.js" 
+import { Categoria, Propiedad, Precio, Mensaje } from "../models/index.js" 
 import eliminarArchivo from "../helpers/eliminarImagen.js";
 import { esVendedor } from "../helpers/esVendedor.js";
 
@@ -426,7 +426,18 @@ const enviarMensaje = async(req, res) =>{
     })
   }
 
-  
+  await Mensaje.create({
+    mensaje,
+    usuarioID: req.usuario.id,
+    propiedadID: propiedad.id
+  })
+
+  res.render('propiedades/ver', {
+    propiedad,
+    pagina: propiedad.titulo,
+    usuario: req.usuario,
+    esVendedor: esVendedor(req.usuario?.id, propiedad.usuarioID)
+  })
 }
 
 
