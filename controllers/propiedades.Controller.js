@@ -293,7 +293,11 @@ const guardarCambios = async(req, res) => {
 const verImagen = async(req, res) => {
   const { id } = req.params;
 
-  const propiedad = await Propiedad.findByPk(id);
+  const propiedad = await Propiedad.findByPk(id,{
+    include: [
+      { model: Imagen, required: false, where: {propiedadID: Sequelize.col('propiedades.id') }}
+    ]
+  });
 
   if(!propiedad){
     return res.redirect("/propiedades");
@@ -312,7 +316,11 @@ const verImagen = async(req, res) => {
 
 const nuevaImagen = async(req, res) => {
   const { id } = req.params
-  const propiedad = await Propiedad.findByPk(id);
+  const propiedad = await Propiedad.findByPk(id,{
+    includes: [
+      { model: Imagen, required: false, where: {propiedadID: Sequelize.col('propiedades.id') }}
+    ]
+  });
 
   if(!propiedad){
     return res.redirect("/propiedad");
