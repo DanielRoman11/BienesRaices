@@ -5,7 +5,7 @@ block styles
   //- link(rel="stylesheet", href="https://raw.githubusercontent.com/Leaflet/Leaflet.fullscreen/gh-pages/dist/leaflet.fullscreen.css")
 
 block contenido
-  //- pre= JSON.stringify(propiedad, undefined, 3)
+  //- pre= JSON.stringify(casas, undefined, 3)
   
   div(class="py-5 pb-16 text-center md:flex flex-col mx-auto justify-center items-center ")
     h1(class="text-[#4c460e] drop-shadow-lg text-xl sm:text-2xl font-bold py-2" id="titulo")= pagina
@@ -20,7 +20,7 @@ block contenido
           - var sinPrimeraImagen = propiedad.imagenes.filter((elem, i) => i !== 0)
           each imagen in sinPrimeraImagen
             .relative.float-left.hidden.w-full.transition-transform.ease-in-out(class='-mr-[100%]  duration-[600ms] motion-reduce:transition-none h-[400px]' data-te-carousel-item='')
-              img.block.w-full(src= imagen.ruta class="h-[400px] w-[100%] h-96" alt= propiedad.titulo)
+              img.block.w-full(src= imagen.ruta class="w-[100%] h-96" alt= propiedad.titulo)
 
         // Carousel controls - prev item
         button.absolute.bottom-0.left-0.top-0.flex.items-center.justify-center.border-0.bg-none.p-0.text-center.text-white.opacity-50.transition-opacity.duration-150(class='z-[1] w-[15%] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:text-white hover:no-underline hover:opacity-90 hover:outline-none focus:text-white focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none' type='button' data-te-target='#carouselExampleControls' data-te-slide='prev')

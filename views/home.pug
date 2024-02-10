@@ -4,6 +4,9 @@ block styles
   link(rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css")
 
 block contenido
+
+  pre= JSON.stringify(casas,null, 3)
+  
   section(class="py-3")
     h1(class="text-center text-3xl sm:text-4xl font-extrabold")= pagina
     h4(class="font-bold text-sm uppercase text-gray-800") Filtrar propiedades:

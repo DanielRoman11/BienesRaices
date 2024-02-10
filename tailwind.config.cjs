@@ -7,6 +7,6 @@ module.exports = {
     './node_modules/tw-elements/dist/js/**/*.js',
   ],
   darkMode: "class",
-  plugins: [require("tw-elements/dist/plugin.js")],
+  plugins: [require("tw-elements/dist/plugin.cjs")],
   theme: { },
 }

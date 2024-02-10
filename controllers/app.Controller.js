@@ -1,5 +1,5 @@
-import { Categoria, Precio, Propiedad } from "../models/index.js"
-import { Op } from "sequelize";
+import { Categoria, Imagen, Precio, Propiedad } from "../models/index.js"
+import { Op, Sequelize } from "sequelize";
 
 export const home = async(req,res) => {
   const [ categorias, precios, casas, apartamentos ] = await Promise.all([
@@ -7,10 +7,10 @@ export const home = async(req,res) => {
     Precio.findAll({raw: true}),
     Propiedad.findAll({
       limit: 3,
-      include:[{
-        model: Precio,
-        as: 'precio'
-      }],
+      include:[
+        { model: Precio, as: 'precio' },
+        { model: Imagen, required: false, where: { propiedadID: Sequelize.col('propiedades.id')} }
+      ],
       where: {
         categoriaID: 1
       },
@@ -20,10 +20,10 @@ export const home = async(req,res) => {
     }),
     Propiedad.findAll({
       limit: 3,
-      include:[{
-        model: Precio,
-        as: 'precio'
-      }],
+      include:[
+        { model: Precio, as: 'precio' },
+        { model: Imagen, required: false, where: { propiedadID: Sequelize.col('propiedades.id')} }
+      ],
       where: {
         categoriaID: 2
       },

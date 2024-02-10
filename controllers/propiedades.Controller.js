@@ -1,4 +1,3 @@
-import { unlink } from "node:fs/promises";
 import { validationResult } from "express-validator";
 import { Categoria, Propiedad, Precio, Mensaje, Imagen } from "../models/index.js" 
 import { esVendedor } from "../helpers/esVendedor.js";
@@ -9,7 +8,7 @@ const admin = async(req, res) => {
   const { pagina: paginaActual } = req.query;
   const { id } = req.usuario
   
-  console.log(paginaActual);
+  // console.log(paginaActual);
 
   const expReg = /^(?!0)\d+$/g; //? Regex para comprobar que sean números 
 
@@ -43,18 +42,12 @@ const admin = async(req, res) => {
       }),
     ]);
 
-    const propiedadImagenes = await Propiedad.findAll({
-      include: []
-    })
-
-    console.log(propiedadImagenes);
-
     res.render("propiedades/admin", {
       pagina: "Mis propiedades",
       barra: true,
       propiedades: propiedades,
       paginaActual: Number(paginaActual),
-      paginas:Math.ceil(total / limit),
+      paginas: Math.ceil(total / limit),
       offset,
       limit,
       total,
@@ -335,7 +328,7 @@ const nuevaImagen = async(req, res) => {
     }
   });
 
-  console.log(imagenesPropiedad);
+  // console.log(imagenesPropiedad);
   
   if(imagenesPropiedad){
     const imageBeforeArr = new Array();
@@ -347,41 +340,50 @@ const nuevaImagen = async(req, res) => {
     await cloudinary.api.delete_resources(imageBeforeArr, {
       type: 'upload', resource_type: 'image'
     })
-    
-    console.log("Se reemplazaran las imágenes de: ", propiedad.id );
+      .then(()=>{
+        console.log("Se reemplazaran las imágenes de: ", propiedad.id );
+      })
+      .catch(error=>{
+        console.error("Algo salío mal al intentar eliminar las imágenes de: ", propiedad.id, error);
+      })
   }
 
-  await Imagen.destroy({
-    where: {
-      propiedadID: propiedad.id
-    }
-  });
+  const results = await Promise.all([
+    Imagen.destroy({
+      where: {
+        propiedadID: propiedad.id
+      }
+    }),
+    req.files.map(file => {
+      return cloudinary.uploader.upload(file.path, {
+          folder: 'bienesraices/',
+          resource_type: 'image',
+          public_id: file.filename.slice(0, file.filename.length - 4)
+      });
+    })
+  ])
 
-  const imagesArr = await Promise.allSettled(req.files.map(file => {
-    return cloudinary.uploader.upload(file.path, {
-        folder: 'bienesraices/',
-        resource_type: 'image',
-        public_id: file.filename.slice(0, file.filename.length - 4)
-    });
-  }));
-
-  // console.log(imagesArr);
-
-  // //? Manejo de errores
-  imagesArr.forEach(async(result, index) => {
+  let uploadPromises = results[1].map(async(result, index) => {
     if (result.status === 'rejected') {
         console.error(`Error al subir el archivo ${req.files[index].filename}: ${result.reason}`);
-    } else {
+    } 
+    else {
+      const { secure_url, public_id } = await result;
+
       await Imagen.create({
-        ruta: result.value.secure_url,
-        recurso: result.value.public_id,
+        ruta: secure_url,
+        recurso: public_id,
         propiedadID: propiedad.id,
       })
-      console.log(`Archivo ${req.files[index].filename} subido correctamente: ${result.value.secure_url}`);
+      
+      console.log(`Archivo ${req.files[index].filename} subido correctamente: ${secure_url}`);
     }
   });
 
-  res.redirect('/propiedades')
+  await Promise.all(uploadPromises);
+
+  res.redirect('/propiedades');
+
 }
 
 const eliminar = async(req, res) => {
@@ -389,36 +391,56 @@ const eliminar = async(req, res) => {
   const propiedad = await Propiedad.findByPk(id);
 
   if(!propiedad){
-    return res.redirect("/propiedades");
-  }
-
-  if(!propiedad.publicado){
-    if(propiedad.imagen === ''){
-      await propiedad.destroy()
-      return res.redirect("/propiedades");
-    }
-    await unlink(`public/uploads/${propiedad.imagen}`);
-    console.log(`Imagen eliminada para: ${propiedad.titulo}, imagen: ${propiedad.imagen}`);
-  
-    await propiedad.destroy();
-
-    return res.redirect("/propiedades");
+    return res.redirect("/propiedad");
   }
 
   if(propiedad.usuarioID.toString() !== req.usuario.id.toString()){
-    return res.redirect("/propiedades")
+    return res.redirect("/propiedad")
   }
 
-  //? Eliminando imagen
-  if(propiedad.imagen === ''){
-    return await propiedad.destroy()
+  const imagenesPropiedad = await Imagen.findAll({
+    where: {
+      propiedadID: propiedad.id
+    }
+  });
+
+  // console.log(imagenesPropiedad);
+  
+  if(imagenesPropiedad){
+    const imageBeforeArr = new Array();
+
+    imagenesPropiedad.forEach(imagen => {
+      imageBeforeArr.push(imagen.recurso);
+    })
+
+    await cloudinary.api.delete_resources(imageBeforeArr, {
+      type: 'upload', resource_type: 'image'
+    })
+      .then(()=>{
+        console.log("Se reemplazaran las imágenes de: ", propiedad.id );
+      })
+      .catch(error=>{
+        console.error("Algo salío mal al intentar eliminar las imágenes de: ", propiedad.id, error);
+      })
+    
   }
 
-  await unlink(`public/uploads/${propiedad.imagen}`);
-  console.log(`Imagen eliminada para: ${propiedad.titulo}, imagen: ${propiedad.imagen} `);
+  await Promise.all([
+    Imagen.destroy({
+      where: {
+        propiedadID: propiedad.id
+      }
+    }),
+    propiedad.destroy()
+  ])
+  .then(()=>{
+    console.log("Propiedad eliminada correctamente!");
+    res.redirect('/propiedades');
+  })
+  .catch(error =>{
+    console.error("Algo salió mal al eliminar la propiedad ", error);
+  })
 
-  await propiedad.destroy();
-  res.redirect("/propiedades");
 }
 
 const mostrarPropiedad = async(req, res) => {
