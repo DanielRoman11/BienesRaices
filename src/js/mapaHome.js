@@ -32,14 +32,13 @@
       popupAnchor: [1, -34],
     });
     propiedades.forEach(propiedad => {
-
       const marker = new L.marker([propiedad?.lat, propiedad?.lng], 
         {
           icon: markerIcon
         })
         .addTo(mapa)
         .bindPopup(`<div class="text-xs">
-        <img src="/uploads/${propiedad.imagen}" class="max-h-32 block mx-auto" alt="${propiedad.descripcion}"/>
+        <img src="${propiedad.imagenes[0].ruta}" class="max-h-32 block mx-auto" alt="${propiedad.descripcion}"/>
         <br>
         <strong>Dirección:</strong> ${propiedad.calle != "" ? propiedad.calle : "Dirección no disponible"} <br> 
         <strong>Precio:</strong> ${propiedad.precio.nombre} <br>

@@ -184,19 +184,39 @@ const publicarPropiedad = async(req, res, next) => {
 
   // console.log(imagesArr);
 
-  //? Manejo de errores
-  imagesArr.forEach(async(result, index) => {
+  // let uploadPromises = results[1].map(async(result, index) => {
+  //   if (result.status === 'rejected') {
+  //       console.error(`Error al subir el archivo ${req.files[index].filename}: ${result.reason}`);
+  //   } 
+  //   else {
+  //     const { secure_url, public_id } = await result;
+
+  //     await Imagen.create({
+  //       ruta: secure_url,
+  //       recurso: public_id,
+  //       propiedadID: propiedad.id,
+  //     })
+      
+  //     console.log(`Archivo ${req.files[index].filename} subido correctamente: ${secure_url}`);
+  //   }
+  // });
+  
+  // //? Manejo de errores
+  let uploadPromises = imagesArr.forEach(async(result, index) => {
     if (result.status === 'rejected') {
-        console.error(`Error al subir el archivo ${req.files[index].filename}: ${result.reason}`);
+      console.error(`Error al subir el archivo ${req.files[index].filename}: ${result.reason}`);
     } else {
       await Imagen.create({
         ruta: result.value.secure_url,
         recurso: result.value.public_id,
         propiedadID: propiedad.id,
       })
+
       console.log(`Archivo ${req.files[index].filename} subido correctamente: ${result.value.secure_url}`);
     }
   });
+  
+  await Promise.all(uploadPromises);
 
   propiedad.publicado = true;
   await propiedad.save();

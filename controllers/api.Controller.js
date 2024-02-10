@@ -1,3 +1,4 @@
+import { Sequelize } from "sequelize";
 import { Categoria, Imagen, Precio, Propiedad, Usuario } from "../models/index.js";
 
 const propiedades = async(req, res) =>{
@@ -5,10 +6,10 @@ const propiedades = async(req, res) =>{
     const propiedades = await Propiedad.findAll({
       limit: 10, 
       include: [
-        {model: Precio, as: 'precio'},
-        {model: Categoria, as: 'categoria'},
-        {model: Usuario, as: 'usuario'},
-        {model: Imagen, required: false, where: {propiedadID: 'propiedades.id'}}
+        { model: Precio, as: 'precio'},
+        { model: Categoria, as: 'categoria'},
+        { model: Usuario, as: 'usuario'},
+        { model: Imagen, required: false, where: {propiedadID: Sequelize.col('propiedades.id') }}
       ],
     })
   

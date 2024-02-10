@@ -33,7 +33,7 @@
           }
         ).addTo(mapa).bindPopup(
           `<div class="text-xs">
-        <img src="/uploads/${propiedad.imagen}" class="max-h-32 block mx-auto" alt="${propiedad.descripcion}"/>
+        <img src="${propiedad.imagenes[0].ruta}" class="max-h-32 block mx-auto" alt="${propiedad.descripcion}"/>
         <br>
         <strong>Direcci\xF3n:</strong> ${propiedad.calle != "" ? propiedad.calle : "Direcci\xF3n no disponible"} <br> 
         <strong>Precio:</strong> ${propiedad.precio.nombre} <br>
