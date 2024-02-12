@@ -329,8 +329,6 @@ const nuevaImagen = async(req, res) => {
       { model: Imagen, required: false, where: {propiedadID: Sequelize.col('propiedades.id') }}
     ]
   });
-  
-  console.log(propiedad);
 
   if(!propiedad){
     return res.redirect("/propiedad");
@@ -356,8 +354,9 @@ const nuevaImagen = async(req, res) => {
   });
 
   console.log(imagenesPropiedad);
+  console.log(imagenesPropiedad.length);
   
-  if(imagenesPropiedad){
+  if(imagenesPropiedad.length > 0){
     const imageBeforeArr = new Array();
 
     imagenesPropiedad.forEach(imagen =>{
@@ -409,6 +408,9 @@ const nuevaImagen = async(req, res) => {
   });
 
   await Promise.all(uploadPromises);
+
+  propiedad.publicado = true;
+  await propiedad.save();
 
   res.redirect('/propiedades');
 
