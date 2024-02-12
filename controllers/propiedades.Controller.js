@@ -331,11 +331,11 @@ const nuevaImagen = async(req, res) => {
   });
 
   if(!propiedad){
-    return res.redirect("/propiedad");
+    return res.redirect("/propiedades");
   }
 
   if(propiedad.usuarioID.toString() !== req.usuario.id.toString()){
-    return res.redirect("/propiedad")
+    return res.redirect("/propiedades")
   }
 
   if(!req.files.length > 0){
@@ -421,11 +421,11 @@ const eliminar = async(req, res) => {
   const propiedad = await Propiedad.findByPk(id);
 
   if(!propiedad){
-    return res.redirect("/propiedad");
+    return res.redirect("/propiedades");
   }
 
   if(propiedad.usuarioID.toString() !== req.usuario.id.toString()){
-    return res.redirect("/propiedad")
+    return res.redirect("/propiedades")
   }
 
   const imagenesPropiedad = await Imagen.findAll({
@@ -436,7 +436,7 @@ const eliminar = async(req, res) => {
 
   // console.log(imagenesPropiedad);
   
-  if(imagenesPropiedad){
+  if(imagenesPropiedad.length > 0){
     const imageBeforeArr = new Array();
 
     imagenesPropiedad.forEach(imagen => {
