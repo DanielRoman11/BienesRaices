@@ -188,7 +188,7 @@ const publicarPropiedad = async(req, res, next) => {
     });
   }));
   
-  // //? Manejo de errores
+  //? Manejo de errores
   let uploadPromises = imagesArr.map(async(result, index) => {
     if (result.status === 'rejected') {
       console.error(`Error al subir el archivo ${req.files[index].filename}: ${result.reason}`);
@@ -315,6 +315,7 @@ const verImagen = async(req, res) => {
   }
 
   res.render("propiedades/editar-imagen",{
+    pagina: `Editar Imagen para "${propiedad.titulo}"`,
     propiedad,
     // // // csrfToken: req.csrfToken()
     }
@@ -324,10 +325,12 @@ const verImagen = async(req, res) => {
 const nuevaImagen = async(req, res) => {
   const { id } = req.params
   const propiedad = await Propiedad.findByPk(id,{
-    includes: [
+    include: [
       { model: Imagen, required: false, where: {propiedadID: Sequelize.col('propiedades.id') }}
     ]
   });
+  
+  console.log(propiedad);
 
   if(!propiedad){
     return res.redirect("/propiedad");
@@ -337,13 +340,22 @@ const nuevaImagen = async(req, res) => {
     return res.redirect("/propiedad")
   }
 
+  if(!req.files.length > 0){
+    return res.render("propiedades/editar-imagen",{
+      pagina: `Editar Imagen para "${propiedad.titulo}"`,
+      propiedad,
+      errores: [{ msg: "No se ha cargado una imagen" }]
+      }
+    );
+  }
+
   const imagenesPropiedad = await Imagen.findAll({
     where: {
       propiedadID: propiedad.id
     }
   });
 
-  // console.log(imagenesPropiedad);
+  console.log(imagenesPropiedad);
   
   if(imagenesPropiedad){
     const imageBeforeArr = new Array();
@@ -363,7 +375,7 @@ const nuevaImagen = async(req, res) => {
       })
   }
 
-  const results = await Promise.all([
+  const actions = await Promise.all([
     Imagen.destroy({
       where: {
         propiedadID: propiedad.id
@@ -378,7 +390,8 @@ const nuevaImagen = async(req, res) => {
     })
   ])
 
-  let uploadPromises = results[1].map(async(result, index) => {
+  let uploadPromises = actions[1].map(async(result, index) => {
+    console.log(await result);
     if (result.status === 'rejected') {
         console.error(`Error al subir el archivo ${req.files[index].filename}: ${result.reason}`);
     } 
