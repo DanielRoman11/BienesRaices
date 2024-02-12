@@ -17,7 +17,6 @@ const admin = async(req, res) => {
   }
 
   try {
-
     const limit = 6
     const offset = ((paginaActual * limit) - limit)
 
@@ -160,16 +159,25 @@ const publicarPropiedad = async(req, res, next) => {
   const { id } = req.params
   const propiedad = await Propiedad.findByPk(id);
 
+  
   if(!propiedad){
     return res.redirect("/propiedades");
   }
-
+  
   if(propiedad.publicado){
     return res.redirect("/propiedades");
   }
-
+  
   if(propiedad.usuarioID.toString() !== req.usuario.id.toString()){
     return res.redirect("/propiedades")
+  }
+
+  if(!req.files.length > 0){
+    return res.render("propiedades/agregar-imagen", {
+    pagina: `Agregar Imagen para "${propiedad.titulo}"`,
+    propiedad,
+    errores: [{ msg: "No se ha cargado una imagen" }]
+  });
   }
 
   const imagesArr = await Promise.allSettled(req.files.map(file => {
