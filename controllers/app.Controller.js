@@ -62,47 +62,50 @@ export const categoria = async(req,res) => {
     where: {
       categoriaID: id
     },
-    include: [{
-      model: Precio, as: 'precio'
-    }]
+    include: [
+      { model: Precio, as: 'precio' },
+      { model: Imagen, as: 'imagenes', required: false, where: { propiedadID: Sequelize.col('propiedades.id')} }
+    ]
   })
-
+  
   res.render('categoria', {
     pagina: categoria.nombre+"s en venta",
     propiedades,
     usuario
   })
-
-
+  
+  
 }
 
 export const noEncontrado = (req, res) => {
   req.usuario = usuario;
-
+  
   res.render('404', {
     pagina: "No encontrada",
     usuario
   })
-
+  
 }
 
 export const buscador = async(req, res) =>{
   const { termino } = req.body;
   const usuario = req.usuario;
-
+  
   if(!termino.trim()){
     return res.redirect('back');
   }
-
+  
   const propiedades = await Propiedad.findAll({
     where: {
       titulo: {
         [Op.like] : "%"+termino+"%"
       }
     },
-    include: [{
-      model: Precio, as: 'precio'
-    },{model: Categoria, as: 'categoria'}]
+    include: [
+      { model: Precio, as: 'precio' },
+      { model: Categoria, as: 'categoria' },
+      { model: Imagen, as: 'imagenes', required: false, where: { propiedadID: Sequelize.col('propiedades.id')} }
+    ]
   })
 
   console.log(propiedades);
