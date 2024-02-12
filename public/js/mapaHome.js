@@ -34,7 +34,7 @@
           }
         ).addTo(mapa).bindPopup(
           `<div class="text-xs">
-      <img src= ${propiedad.imagenes[0].ruta} alt= ${propiedad.titulo}}>
+      <img src= ${propiedad.imagenes.length > 0 ? propiedad.imagenes[0].ruta : "https://res.cloudinary.com/dakerpersonalspace/image/upload/v1707755538/kgzjptrvcz3xcmlgmclt.webp"} alt= ${propiedad.titulo}}>
       <br>
       <strong>Direcci\xF3n:</strong> ${propiedad.calle != "" ? propiedad.calle : "Direcci\xF3n no disponible"} <br> 
       <strong>Precio:</strong> ${propiedad.precio.nombre} <br>

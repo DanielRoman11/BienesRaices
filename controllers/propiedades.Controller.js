@@ -27,9 +27,9 @@ const admin = async(req, res) => {
         offset,
         where: { usuarioID: id },
         include: [
+          { model: Imagen, where: { propiedadID: Sequelize.col('propiedades.id')}, required: false},
           { model: Categoria, as: 'categoria' },
           { model: Precio, as: 'precio' },
-          { model: Imagen, required: false, where: { propiedadID: Sequelize.col('propiedades.id')} }
         ],
         order: [
           ['updatedAt', 'DESC']

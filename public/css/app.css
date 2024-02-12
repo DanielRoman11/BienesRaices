@@ -1185,6 +1185,9 @@ input[type="range"]:active::-webkit-slider-thumb {
 .h-\[72px\] {
   height: 72px;
 }
+.h-\[750px\] {
+  height: 750px;
+}
 .h-\[calc\(100\%-100px\)\] {
   height: calc(100% - 100px);
 }
