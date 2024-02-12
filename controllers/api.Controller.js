@@ -1,5 +1,6 @@
 import { Sequelize } from "sequelize";
 import { Categoria, Imagen, Precio, Propiedad, Usuario } from "../models/index.js";
+import cloudinary from "../config/cloudinary.js";
 
 const propiedades = async(req, res) =>{
   try {
@@ -20,7 +21,18 @@ const propiedades = async(req, res) =>{
   }
 }
 
+const eliminarImagenes = async(req, res) =>{
+  await cloudinary.api.delete_resources_by_prefix('bienesraices/')
+  .then(result =>{
+    console.log(result);
+    res.json(result)
+  })
+  .catch(error => {
+    console.error(error);
+  })
+}
+
 export {
   propiedades,
-
+  eliminarImagenes
 }

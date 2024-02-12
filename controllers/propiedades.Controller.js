@@ -122,7 +122,6 @@ const guardar = async(req, res) => {
       categoriaID: categoria,
       precioID: precio,
       usuarioID: usuarioId,
-      imagen: ''
     });
 
     const { id } = propiedad;
@@ -172,7 +171,6 @@ const publicarPropiedad = async(req, res, next) => {
   if(propiedad.usuarioID.toString() !== req.usuario.id.toString()){
     return res.redirect("/propiedades")
   }
-  // console.log(req.files);
 
   const imagesArr = await Promise.allSettled(req.files.map(file => {
     return cloudinary.uploader.upload(file.path, {
@@ -181,28 +179,9 @@ const publicarPropiedad = async(req, res, next) => {
         public_id: file.filename.slice(0, file.filename.length - 4)
     });
   }));
-
-  // console.log(imagesArr);
-
-  // let uploadPromises = results[1].map(async(result, index) => {
-  //   if (result.status === 'rejected') {
-  //       console.error(`Error al subir el archivo ${req.files[index].filename}: ${result.reason}`);
-  //   } 
-  //   else {
-  //     const { secure_url, public_id } = await result;
-
-  //     await Imagen.create({
-  //       ruta: secure_url,
-  //       recurso: public_id,
-  //       propiedadID: propiedad.id,
-  //     })
-      
-  //     console.log(`Archivo ${req.files[index].filename} subido correctamente: ${secure_url}`);
-  //   }
-  // });
   
   // //? Manejo de errores
-  let uploadPromises = imagesArr.forEach(async(result, index) => {
+  let uploadPromises = imagesArr.map(async(result, index) => {
     if (result.status === 'rejected') {
       console.error(`Error al subir el archivo ${req.files[index].filename}: ${result.reason}`);
     } else {
