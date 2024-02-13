@@ -509,7 +509,8 @@ const enviarMensaje = async(req, res) =>{
   const propiedad = await Propiedad.findByPk(id, {
     include: [
       { model: Categoria, as: 'categoria' },
-      { model: Precio, as: 'precio' }
+      { model: Precio, as: 'precio' },
+      { model: Imagen, as: 'imagenes', required: false, where: {propiedadID: Sequelize.col('propiedades.id')}}
     ]
   });
   

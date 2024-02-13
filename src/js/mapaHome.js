@@ -45,7 +45,7 @@
       <strong>Precio:</strong> ${propiedad.precio.nombre} <br>
       <strong>Tratante:</strong> ${propiedad.usuario.nombre} <br>
       <strong>Última Actualización:</strong> ${new Date(propiedad.updatedAt).toLocaleDateString()} <br>
-      <a href="/propiedades/propiedad/${propiedad.id}" class="border-2 border-[#706f2b] block p-2 text-center font-bold uppercase">Ver Propiedad</a>
+      <a href="/propiedades/propiedad/${propiedad.id}" class="border-2 border-[#142906] text-[#142906] block p-2 text-center font-bold uppercase">Ver Propiedad</a>
       </div>`
       )
 
