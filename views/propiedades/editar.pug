@@ -12,10 +12,10 @@ block contenido
 
     //- pre= JSON.stringify(propiedad, undefined, 2)
 
-    div(class="bg-white shadow py-8 px-4 md:px-10 rounded-md mx-auto max-w-4xl my-10")
+    div(class="bg-[#FDFBF6] shadow py-8 px-4 md:px-10 rounded-md mx-auto max-w-4xl my-10")
       if errores
         each error in errores
-          .text-center.text-white.bg-red-600.mx-auto.my-1.max-w-2xl.font-semibold
+          .text-center.bg-red-600.mx-auto.my-1.max-w-2xl.font-semibold(class="bg-[#FDFBF6]")
             p.text-normal= error.msg
       form(method="post").space-y-8
         div.space-y-8

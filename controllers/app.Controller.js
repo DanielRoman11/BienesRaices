@@ -87,6 +87,8 @@ export const noEncontrado = (req, res) => {
   
 }
 
+// new Date()
+
 export const buscador = async(req, res) =>{
   const { termino } = req.body;
   const usuario = req.usuario;

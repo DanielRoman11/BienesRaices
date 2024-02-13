@@ -1,27 +1,27 @@
 extends ../layout/index
 
 block contenido
-  .py-10
+  .py-10(class="text-[#142906]")
     h1.text-4xl.my-10.font-extrabold.text-center Bienes
       span.font-normal Raices
-    h2.text-center.text-2xl.font-semibold= pagina
+    h2.text-center.text-2xl.font-semibold(class="text-[#142906]")= pagina
 
     if errores
       each error in errores 
         .max-w-md.mx-auto.my-10
           p.bg-red-600.text-white.uppercase.text-xs.text-center.p-2.mb-1.font-bold= error.msg
     .mt-8.mx-auto.max-w-lg
-      div(class= "bg-white py-8 px-4 shadow rounded-lg transform")
+      div(class= "bg-white py-8 px-4 shadow-md rounded-lg transform")
         form.space-y-7(action="/auth/login", method="POST" noValidate) 
           //- //- input(type="hidden", name="_csrf" value= csrfToken)
           div 
-            label.block.text-sm.uppercase.text-gray-500.mb-1.font-bold(for="email") Email
+            label.block.text-sm.uppercase.mb-1.font-bold(for="email" class="text-[#142906]") Email
             input#email.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="Ingresa tu email" type="email" name="email" class="focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent" value= email ? email : "")
           div 
-            label.block.text-sm.uppercase.text-gray-500.mb-1.font-bold(for="password") Password
+            label.block.text-sm.uppercase.mb-1.font-bold(for="password" class="text-[#142906]") Password
             input#password.w-full.px-3.py-2.border.border-gray-300.rounded-md.placeholder-gray-400(placeholder="Ingresa tu password" type="password" name="password" class="focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent")
           .flex.items-center.justify-between
-            p.text-gray-500.text-xs ¿No tienes cuenta?
-              a.text-gray-500.text-xs.font-bold(href="/auth/registro")  Registrate
-            a.text-gray-500.text-xs.font-bold(href="/auth/olvide-password") Olvide mi contraseña
-          input(class="mx-auto text-center px-2 w-fit rounded bg-[#4C4B16] text-white font-bold py-3 cursor-pointer hover:focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 transform hover:scale-105 text-xs md:text-base" type="submit" value="Iniciar Sesión")
+            p.text-gray-500.text-xs ¿No tienes cuenta? 
+              a.text-xs.font-bold(href="/auth/registro" class="text-[#142906] underline decoration-2") Registrate
+            a.text-xs.font-bold(href="/auth/olvide-password" class="text-[#142906] underline decoration-2") Olvide mi contraseña
+          input(class="mx-auto text-center px-2 w-fit rounded bg-[#142906] text-white font-bold py-3 cursor-pointer hover:focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-opacity-50 transform hover:scale-105 text-xs md:text-base" type="submit" value="Iniciar Sesión")
