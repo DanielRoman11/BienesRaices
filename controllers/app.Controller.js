@@ -9,7 +9,7 @@ export const home = async(req,res) => {
       limit: 3,
       include:[
         { model: Precio, as: 'precio' },
-        { model: Imagen, required: false, where: { propiedadID: Sequelize.col('propiedades.id')} }
+        { model: Imagen, as: 'imagenes' }
       ],
       where: {
         categoriaID: 1
@@ -22,7 +22,7 @@ export const home = async(req,res) => {
       limit: 3,
       include:[
         { model: Precio, as: 'precio' },
-        { model: Imagen, required: false, where: { propiedadID: Sequelize.col('propiedades.id')} }
+        { model: Imagen, as: 'imagenes' }
       ],
       where: {
         categoriaID: 2
@@ -64,17 +64,15 @@ export const categoria = async(req,res) => {
     },
     include: [
       { model: Precio, as: 'precio' },
-      { model: Imagen, as: 'imagenes', required: false, where: { propiedadID: Sequelize.col('propiedades.id')} }
+      { model: Imagen, as: 'imagenes' }
     ]
-  })
-  
+  });
+
   res.render('categoria', {
     pagina: categoria.nombre+"s en venta",
     propiedades,
     usuario
-  })
-  
-  
+  });
 }
 
 export const noEncontrado = (req, res) => {
