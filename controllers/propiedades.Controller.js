@@ -26,7 +26,7 @@ const admin = async(req, res) => {
         offset,
         where: { usuarioID: id },
         include: [
-          { model: Imagen, where: { propiedadID: Sequelize.col('propiedades.id')}, required: false},
+          { model: Imagen, as: 'imagenes'},
           { model: Categoria, as: 'categoria' },
           { model: Precio, as: 'precio' },
         ],
@@ -538,17 +538,20 @@ const enviarMensaje = async(req, res) =>{
     })
   }
 
+  console.log(req.body);
+  console.log(req.params);
+  console.log(req.usuario);
+
   await Mensaje.create({
     mensaje,
     usuarioID: req.usuario.id,
     propiedadID: propiedad.id
-  })
+  });
 
-  res.render('propiedades/ver', {
-    propiedad,
-    pagina: propiedad.titulo,
-    usuario: req.usuario,
-    esVendedor: esVendedor(req.usuario?.id, propiedad.usuarioID)
+
+  res.render('templates/mensaje', {
+    pagina: "Confirmación de mensaje",
+    mensaje: "Tu mensaje se ha enviado correctamente ✅"
   })
 }
 

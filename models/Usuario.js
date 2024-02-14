@@ -24,7 +24,7 @@ const Usuario = db.define('usuarios', {
         .then(async (salt) => {
           usuario.password = await bcrypt.hash(usuario.password, salt);
         }).catch((err) => {
-          console.error("Hubo un error! ", err);
+          console.error("Hubo un error al hashear la password! ", err);
         });
     }
   },
