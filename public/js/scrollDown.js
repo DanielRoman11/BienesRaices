@@ -1,6 +1,6 @@
 (() => {
   // src/js/scrollDown.js
-  var errorDiv = document.getElementById("error");
-  window.scrollTo(0, errorDiv.scrollHeight);
+  var descDiv = document.getElementById("desc");
+  window.scrollTo(0, descDiv.scrollHeight);
   window.scrollTo(0, document.body.scrollHeight);
 })();
