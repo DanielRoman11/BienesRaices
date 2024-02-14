@@ -42,7 +42,7 @@ block contenido
 
       if errores
         each error in errores
-          #error.bg-red-600.px-2.py-1.rounded-sm.mt-2
+          .bg-red-600.px-2.py-1.rounded-sm.mt-2
             p.text-center.text-red-200.font-bold.text-sm ⚠️ #{error.msg}
         
       if !usuario
@@ -55,12 +55,11 @@ block contenido
           textarea(id="mensaje" name="mensaje" class="w-full p-2 border rounded-lg shadow-md border-slate-200 placeholder-slate-400 contrast-more:border-slate-500 contrast-more:placeholder-slate-600 h-32" placeholder ="Escribe tu mensaje al vendedor de la propiedad")
 
           input(type="submit", value="Envía un mensaje" class="bg-[#142906] w-full text-white font-bold uppercase text-sm p-2 cursor-pointer rounded-md")
-  
 block scripts
   script(src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js")
   script(src="/js/mostrarMapa.js")
   script(src="/js/tw-elements.js" type="module")
   script(src='/tw-elements/dist/js/tw-elements.umd.min.js' type='text/javascript')
   
-  if errores
+  if errores || enviado 
     script(type="module" src="/js/scrollDown.js")

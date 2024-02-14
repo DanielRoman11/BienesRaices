@@ -3,9 +3,11 @@ article(class="w-full sm:w-1/2 md:w-fit flex-1 my-2 h-[450px] bg-[#FDFBF6] round
     img.w-full.rounded-t-lg.object-cover.object-center(src= propiedad.imagenes.length > 0 ? propiedad.imagenes[0].ruta : "https://res.cloudinary.com/dakerpersonalspace/image/upload/v1707755538/kgzjptrvcz3xcmlgmclt.webp" alt= propiedad.titulo class="h-52")
     p(class="left-2 bottom-2 text-[#FDFBF6] font-medium text-sm rounded-md backdrop-blur-md rounded-br-md px-2 absolute")= propiedad.precio.nombre
   .flex.flex-col.w-full.px-3.text-sm(class="self-end h-full py-5 space-y-5")
-    - const options = {  year: 'numeric', month: 'short',day: 'numeric'}
-    h4(class="text-slate-500")= "Publicado el "+ propiedad.createdAt.toLocaleDateString(undefined, options)
-    p(class="text-[#142906] line-clamp-2")= propiedad.descripcion
+    div
+      h3.text-balance.line-clamp-1.font-semibold(class="text-[#142906]")= propiedad.titulo
+      - const options = {  year: 'numeric', month: 'short',day: 'numeric'}
+      h4(class="text-[#142906] text-xs text-pretty")= "Publicado el "+ propiedad.createdAt.toLocaleDateString(undefined, options)
+    p(class=" line-clamp-2")= propiedad.descripcion
   div(class="flex items-center justify-between w-full mt-5 self-end p-3")
     a(href="#" class="text-[#142906] text-2xl transition-all duration-[15ms] hover:animate-pulse") ❤️
     a.w-fit.select-none.rounded-lg.py-3.px-6.text-center.text-xs.font-bold.uppercase.text-white.shadow-md.transition-all(class='bg-[#142906] shadow-[#142906]/20 hover:shadow-lg hover:shadow-[#142906]/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none' href=`/propiedades/propiedad/${propiedad.id}`)

@@ -1,14 +1,9 @@
 extends ../layout/admin
 
 block contenido
-  .py-5(class="text-[#142906]")
-    h1.text-4xl.my-10.font-extrabold.text-center Bienes
-      span.font-normal Raices
-    h2(class="text-[#142906] text-center text-2xl font-bold")= pagina
-    .flex.pt-10
-      a(class="sm:max-w-[450px] lg:max-w-[500px] m-auto bg-[#142906] px-10 sm:px-20 py-2 focus:outline-none focus:delay-75 focus:ring-4 focus:ring-opacity-75 text-xs md:text-base ring-yellow-200 w-4/5 sm:w-2/3 text-center md:w-auto md:mb-5 rounded-md text-[#FDFBF6] font-bold hover:skew-y-1 transition-all hover:duration-75" href="/propiedades/crear") Publica una propiedad🏠
-
-
+  .h2(class="text-[#142906] text-center text-2xl font-bold")= pagina
+  .flex.pt-10
+    a(class="sm:max-w-[450px] lg:max-w-[500px] m-auto bg-[#142906] px-10 sm:px-20 py-2 focus:outline-none focus:delay-75 focus:ring-4 focus:ring-opacity-75 text-xs md:text-base ring-yellow-200 w-4/5 sm:w-2/3 text-center md:w-auto md:mb-5 rounded-md text-[#FDFBF6] font-bold hover:skew-y-1 transition-all hover:duration-75" href="/propiedades/crear") Publica una propiedad🏠
 
   //- pre= JSON.stringify(propiedades, undefined, 3)
   if propiedades.length
