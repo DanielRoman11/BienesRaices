@@ -29,6 +29,7 @@ const admin = async(req, res) => {
           { model: Imagen, as: 'imagenes'},
           { model: Categoria, as: 'categoria' },
           { model: Precio, as: 'precio' },
+          { model: Mensaje, as: 'mensajes'}
         ],
         order: [
           ['updatedAt', 'DESC']
@@ -510,7 +511,8 @@ const enviarMensaje = async(req, res) =>{
     include: [
       { model: Categoria, as: 'categoria' },
       { model: Precio, as: 'precio' },
-      { model: Imagen, as: 'imagenes', required: false, where: {propiedadID: Sequelize.col('propiedades.id')}}
+      { model: Imagen, as: 'imagenes' },
+      { model: Mensaje, as: 'mensajes'}
     ]
   });
   
