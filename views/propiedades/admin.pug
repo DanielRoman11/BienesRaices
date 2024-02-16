@@ -5,7 +5,7 @@ block contenido
   .flex.pt-10
     a(class="sm:max-w-[450px] lg:max-w-[500px] m-auto bg-[#142906] px-10 sm:px-20 py-2 focus:outline-none focus:delay-75 focus:ring-4 focus:ring-opacity-75 text-xs md:text-base ring-yellow-200 w-4/5 sm:w-2/3 text-center md:w-auto md:mb-5 rounded-md text-[#FDFBF6] font-bold hover:skew-y-1 transition-all hover:duration-75" href="/propiedades/crear") Publica una propiedad🏠
 
-  pre= JSON.stringify(propiedades, undefined, 3)
+  //- pre= JSON.stringify(propiedades, undefined, 3)
   if propiedades.length
     div(class="w-full flex justify-center gap-2 flex-wrap pt-10 pb-20")
       each propiedad in propiedades
@@ -15,7 +15,7 @@ block contenido
             p(class="absolute top-2 left-2 flex items-center text-ellipsis font-bold whitespace-pre-line overflow-hidden text-sm bg-white/20 backdrop-blur rounded-md px-4 py-1")
               include ../svg/propiedadSVG
               = propiedad.categoria.nombre
-            a(class=`absolute right-2 top-2 z-10 cursor-pointer  backdrop-blur-md rounded-full p-2 flex ${propiedad.mensajes.length < 1 ? "text-white bg-slate-700/60" : "text-green-600 bg-green-100"}` href="")
+            a(class=`absolute right-2 top-2 z-10 cursor-pointer  backdrop-blur-md rounded-full p-2 flex ${propiedad.mensajes.length < 1 ? "text-white bg-slate-700/60" : "text-green-600 bg-green-100"}` href=`/propiedades/mensajes/${propiedad.id}`)
               if propiedad.mensajes.length < 1
                 include ../svg/emptyMessage
               else

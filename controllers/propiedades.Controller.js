@@ -557,6 +557,15 @@ const enviarMensaje = async(req, res) =>{
   })
 }
 
+const mensajes = async(req, res) =>{
+  const { id } = req.params;
+
+  res.render('propiedades/mensajes', {
+    pagina: "Ver mensajes"
+  });
+
+}
+
 
 export {
   admin,
@@ -570,5 +579,6 @@ export {
   verImagen,
   nuevaImagen,
   mostrarPropiedad,
-  enviarMensaje
+  enviarMensaje,
+  mensajes
 }

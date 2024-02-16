@@ -1,6 +1,6 @@
 import express from "express";
 import { body } from "express-validator"
-import { admin, agregarImagen, crear, editar, eliminar, enviarMensaje, guardar, guardarCambios,  mostrarPropiedad,  nuevaImagen,  publicarPropiedad, verImagen } from "../controllers/propiedades.Controller.js"
+import { admin, agregarImagen, crear, editar, eliminar, enviarMensaje, guardar, guardarCambios,  mensajes,  mostrarPropiedad,  nuevaImagen,  publicarPropiedad, verImagen } from "../controllers/propiedades.Controller.js"
 import protegerRuta from "../middleware/proteger.Routes.js";
 import { identificarUsuario } from "../middleware/indentificarUsuario.js";
 import { subirImagen } from "../middleware/subirImagenes.js";
@@ -52,5 +52,7 @@ ruta.post('/propiedad/:id', identificarUsuario,
   body('mensaje').isLength({min: 10, max: 200}).withMessage("El tamaño del mensaje debe ser de entre 10 y 200 caracteres."),
   enviarMensaje
 )
+
+ruta.get('/mensajes/:id', protegerRuta, mensajes);
 
 export default ruta; 
