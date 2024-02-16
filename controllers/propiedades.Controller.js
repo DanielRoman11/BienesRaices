@@ -1,5 +1,5 @@
 import { validationResult } from "express-validator";
-import { Categoria, Propiedad, Precio, Mensaje, Imagen } from "../models/index.js" 
+import { Categoria, Propiedad, Precio, Mensaje, Imagen, Usuario } from "../models/index.js" 
 import { esVendedor } from "../helpers/esVendedor.js";
 import cloudinary from "../config/cloudinary.js";
 import { Sequelize } from "sequelize";
@@ -559,9 +559,31 @@ const enviarMensaje = async(req, res) =>{
 
 const mensajes = async(req, res) =>{
   const { id } = req.params;
+  const lenguajeUsuario = req.headers['accept-language'];
+
+  const idiomas = lenguajeUsuario
+    ? lenguajeUsuario.split(',').map((idioma) => idioma.trim().split(';')[0])
+    : ['es']; // Valor predeterminado en caso de que no haya encabezado Accept-Language
+
+  // El primer idioma de la lista es el preferido
+  const idiomaPreferido = idiomas[0];
+
+  const propiedad = await Propiedad.findByPk(id,{
+    include: [
+      { model: Mensaje, as: 'mensajes',
+        include: [
+          { model: Usuario, required: false, where: {usuarioID: Sequelize.col('mensajes.usuarioID')},
+            order: ['createdAt', 'DESC']
+          }
+        ]
+      }
+    ]
+  })
 
   res.render('propiedades/mensajes', {
-    pagina: "Ver mensajes"
+    pagina: "Ver mensajes",
+    idioma: idiomaPreferido,
+    propiedad
   });
 
 }
