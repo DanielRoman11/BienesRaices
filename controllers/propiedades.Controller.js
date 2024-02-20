@@ -584,7 +584,8 @@ const mensajes = async(req, res) =>{
   res.render('propiedades/mensajes', {
     pagina: "Ver mensajes",
     idioma: idiomaPreferido,
-    propiedad
+    propiedad,
+    usuario: req.usuario
   });
 
 }
