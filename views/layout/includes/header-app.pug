@@ -3,7 +3,7 @@ nav.flex-wrap.relative.flex.w-full.items-center.justify-between.py-2.shadow-md(c
     // Hamburger button for mobile view
     button.block.border-0.bg-transparent.px-2.text-neutral-500(class='hover:no-underline hover:shadow-none focus:no-underline focus:shadow-none focus:outline-none focus:ring-0 dark:text-neutral-200 lg:hidden' type='button' data-te-collapse-init='' data-te-target='#navbarSupportedContent12' aria-controls='navbarSupportedContent12' aria-expanded='false' aria-label='Toggle navigation')
       // Hamburger icon
-      span(class='[&>svg]:w-7')
+      span(class='h-14')
         svg.h-7.w-7(xmlns='http://www.w3.org/2000/svg' viewbox='0 0 24 24' fill='currentColor')
           path(fill-rule='evenodd' d='M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z' clip-rule='evenodd')
     // Collapsible navigation contain
@@ -19,7 +19,7 @@ nav.flex-wrap.relative.flex.w-full.items-center.justify-between.py-2.shadow-md(c
     .relative.flex.items-center
       if usuario
         a.mr-4.transition.duration-200(class='text-[#85A86D] font-semibold hover:ease-in-out hover:text-[#142906] motion-reduce:transition-none' href='/propiedades')
-          span(class='[&>svg]:w-5')
+          span(class='h-12')
             include ../../svg/houseSVG
         .relative(data-te-dropdown-ref='' data-te-dropdown-alignment='end')
           // Second dropdown trigger

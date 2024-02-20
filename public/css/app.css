@@ -1222,6 +1222,9 @@ input[type="range"]:active::-webkit-slider-thumb {
 .h-11 {
   height: 2.75rem;
 }
+.h-12 {
+  height: 3rem;
+}
 .max-h-\[calc\(100\%-64px\)\] {
   max-height: calc(100% - 64px);
 }
