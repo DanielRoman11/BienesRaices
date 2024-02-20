@@ -32,7 +32,7 @@
       popupAnchor: [1, -34],
     });
     propiedades.forEach(propiedad => {
-      console.log(propiedad);
+      // console.log(propiedad);
       const marker = new L.marker([propiedad?.lat, propiedad?.lng], 
       {
         icon: markerIcon

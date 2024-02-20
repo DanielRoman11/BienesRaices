@@ -26,7 +26,6 @@
         popupAnchor: [1, -34]
       });
       propiedades2.forEach((propiedad) => {
-        console.log(propiedad);
         const marker = new L.marker(
           [propiedad?.lat, propiedad?.lng],
           {

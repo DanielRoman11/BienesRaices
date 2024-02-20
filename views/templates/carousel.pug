@@ -1,17 +1,17 @@
 #carouselExampleControls.relative(data-te-carousel-init data-te-ride='carousel')
   // Carousel items
-  .relative.w-full.overflow-hidden(class="after:clear-both after:block after:content-[''] overflow-hidden h-[750px]")
+  .relative.w-full.overflow-hidden(class="after:clear-both after:block after:content-[''] overflow-hidden h-96 lg:h-[750px]")
     if propiedad.imagenes.length > 0
       div.relative.float-left.w-full.transition-transform.ease-in-out(class='-mr-[100%] duration-[600ms] motion-reduce:transition-none' data-te-carousel-item data-te-carousel-active)
       
-        img.block.w-full(src=propiedad.imagenes[0].ruta alt='Wild Landscape' class="h-[750px]")
+        img.block.w-full(src=propiedad.imagenes[0].ruta alt='Wild Landscape' class="h-96 lg:h-[750px]")
       
       - var sinPrimeraImagen = propiedad.imagenes.filter((elem, i) => i !== 0)
       each imagen in sinPrimeraImagen
         .relative.float-left.hidden.w-full.transition-transform.ease-in-out(class='-mr-[100%] duration-[600ms] motion-reduce:transition-none h-[400px]' data-te-carousel-item)
-          img.block.w-full(src= imagen.ruta class="w-[100%] h-[750px]" alt= propiedad.titulo)
+          img.block.w-full(src= imagen.ruta class="w-[100%] h-96 lg:h-[750px]" alt= propiedad.titulo)
     else
-      img.block.w-full(src="https://res.cloudinary.com/dakerpersonalspace/image/upload/v1707755538/kgzjptrvcz3xcmlgmclt.webp" alt='Wild Landscape' class="h-[750px]")
+      img.block.w-full(src="https://res.cloudinary.com/dakerpersonalspace/image/upload/v1707755538/kgzjptrvcz3xcmlgmclt.webp" alt='Wild Landscape' class="h-96 lg:h-[750px]")
 
   // Carousel controls - prev item
   button.absolute.bottom-0.left-0.top-0.flex.items-center.justify-center.border-0.bg-none.p-0.text-center.text-white.opacity-50.transition-opacity.duration-150(class='z-[1] w-[15%] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:text-white hover:no-underline hover:opacity-90 hover:outline-none focus:text-white focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none' type='button' data-te-target='#carouselExampleControls' data-te-slide='prev')

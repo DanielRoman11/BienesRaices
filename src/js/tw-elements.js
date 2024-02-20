@@ -2,6 +2,8 @@
 import {
   Carousel,
   initTE,
+  Collapse,
+  Dropdown,
 } from "tw-elements";
 
-initTE({ Carousel });
+initTE({ Carousel, Collapse, Dropdown });

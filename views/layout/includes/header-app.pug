@@ -1,7 +1,36 @@
-header(class="py-2 sm:bg-transparent bg-[#142906] w-full")
-  div(class="justify-between container px-2 mx-auto flex items-center h-16")
-      a(class="md:text-2xl text-xl text-[#142906] font-extrabold" href="/") Bienes 
-        span.font-normal Raices
-      include navbar
-      
+nav.flex-wrap.relative.flex.w-full.items-center.justify-between.py-2.shadow-md(class='bg-[#FBFBFB] shadow-black/5 dark:bg-neutral-600 dark:shadow-black/10 lg:flex-wrap lg:justify-start lg:py-4')
+  .flex.w-full.flex-wrap.items-center.justify-between.px-3
+    // Hamburger button for mobile view
+    button.block.border-0.bg-transparent.px-2.text-neutral-500(class='hover:no-underline hover:shadow-none focus:no-underline focus:shadow-none focus:outline-none focus:ring-0 dark:text-neutral-200 lg:hidden' type='button' data-te-collapse-init='' data-te-target='#navbarSupportedContent12' aria-controls='navbarSupportedContent12' aria-expanded='false' aria-label='Toggle navigation')
+      // Hamburger icon
+      span(class='[&>svg]:w-7')
+        svg.h-7.w-7(xmlns='http://www.w3.org/2000/svg' viewbox='0 0 24 24' fill='currentColor')
+          path(fill-rule='evenodd' d='M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z' clip-rule='evenodd')
+    // Collapsible navigation contain
+    #navbarSupportedContent12.hidden.flex-grow.items-center(class='!visible basis-[100%] lg:!flex lg:basis-auto' data-te-collapse-item='')
+      // Logo
+      a.mb-4.ml-2.mr-5.mt-3.flex.items-center.text-neutral-900(class='hover:text-neutral-900 focus:text-neutral-900 dark:text-neutral-200 dark:hover:text-neutral-400 dark:focus:text-neutral-400 lg:mb-0 lg:mt-0' href='/')
+        img(src='https://res.cloudinary.com/dakerpersonalspace/image/upload/v1708389207/i4kxygg7csubalo2tfwe.png' alt='TE Logo' loading='lazy' class="h-11 rounded-full hover:scale-105 hover:border-4 border-[#85A86D]")
+      ul.list-style-none.mr-auto.flex.flex-col.pl-0(class='lg:flex-row' data-te-navbar-nav-ref='')
+        li.mb-4(class='lg:mb-0 lg:pr-2' data-te-nav-item-ref='')
+          // Dashboard link
+          a.text-neutral-500.transition.duration-200(class='hover:ease-in-out  disabled:text-black/30 motion-reduce:transition-none  dark:hover:text-neutral-300 dark:focus:text-neutral-300 lg:px-2 [&.active]:text-black/90 dark:[&.active]:text-[#85A86D]' href='#' data-te-nav-link-ref='') Buscador
+        
+    .relative.flex.items-center
+      if usuario
+        a.mr-4.transition.duration-200(class='text-[#85A86D] font-semibold hover:ease-in-out hover:text-[#142906] motion-reduce:transition-none' href='/propiedades')
+          span(class='[&>svg]:w-5')
+            include ../../svg/houseSVG
+        .relative(data-te-dropdown-ref='' data-te-dropdown-alignment='end')
+          // Second dropdown trigger
+          a#dropdownMenuButton2.hidden-arrow.flex.items-center.whitespace-nowrap.transition.duration-150.ease-in-out(class='motion-reduce:transition-none' href='#' role='button' data-te-dropdown-toggle-ref='' aria-expanded='false')
+            img.rounded-full(src='https://tecdn.b-cdn.net/img/new/avatars/2.jpg' style='height: 25px; width: 25px' alt='' loading='lazy')
+          ul.absolute.float-left.m-0.hidden.min-w-max.list-none.overflow-hidden.rounded-lg.border-none.bg-white.bg-clip-padding.text-left.text-base.shadow-lg(class='z-[1000] dark:bg-neutral-700 [&[data-te-dropdown-show]]:block' aria-labelledby='dropdownMenuButton2' data-te-dropdown-menu-ref='')
+            // Second dropdown menu items
+            li
+              a.block.w-full.whitespace-nowrap.bg-transparent.px-4.py-2.text-sm.font-normal.text-neutral-700(class='hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30' href='#' data-te-dropdown-item-ref='') Perfil
+            li
+              a.block.w-full.whitespace-nowrap.bg-transparent.px-4.py-2.text-sm.font-normal(class='hover:bg-neutral-100 text-[#85A86D] hover:text-[#142906]' href='/auth/logout' data-te-dropdown-item-ref='') Cerrar Sesión
+      else
+        a(class="bg-[#142906] hover:scale-105 px-2 py-1 rounded-lg text-white uppercase font-bold cursor-pointer text-sm" href="/auth/login") Publica gratis!
 include search-header

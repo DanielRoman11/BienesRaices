@@ -51,6 +51,7 @@ const admin = async(req, res) => {
       offset,
       limit,
       total,
+      usuario: req.usuario
       // // // csrfToken: req.csrfToken()
     }); 
   } catch (error) {
@@ -540,9 +541,9 @@ const enviarMensaje = async(req, res) =>{
     })
   }
 
-  console.log(req.body);
-  console.log(req.params);
-  console.log(req.usuario);
+  // console.log(req.body);
+  // console.log(req.params);
+  // console.log(req.usuario);
 
   await Mensaje.create({
     mensaje,

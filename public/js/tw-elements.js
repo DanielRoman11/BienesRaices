@@ -1628,12 +1628,16 @@
       );
     }
   };
+  var Rn = "dropdown";
   var bu = "te.dropdown";
   var xe = `.${bu}`;
   var Er = ".data-api";
   var Fs = "Escape";
+  var Zr = "Space";
+  var Qr = "Tab";
   var jo = "ArrowUp";
   var Ys = "ArrowDown";
+  var vu = 2;
   var Tu = new RegExp(
     `${jo}|${Ys}|${Fs}`
   );
@@ -1644,20 +1648,440 @@
   var wu = `click${xe}${Er}`;
   var Jr = `keydown${xe}${Er}`;
   var ku = `keyup${xe}${Er}`;
+  var Ft = "show";
+  var xu = "dropup";
+  var Ou = "dropend";
+  var Su = "dropstart";
+  var Iu = "[data-te-navbar-ref]";
+  var os = "[data-te-dropdown-toggle-ref]";
+  var Pn = "[data-te-dropdown-menu-ref]";
+  var Du = "[data-te-navbar-nav-ref]";
+  var $u = "[data-te-dropdown-menu-ref] [data-te-dropdown-item-ref]:not(.disabled):not(:disabled)";
   var Lu = W() ? "top-end" : "top-start";
   var Nu = W() ? "top-start" : "top-end";
   var Mu = W() ? "bottom-end" : "bottom-start";
   var Ru = W() ? "bottom-start" : "bottom-end";
   var Pu = W() ? "left-start" : "right-start";
   var Bu = W() ? "right-start" : "left-start";
+  var Hu = [{ opacity: "0" }, { opacity: "1" }];
+  var Vu = [{ opacity: "1" }, { opacity: "0" }];
+  var ta = {
+    iterations: 1,
+    easing: "ease",
+    fill: "both"
+  };
+  var Wu = {
+    offset: [0, 2],
+    boundary: "clippingParents",
+    reference: "toggle",
+    display: "dynamic",
+    popperConfig: null,
+    autoClose: true,
+    dropdownAnimation: "on",
+    animationDuration: 550
+  };
+  var Fu = {
+    offset: "(array|string|function)",
+    boundary: "(string|element)",
+    reference: "(string|element|object)",
+    display: "string",
+    popperConfig: "(null|object|function)",
+    autoClose: "(boolean|string)",
+    dropdownAnimation: "string",
+    animationDuration: "number"
+  };
+  var $t = class _$t extends ft {
+    constructor(t, e) {
+      super(t), this._popper = null, this._config = this._getConfig(e), this._menu = this._getMenuElement(), this._inNavbar = this._detectNavbar(), this._fadeOutAnimate = null;
+      const i = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+      this._animationCanPlay = this._config.dropdownAnimation === "on" && !i, this._didInit = false, this._init();
+    }
+    // Getters
+    static get Default() {
+      return Wu;
+    }
+    static get DefaultType() {
+      return Fu;
+    }
+    static get NAME() {
+      return Rn;
+    }
+    // Public
+    toggle() {
+      return this._isShown() ? this.hide() : this.show();
+    }
+    show() {
+      if (be(this._element) || this._isShown(this._menu))
+        return;
+      const t = {
+        relatedTarget: this._element
+      };
+      if (c.trigger(
+        this._element,
+        Au,
+        t
+      ).defaultPrevented)
+        return;
+      const i = _$t.getParentFromElement(this._element);
+      this._inNavbar ? h.setDataAttribute(this._menu, "popper", "none") : this._createPopper(i), "ontouchstart" in document.documentElement && !i.closest(Du) && [].concat(...document.body.children).forEach((n) => c.on(n, "mouseover", hn)), this._element.focus(), this._element.setAttribute("aria-expanded", true), this._menu.setAttribute(`data-te-dropdown-${Ft}`, ""), this._animationCanPlay && this._menu.animate(Hu, {
+        ...ta,
+        duration: this._config.animationDuration
+      }), this._element.setAttribute(`data-te-dropdown-${Ft}`, ""), setTimeout(
+        () => {
+          c.trigger(this._element, yu, t);
+        },
+        this._animationCanPlay ? this._config.animationDuration : 0
+      );
+    }
+    hide() {
+      if (be(this._element) || !this._isShown(this._menu))
+        return;
+      const t = {
+        relatedTarget: this._element
+      };
+      this._completeHide(t);
+    }
+    dispose() {
+      this._popper && this._popper.destroy(), super.dispose();
+    }
+    update() {
+      this._inNavbar = this._detectNavbar(), this._popper && this._popper.update();
+    }
+    // Private
+    _init() {
+      this._didInit || (c.on(
+        document,
+        Jr,
+        os,
+        _$t.dataApiKeydownHandler
+      ), c.on(
+        document,
+        Jr,
+        Pn,
+        _$t.dataApiKeydownHandler
+      ), c.on(document, wu, _$t.clearMenus), c.on(document, ku, _$t.clearMenus), this._didInit = true);
+    }
+    _completeHide(t) {
+      this._fadeOutAnimate && this._fadeOutAnimate.playState === "running" || c.trigger(
+        this._element,
+        Eu,
+        t
+      ).defaultPrevented || ("ontouchstart" in document.documentElement && [].concat(...document.body.children).forEach((i) => c.off(i, "mouseover", hn)), this._animationCanPlay && (this._fadeOutAnimate = this._menu.animate(Vu, {
+        ...ta,
+        duration: this._config.animationDuration
+      })), setTimeout(
+        () => {
+          this._popper && this._popper.destroy(), this._menu.removeAttribute(`data-te-dropdown-${Ft}`), this._element.removeAttribute(`data-te-dropdown-${Ft}`), this._element.setAttribute("aria-expanded", "false"), h.removeDataAttribute(this._menu, "popper"), c.trigger(this._element, Cu, t);
+        },
+        this._animationCanPlay ? this._config.animationDuration : 0
+      ));
+    }
+    _getConfig(t) {
+      if (t = {
+        ...this.constructor.Default,
+        ...h.getDataAttributes(this._element),
+        ...t
+      }, I(Rn, t, this.constructor.DefaultType), typeof t.reference == "object" && !Xe(t.reference) && typeof t.reference.getBoundingClientRect != "function")
+        throw new TypeError(
+          `${Rn.toUpperCase()}: Option "reference" provided type "object" without a required "getBoundingClientRect" method.`
+        );
+      return t;
+    }
+    _createPopper(t) {
+      if (typeof qc > "u")
+        throw new TypeError(
+          "Bootstrap's dropdowns require Popper (https://popper.js.org)"
+        );
+      let e = this._element;
+      this._config.reference === "parent" ? e = t : Xe(this._config.reference) ? e = ee(this._config.reference) : typeof this._config.reference == "object" && (e = this._config.reference);
+      const i = this._getPopperConfig(), n = i.modifiers.find(
+        (o) => o.name === "applyStyles" && o.enabled === false
+      );
+      this._popper = se(
+        e,
+        this._menu,
+        i
+      ), n && h.setDataAttribute(this._menu, "popper", "static");
+    }
+    _isShown(t = this._element) {
+      return t.dataset[`teDropdown${Ft.charAt(0).toUpperCase() + Ft.slice(1)}`] === "";
+    }
+    _getMenuElement() {
+      return d.next(this._element, Pn)[0];
+    }
+    _getPlacement() {
+      const t = this._element.parentNode;
+      if (t.dataset.teDropdownPosition === Ou)
+        return Pu;
+      if (t.dataset.teDropdownPosition === Su)
+        return Bu;
+      const e = t.dataset.teDropdownAlignment === "end";
+      return t.dataset.teDropdownPosition === xu ? e ? Nu : Lu : e ? Ru : Mu;
+    }
+    _detectNavbar() {
+      return this._element.closest(Iu) !== null;
+    }
+    _getOffset() {
+      const { offset: t } = this._config;
+      return typeof t == "string" ? t.split(",").map((e) => Number.parseInt(e, 10)) : typeof t == "function" ? (e) => t(e, this._element) : t;
+    }
+    _getPopperConfig() {
+      const t = {
+        placement: this._getPlacement(),
+        modifiers: [
+          {
+            name: "preventOverflow",
+            options: {
+              boundary: this._config.boundary
+            }
+          },
+          {
+            name: "offset",
+            options: {
+              offset: this._getOffset()
+            }
+          }
+        ]
+      };
+      return this._config.display === "static" && (t.modifiers = [
+        {
+          name: "applyStyles",
+          enabled: false
+        }
+      ]), {
+        ...t,
+        ...typeof this._config.popperConfig == "function" ? this._config.popperConfig(t) : this._config.popperConfig
+      };
+    }
+    _selectMenuItem({ key: t, target: e }) {
+      const i = d.find(
+        $u,
+        this._menu
+      ).filter(Mt);
+      i.length && vc(
+        i,
+        e,
+        t === Ys,
+        !i.includes(e)
+      ).focus();
+    }
+    // Static
+    static jQueryInterface(t) {
+      return this.each(function() {
+        const e = _$t.getOrCreateInstance(this, t);
+        if (typeof t == "string") {
+          if (typeof e[t] > "u")
+            throw new TypeError(`No method named "${t}"`);
+          e[t]();
+        }
+      });
+    }
+    static clearMenus(t) {
+      if (t && (t.button === vu || t.type === "keyup" && t.key !== Qr))
+        return;
+      const e = d.find(os);
+      for (let i = 0, n = e.length; i < n; i++) {
+        const o = _$t.getInstance(e[i]);
+        if (!o || o._config.autoClose === false || !o._isShown())
+          continue;
+        const r = {
+          relatedTarget: o._element
+        };
+        if (t) {
+          const a = t.composedPath(), l = a.includes(o._menu);
+          if (a.includes(o._element) || o._config.autoClose === "inside" && !l || o._config.autoClose === "outside" && l || o._menu.contains(t.target) && (t.type === "keyup" && t.key === Qr || /input|select|option|textarea|form/i.test(t.target.tagName)))
+            continue;
+          t.type === "click" && (r.clickEvent = t);
+        }
+        o._completeHide(r);
+      }
+    }
+    static getParentFromElement(t) {
+      return te(t) || t.parentNode;
+    }
+    static dataApiKeydownHandler(t) {
+      if (/input|textarea/i.test(t.target.tagName) ? t.key === Zr || t.key !== Fs && (t.key !== Ys && t.key !== jo || t.target.closest(Pn)) : !Tu.test(t.key))
+        return;
+      const e = this.dataset[`teDropdown${Ft.charAt(0).toUpperCase() + Ft.slice(1)}`] === "";
+      if (!e && t.key === Fs || (t.preventDefault(), t.stopPropagation(), be(this)))
+        return;
+      const i = this.matches(os) ? this : d.prev(this, os)[0], n = _$t.getOrCreateInstance(i);
+      if (t.key === Fs) {
+        n.hide();
+        return;
+      }
+      if (t.key === jo || t.key === Ys) {
+        e || n.show(), n._selectMenuItem(t);
+        return;
+      }
+      (!e || t.key === Zr) && _$t.clearMenus();
+    }
+  };
+  var Bn = "collapse";
   var Zc = "te.collapse";
   var bn = `.${Zc}`;
+  var ea = {
+    toggle: true,
+    parent: null
+  };
+  var Yu = {
+    toggle: "boolean",
+    parent: "(null|element)"
+  };
   var ju = `show${bn}`;
   var Ku = `shown${bn}`;
   var zu = `hide${bn}`;
   var Uu = `hidden${bn}`;
+  var Hn = "data-te-collapse-show";
+  var ia = "data-te-collapse-collapsed";
+  var rs = "data-te-collapse-collapsing";
+  var Xu = "data-te-collapse-horizontal";
   var We = "data-te-collapse-item";
   var sa = `:scope [${We}] [${We}]`;
+  var Gu = "width";
+  var qu = "height";
+  var Zu = "[data-te-collapse-item][data-te-collapse-show], [data-te-collapse-item][data-te-collapse-collapsing]";
+  var na = "[data-te-collapse-init]";
+  var Qu = {
+    visible: "!visible",
+    hidden: "hidden",
+    baseTransition: "overflow-hidden duration-[350ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] motion-reduce:transition-none",
+    collapsing: "h-0 transition-[height] overflow-hidden duration-[350ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] motion-reduce:transition-none",
+    collapsingHorizontal: "w-0 h-auto transition-[width] overflow-hidden duration-[350ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] motion-reduce:transition-none"
+  };
+  var Ju = {
+    visible: "string",
+    hidden: "string",
+    baseTransition: "string",
+    collapsing: "string",
+    collapsingHorizontal: "string"
+  };
+  var Qt = class _Qt extends ft {
+    constructor(t, e, i) {
+      super(t), this._isTransitioning = false, this._config = this._getConfig(e), this._classes = this._getClasses(i), this._triggerArray = [];
+      const n = d.find(na);
+      for (let o = 0, r = n.length; o < r; o++) {
+        const a = n[o], l = lr(a), p = d.find(l).filter(
+          (u) => u === this._element
+        );
+        l !== null && p.length && (this._selector = l, this._triggerArray.push(a));
+      }
+      this._initializeChildren(), this._config.parent || this._addAriaAndCollapsedClass(this._triggerArray, this._isShown()), this._config.toggle && this.toggle();
+    }
+    // Getters
+    static get Default() {
+      return ea;
+    }
+    static get NAME() {
+      return Bn;
+    }
+    // Public
+    toggle() {
+      this._isShown() ? this.hide() : this.show();
+    }
+    show() {
+      if (this._isTransitioning || this._isShown())
+        return;
+      let t = [], e;
+      if (this._config.parent) {
+        const u = d.find(
+          sa,
+          this._config.parent
+        );
+        t = d.find(
+          Zu,
+          this._config.parent
+        ).filter((_) => !u.includes(_));
+      }
+      const i = d.findOne(this._selector);
+      if (t.length) {
+        const u = t.find((_) => i !== _);
+        if (e = u ? _Qt.getInstance(u) : null, e && e._isTransitioning)
+          return;
+      }
+      if (c.trigger(this._element, ju).defaultPrevented)
+        return;
+      t.forEach((u) => {
+        i !== u && _Qt.getOrCreateInstance(u, { toggle: false }).hide(), e || A.setData(u, Zc, null);
+      });
+      const o = this._getDimension(), r = o === "height" ? this._classes.collapsing : this._classes.collapsingHorizontal;
+      h.removeClass(this._element, this._classes.visible), h.removeClass(this._element, this._classes.hidden), h.addClass(this._element, r), this._element.removeAttribute(We), this._element.setAttribute(rs, ""), this._element.style[o] = 0, this._addAriaAndCollapsedClass(this._triggerArray, true), this._isTransitioning = true;
+      const a = () => {
+        this._isTransitioning = false, h.removeClass(this._element, this._classes.hidden), h.removeClass(this._element, r), h.addClass(this._element, this._classes.visible), this._element.removeAttribute(rs), this._element.setAttribute(We, ""), this._element.setAttribute(Hn, ""), this._element.style[o] = "", c.trigger(this._element, Ku);
+      }, p = `scroll${o[0].toUpperCase() + o.slice(1)}`;
+      this._queueCallback(a, this._element, true), this._element.style[o] = `${this._element[p]}px`;
+    }
+    hide() {
+      if (this._isTransitioning || !this._isShown() || c.trigger(this._element, zu).defaultPrevented)
+        return;
+      const e = this._getDimension(), i = e === "height" ? this._classes.collapsing : this._classes.collapsingHorizontal;
+      this._element.style[e] = `${this._element.getBoundingClientRect()[e]}px`, si(this._element), h.addClass(this._element, i), h.removeClass(this._element, this._classes.visible), h.removeClass(this._element, this._classes.hidden), this._element.setAttribute(rs, ""), this._element.removeAttribute(We), this._element.removeAttribute(Hn);
+      const n = this._triggerArray.length;
+      for (let r = 0; r < n; r++) {
+        const a = this._triggerArray[r], l = te(a);
+        l && !this._isShown(l) && this._addAriaAndCollapsedClass([a], false);
+      }
+      this._isTransitioning = true;
+      const o = () => {
+        this._isTransitioning = false, h.removeClass(this._element, i), h.addClass(this._element, this._classes.visible), h.addClass(this._element, this._classes.hidden), this._element.removeAttribute(rs), this._element.setAttribute(We, ""), c.trigger(this._element, Uu);
+      };
+      this._element.style[e] = "", this._queueCallback(o, this._element, true);
+    }
+    _isShown(t = this._element) {
+      return t.hasAttribute(Hn);
+    }
+    // Private
+    _getConfig(t) {
+      return t = {
+        ...ea,
+        ...h.getDataAttributes(this._element),
+        ...t
+      }, t.toggle = !!t.toggle, t.parent = ee(t.parent), I(Bn, t, Yu), t;
+    }
+    _getClasses(t) {
+      const e = h.getDataClassAttributes(this._element);
+      return t = {
+        ...Qu,
+        ...e,
+        ...t
+      }, I(Bn, t, Ju), t;
+    }
+    _getDimension() {
+      return this._element.hasAttribute(Xu) ? Gu : qu;
+    }
+    _initializeChildren() {
+      if (!this._config.parent)
+        return;
+      const t = d.find(
+        sa,
+        this._config.parent
+      );
+      d.find(na, this._config.parent).filter((e) => !t.includes(e)).forEach((e) => {
+        const i = te(e);
+        i && this._addAriaAndCollapsedClass([e], this._isShown(i));
+      });
+    }
+    _addAriaAndCollapsedClass(t, e) {
+      t.length && t.forEach((i) => {
+        e ? i.removeAttribute(ia) : i.setAttribute(`${ia}`, ""), i.setAttribute("aria-expanded", e);
+      });
+    }
+    // Static
+    static jQueryInterface(t) {
+      return this.each(function() {
+        const e = {};
+        typeof t == "string" && /show|hide/.test(t) && (e.toggle = false);
+        const i = _Qt.getOrCreateInstance(this, e);
+        if (typeof t == "string") {
+          if (typeof i[t] > "u")
+            throw new TypeError(`No method named "${t}"`);
+          i[t]();
+        }
+      });
+    }
+  };
   var Qc = "backdrop";
   var aa = `mousedown.te.${Qc}`;
   var ip = "te.offcanvas";
@@ -4373,7 +4797,7 @@
   };
 
   // src/js/tw-elements.js
-  qA({ Carousel: Xt });
+  qA({ Carousel: Xt, Collapse: Qt, Dropdown: $t });
 })();
 /*! Bundled license information:
 

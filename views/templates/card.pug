@@ -9,6 +9,6 @@ article(class="w-full sm:w-1/2 md:w-fit flex-1 my-2 h-[450px] bg-[#FDFBF6] round
       h4(class="text-[#142906] text-xs text-pretty")= "Publicado el "+ propiedad.createdAt.toLocaleDateString(undefined, options)
     p(class=" line-clamp-2")= propiedad.descripcion
   div(class="flex items-center justify-between w-full mt-5 self-end p-3")
-    a(href="#" class="text-[#142906] text-2xl transition-all duration-[15ms] hover:animate-pulse") ❤️
+    a(href="#" class="text-[#142906] text-2xl transition-all duration-[15ms] hover:scale-105 hover:drop-shadow-lg shadow-red-600") ❤️
     a.w-fit.select-none.rounded-lg.py-3.px-6.text-center.text-xs.font-bold.uppercase.text-white.shadow-md.transition-all(class='bg-[#142906] shadow-[#142906]/20 hover:shadow-lg hover:shadow-[#142906]/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none' href=`/propiedades/propiedad/${propiedad.id}`)
       | Leer más

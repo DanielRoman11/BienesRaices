@@ -1,4 +1,4 @@
-extends ../layout/admin
+extends ../layout/app
 
 block contenido
   .h2(class="text-[#142906] text-center text-2xl font-bold")= pagina
@@ -54,4 +54,4 @@ block contenido
             while n <= paginas
               a(href=`/propiedades?pagina=${n}` class=`${paginaActual == n ? 'bg-pink-50 border-pink-500 text-pink-500 hover:bg-pink-200' : 'bg-white border border-gray-400 hover:bg-gray-100'} relative inline-flex items-center px-4 py-1 border text-sm font-medium rounded-sm shadow-2xl`) #{n++}
   else
-    p.text-center.font-bold.text-2xl(class="text-[#142906]") No hay propiedades
+    p.text-center.font-bold.text-2xl.mt-10(class="text-[#142906]") No hay propiedades

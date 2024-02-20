@@ -273,7 +273,8 @@ const logout = (req, res) => {
   res.cookie("_token", "", {
     expires: new Date(0),
   });
-  res.redirect("/auth/login");
+
+  res.redirect("/");
 }
 
 
