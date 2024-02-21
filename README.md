@@ -96,7 +96,7 @@ Se definieron las siguientes variables de entorno (`DotEnv`) para la ejecución 
 
 - `bcrypt`: ^5.1.0
 - `cookie-parser`: ^1.4.6
-- `dropzone`: ^5.9.3
+- `dropzone`: ^5.9.3 (Eliminado) -> Cloudinary: ^2.0.1
 - `express`: ^4.18.2
 - `express-validator`: ^6.14.3
 - `jsonwebtoken`: ^9.0.0
@@ -113,7 +113,7 @@ Se definieron las siguientes variables de entorno (`DotEnv`) para la ejecución 
 - `postcss`: ^8.4.21
 - `postcss-cli`: ^10.1.0
 - `tailwindcss`: ^3.4.1
-- `webpack`: ^5.78.0
-- `webpack-cli`: ^5.0.1
+- `webpack`: ^5.78.0 (Eliminado) -> Esbuild: ^0.19.11
+- `webpack-cli`: ^5.0.1 (Eliminado) -> No es necesario en EsBuild
 
 
