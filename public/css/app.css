@@ -5260,6 +5260,10 @@ input[type="range"]:active::-webkit-slider-thumb {}
     width: fit-content;
   }
 
+  .md\:min-w-80 {
+    min-width: 20rem;
+  }
+
   .md\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -5286,6 +5290,11 @@ input[type="range"]:active::-webkit-slider-thumb {}
   .md\:py-1 {
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
+  }
+
+  .md\:px-0 {
+    padding-left: 0px;
+    padding-right: 0px;
   }
 
   .md\:pr-1 {
