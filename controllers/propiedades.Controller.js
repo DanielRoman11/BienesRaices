@@ -231,7 +231,7 @@ const editar = async(req, res) => {
   ]);
 
   res.render("propiedades/editar", {
-    pagina: `Editar propiedad: ${propiedad.titulo}`,
+    pagina: `Editando "${propiedad.titulo}"`,
     propiedad,
     categorias,
     precios,

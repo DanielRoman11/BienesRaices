@@ -8,30 +8,30 @@ block contenido
   //- pre= JSON.stringify(apartamentos, null, 3)
   
   section(class="py-3")
-    h1(class="text-center text-3xl sm:text-4xl font-extrabold text-[#142906]")= pagina
-    h4(class="font-bold text-sm uppercase text-[#142906]") Filtrar propiedades:
+    h1(class="text-center text-3xl sm:text-4xl font-extrabold text-background")= pagina
+    h4(class="font-bold text-sm uppercase text-background") Filtrar propiedades:
     nav(class="grid grid-cols-1 md:grid-cols-2 gap-2" id="filterbox")
       div(class="w-full md:w-auto flex items-center gap-2")
-        label(for="categorias" class="text-sm w-24 uppercase text-gray-500") Categorías
-        select#categorias(class="flex-1 w-full bg-white px-3 py-2 border border-gray-300 rounded-md shadow-md") 
+        label(for="categorias" class="text-sm w-24 uppercase text-bodytext") Categorías
+        select#categorias(class="flex-1 w-full bg-white px-3 py-2 border border-bodytext-bodytext rounded-md shadow-md") 
           option(value="") - Selecciona -
           each categoria in categorias
             option(value=categoria.id)= categoria.nombre
       div(class="w-full md:w-auto flex items-center gap-2")
-        label(for="categorias" class="text-sm w-24 uppercase text-gray-500") Precios
-        select#precios(class="flex-1 w-full bg-white px-3 py-2 border border-gray-300 rounded-md shadow-md") 
+        label(for="categorias" class="text-sm w-24 uppercase text-bodytext") Precios
+        select#precios(class="flex-1 w-full bg-white px-3 py-2 border border-bodytext-bodytext rounded-md shadow-md") 
           option(value="") - Selecciona -
           each precio in precios
             option(value=precio.id)= precio.nombre
     div(id="mapaHome" class="h-96 md:h-[600px] mt-5")
   
   section.py-5
-    h2.text-center.text-4xl.font-extrabold.py-10.pb-5(class="text-[#142906]") Últimas Casas en venta
+    h2.text-center.text-4xl.font-extrabold.py-10.pb-5(class="text-background") Últimas Casas en venta
     div(class="flex flex-col sm:flex-row flex-wrap items-center gap-x-3 justify-center")
       each propiedad in casas
         include templates/card
 
-    h2.text-center.text-4xl.font-extrabold.py-10.pb-5(class="text-[#142906]") Últimos Apartamentos en venta
+    h2.text-center.text-4xl.font-extrabold.py-10.pb-5(class="text-background") Últimos Apartamentos en venta
     div(class="flex flex-col sm:flex-row flex-wrap items-center gap-x-3 justify-center")
       each propiedad in apartamentos
         include templates/card

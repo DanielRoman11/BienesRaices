@@ -1,15 +1,15 @@
 extends ../layout/app
 
 block contenido
-  .h2(class="text-[#142906] text-center text-2xl font-bold")= pagina
+  .h1(class="text-background text-center text-2xl font-bold mt-10")= pagina
   .flex.pt-10
-    a(class="sm:max-w-[450px] lg:max-w-[500px] m-auto bg-[#142906] px-10 sm:px-20 py-2 focus:outline-none focus:delay-75 focus:ring-4 focus:ring-opacity-75 text-xs md:text-base ring-yellow-200 w-4/5 sm:w-2/3 text-center md:w-auto md:mb-5 rounded-md text-[#FDFBF6] font-bold hover:skew-y-1 transition-all hover:duration-75" href="/propiedades/crear") Publica una propiedad🏠
+    a(class="sm:max-w-[450px] lg:max-w-[500px] m-auto bg-background px-10 sm:px-20 py-2 focus:outline-none focus:delay-75 focus:ring-4 focus:ring-opacity-75 text-xs md:text-base ring-yellow-200 w-4/5 sm:w-2/3 text-center md:w-auto md:mb-5 rounded-md text-primary font-bold hover:skew-y-1 transition-all hover:duration-75" href="/propiedades/crear") Publica una propiedad🏠
 
   //- pre= JSON.stringify(propiedades, undefined, 3)
   if propiedades.length
     div(class="w-full flex justify-center gap-2 flex-wrap pt-10 pb-20")
       each propiedad in propiedades
-        article(class="bg-white w-4/5 sm:w-2/3 h-full sm:h-[460px] max-w-[425px] md:w-2/5 lg:w-1/3 rounded-md overflow-hidden border-2 border-gray-300 hover:border-[#142906] hover:shadow-xl")
+        article(class="bg-white w-4/5 sm:w-2/3 h-full sm:h-[460px] max-w-[425px] md:w-2/5 lg:w-1/3 rounded-md overflow-hidden border-2 border-gray-300 hover:border-background hover:shadow-xl")
           div(class="flex h-1/2 relative")
             img(src= propiedad.imagenes.length > 0 ? propiedad.imagenes[0].ruta : "https://res.cloudinary.com/dakerpersonalspace/image/upload/v1707755538/kgzjptrvcz3xcmlgmclt.webp" alt=`Imagen para la propiedad ${propiedad.titulo}` class="block w-full flex-grow basis-0")
             p(class="absolute top-2 left-2 flex items-center text-ellipsis font-bold whitespace-pre-line overflow-hidden text-sm bg-white/20 backdrop-blur rounded-md px-4 py-1")
@@ -22,10 +22,12 @@ block contenido
                 include ../svg/fullMessage
                 p.text-red-500.font-semibold= propiedad.mensajes.length
           div(class="space-y-3 p-3 truncate flex flex-col justify-between h-1/2 ")
-            div.h-fit
-              a(class="text-base sm:text-lg font-bold text-[#142906]" href=`propiedades/propiedad/${propiedad.id}`)= "➡️ "+propiedad.titulo
+            div(class="h-fit w-full whitespace-pre-wrap")
+              a(class="text-base sm:text-lg font-bold text-primary" href=`propiedades/propiedad/${propiedad.id}`)= "➡️ "+propiedad.titulo
+              p(class="text-xs w-fit flex line-clamp-1  text-secondary font-semibold")= propiedad.descripcion
+
             div(class="flex flex-col text-sm h-full")
-              p(class="text-ellipsis font-bold whitespace-pre-line overflow-hidden flex text-[#142906]")= propiedad.precio.nombre
+              p(class="text-ellipsis font-semibold whitespace-pre-line overflow-hidden flex text-primary")= propiedad.precio.nombre
               p(class=" font-semibold text-gray-600")= propiedad.calle
             div(class="flex gap-2 sm:w-auto flex-col sm:flex-row sm:justify-center")
               form(action="#")
@@ -54,4 +56,4 @@ block contenido
             while n <= paginas
               a(href=`/propiedades?pagina=${n}` class=`${paginaActual == n ? 'bg-pink-50 border-pink-500 text-pink-500 hover:bg-pink-200' : 'bg-white border border-gray-400 hover:bg-gray-100'} relative inline-flex items-center px-4 py-1 border text-sm font-medium rounded-sm shadow-2xl`) #{n++}
   else
-    p.text-center.font-bold.text-2xl.mt-10(class="text-[#142906]") No hay propiedades
+    p.text-center.font-bold.text-2xl.mt-10(class="text-background") No hay propiedades
