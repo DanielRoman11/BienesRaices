@@ -17,7 +17,7 @@ const admin = async(req, res) => {
   }
 
   try {
-    const limit = 6
+    const limit = 12
     const offset = ((paginaActual * limit) - limit)
 
     const [ propiedades, total ] = await Promise.all([
@@ -44,8 +44,7 @@ const admin = async(req, res) => {
 
     res.render("propiedades/admin", {
       pagina: "Mis propiedades",
-      barra: true,
-      propiedades: propiedades,
+      propiedades,
       paginaActual: Number(paginaActual),
       paginas: Math.ceil(total / limit),
       offset,
@@ -590,6 +589,44 @@ const mensajes = async(req, res) =>{
 
 }
 
+const explorar = async(req, res) => {
+  const { pagina: paginaActual } = req.query;
+
+  const expReg = /^(?!0)\d+$/g; //? Regex para comprobar que sean números 
+
+  if(!expReg.test(paginaActual)){
+    return res.redirect('/propiedades/explorar?pagina=1')
+  }
+
+  const limit = 12
+  const offset = ((paginaActual * limit) - limit)
+
+  const [ propiedades, total ] = await Promise.all([
+    Propiedad.findAll({
+      limit,
+      offset,
+      include: [
+        { model: Imagen, as: 'imagenes'},
+        { model: Precio, as: 'precio' },
+      ],
+      order: [
+        ['updatedAt', 'DESC']
+      ]
+    }),
+    Propiedad.count(),
+  ]);
+
+  res.render('propiedades/explorar', {
+    pagina: "Todas las propiedadaes",
+    propiedades,
+    paginaActual: Number(paginaActual),
+    paginas: Math.ceil(total / limit),
+    offset,
+    limit,
+    total,
+    usuario: req.usuario
+  })
+}
 
 export {
   admin,
@@ -604,5 +641,6 @@ export {
   nuevaImagen,
   mostrarPropiedad,
   enviarMensaje,
-  mensajes
+  mensajes,
+  explorar
 }

@@ -1,6 +1,6 @@
 import express from "express";
 import { body } from "express-validator"
-import { admin, agregarImagen, crear, editar, eliminar, enviarMensaje, guardar, guardarCambios,  mensajes,  mostrarPropiedad,  nuevaImagen,  publicarPropiedad, verImagen } from "../controllers/propiedades.Controller.js"
+import { admin, agregarImagen, crear, editar, eliminar, enviarMensaje, explorar, guardar, guardarCambios,  mensajes,  mostrarPropiedad,  nuevaImagen,  publicarPropiedad, verImagen } from "../controllers/propiedades.Controller.js"
 import protegerRuta from "../middleware/proteger.Routes.js";
 import { identificarUsuario } from "../middleware/indentificarUsuario.js";
 import { subirImagen } from "../middleware/subirImagenes.js";
@@ -44,15 +44,17 @@ ruta.post("/editar-imagen/:id", protegerRuta, subirImagen.array("images", 5), nu
 
 ruta.post('/eliminar/:id', protegerRuta, eliminar)
 
-//! Área pública
-ruta.get('/propiedad/:id', identificarUsuario, mostrarPropiedad)
-
-// Enviar mensajes al propietario de la propiedad
 ruta.post('/propiedad/:id', identificarUsuario, 
   body('mensaje').isLength({min: 10, max: 200}).withMessage("El tamaño del mensaje debe ser de entre 10 y 200 caracteres."),
   enviarMensaje
 )
 
 ruta.get('/mensajes/:id', protegerRuta, mensajes);
+
+//! Área pública
+ruta.get('/propiedad/:id', identificarUsuario, mostrarPropiedad)
+ruta.get('/explorar', identificarUsuario, explorar)
+
+// Enviar mensajes al propietario de la propiedad
 
 export default ruta; 
