@@ -5,13 +5,13 @@ html(lang="es")
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title Bienes Raices | #{pagina}
-    block styles
     link(rel="stylesheet", href="/css/app.css")
-  body(class=" min-h-screen" )
+    block styles
+  body(class="min-h-screen")
     .background-container
     include includes/header-app
     main(class="mx-auto md:container px-2 md:px-0")
       block contenido
 
-    block scripts
     script(type="module" src="/js/tw-elements.js")
+    block scripts
