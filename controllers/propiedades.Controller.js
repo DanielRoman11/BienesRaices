@@ -561,7 +561,8 @@ const enviarMensaje = async(req, res) =>{
 
   res.render('templates/mensaje', {
     pagina: "Confirmación de mensaje",
-    mensaje: "Tu mensaje se ha enviado correctamente ✅"
+    mensaje: "Tu mensaje se ha enviado correctamente ✅",
+    usuario: req.usuario
   })
 }
 
