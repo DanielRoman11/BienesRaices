@@ -6,7 +6,6 @@ block contenido
   .py-5
     h1.text-center.text-2xl.font-semibold.text-background= pagina
 
-
     div(class="bg-white shadow py-8 px-4 md:px-10 rounded-md mx-auto max-w-4xl my-10")
       if errores
         each error in errores
@@ -15,8 +14,5 @@ block contenido
 
       form(id="imagen" method="POST" action=`/propiedades/agregar-imagen/${propiedad.id}` enctype="multipart/form-data")
         div(class="border-dashed border-2 w-full min:h-96 h-auto rounded flex-col justify-center items-center space-y-8 font-semibold py-5")
-          input(type="file" name="images" multiple class="px-2 w-full")
+          input(type="file" name="images" multiple accept=".png, .jpg, .jpeg" class="px-2 w-full")
         button(id="publicar" class="bg-secondary hover:scale-[101%] rounded-md px-10 py-2 cursor-pointer text-white uppercase w-full mt-5" type="submit") Publicar Propiedad
-
-//- block scripts
-  //-  script(src="/js/agregarImagen.js")

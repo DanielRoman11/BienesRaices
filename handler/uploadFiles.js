@@ -8,8 +8,6 @@ const errores = {
   unexpected: "Algo salió mal, revisa que hayas subido solo imágenes y que sean solo 5 imágenes"
 }
 
-
-
 export const handleUpdatingImages = (req, res, next) =>{
   subirImagen.array("images", 5)(req, res, async (err) =>{
     const { id } = req.params

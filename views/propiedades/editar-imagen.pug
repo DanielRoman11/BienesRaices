@@ -20,7 +20,7 @@ block contenido
         include ../templates/carousel
       form(id="imagen" method="POST" action=`/propiedades/editar-imagen/${propiedad.id}` enctype="multipart/form-data")
         div(class="border-dashed border-2 w-full min:h-96 h-auto rounded flex-col justify-center items-center space-y-8 font-semibold py-5")
-          input(type="file" name="images" multiple class="px-2 w-full")
+          input(type="file" name="images" multiple accept=".png, .jpg, .jpeg" class="px-2 w-full")
 
         div.flex.w-full.items-center.gap-2.text-center.font-semibold.uppercase.text-sm
           button(id="publicar" class="border border-primary hover:scale-[101%] uppercase rounded-md px-10 py-1 text-primary bg-primary/30 w-full mt-5" type="submit") Cambiar Imágenes
