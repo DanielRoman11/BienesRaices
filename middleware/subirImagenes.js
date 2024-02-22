@@ -1,4 +1,4 @@
-import multer from "multer";
+import multer, { MulterError } from "multer";
 import { nanoid } from "nanoid";
 import path from "path";
 
@@ -26,5 +26,6 @@ export const subirImagen = multer({
   fileFilter,
   limits: {
     fileSize: 10485760
-  }
+  },
+  MulterError
 });

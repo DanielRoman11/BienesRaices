@@ -176,13 +176,13 @@ const publicarPropiedad = async(req, res, next) => {
     return res.redirect("/propiedades")
   }
 
-  if(!req.files.length > 0){
+  if(0 == req.files.length){
     return res.render("propiedades/agregar-imagen", {
-    pagina: `Agregar Imagen para "${propiedad.titulo}"`,
-    propiedad,
-    errores: [{ msg: "No se ha cargado una imagen" }],
-    usuario: req.usuario
-  });
+      pagina: `Agregar Imagen para "${propiedad.titulo}"`,
+      propiedad,
+      errores: [{ msg: "No se ha cargado una imagen" }],
+      usuario: req.usuario
+    });
   }
 
   const imagesArr = await Promise.allSettled(req.files.map(file => {
@@ -338,22 +338,21 @@ const nuevaImagen = async(req, res) => {
     ]
   });
 
+  if (0 == req.files.length) {
+    return res.render("propiedades/editar-imagen",{
+      pagina: `Editar Imagen para "${propiedad.titulo}"`,
+      propiedad,
+      errores: [{ msg: "No se ha cargado una imagen o cargó más de 5 imágenes" }],
+      usuario: req.usuario
+    });
+  }
+
   if(!propiedad){
     return res.redirect("/propiedades");
   }
 
   if(propiedad.usuarioID.toString() !== req.usuario.id.toString()){
     return res.redirect("/propiedades")
-  }
-
-  if(!req.files.length > 0){
-    return res.render("propiedades/editar-imagen",{
-      pagina: `Editar Imagen para "${propiedad.titulo}"`,
-      propiedad,
-      errores: [{ msg: "No se ha cargado una imagen" }],
-      usuario: req.usuario
-    }
-    );
   }
 
   const imagenesPropiedad = await Imagen.findAll({
