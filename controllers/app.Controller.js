@@ -77,8 +77,7 @@ export const categoria = async(req,res) => {
 
 export const noEncontrado = (req, res) => {  
   res.render('404', {
-    pagina: "Página no encontrada",
-    usuario: req.usuario
+    pagina: "Página no encontrada"
   })
   
 }
