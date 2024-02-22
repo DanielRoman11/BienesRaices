@@ -69,6 +69,7 @@ const crear = async(req, res) => {
     barra: true,
     categorias,
     precios,
+    usuario: req.usuario
     // // // csrfToken: req.csrfToken()
   });
   
@@ -103,6 +104,7 @@ const guardar = async(req, res) => {
         lng
       },
       errores: errores.array(),
+      usuario: req.usuario
       // // // csrfToken: req.csrfToken()
     });
   }
@@ -152,6 +154,7 @@ const agregarImagen = async(req, res) => {
   res.render("propiedades/agregar-imagen", {
     pagina: `Agregar Imagen para "${propiedad.titulo}"`,
     propiedad,
+    usuario: req.usuario
     // // // csrfToken: req.csrfToken()
   });
 }
@@ -177,7 +180,8 @@ const publicarPropiedad = async(req, res, next) => {
     return res.render("propiedades/agregar-imagen", {
     pagina: `Agregar Imagen para "${propiedad.titulo}"`,
     propiedad,
-    errores: [{ msg: "No se ha cargado una imagen" }]
+    errores: [{ msg: "No se ha cargado una imagen" }],
+    usuario: req.usuario
   });
   }
 
@@ -235,6 +239,7 @@ const editar = async(req, res) => {
     propiedad,
     categorias,
     precios,
+    usuario: req.usuario
     // // csrfToken: req.csrfToken()
   })
 }
@@ -266,6 +271,7 @@ const guardarCambios = async(req, res) => {
       categorias,
       precios,
       errores: errores.array(),
+      usuario: req.usuario
       // // // csrfToken: req.csrfToken()
     });
   }
@@ -303,7 +309,7 @@ const verImagen = async(req, res) => {
 
   const propiedad = await Propiedad.findByPk(id,{
     include: [
-      { model: Imagen, required: false, where: {propiedadID: Sequelize.col('propiedades.id') }}
+      { model: Imagen, as: 'imagenes'}
     ]
   });
 
@@ -318,6 +324,7 @@ const verImagen = async(req, res) => {
   res.render("propiedades/editar-imagen",{
     pagina: `Editar Imagen para "${propiedad.titulo}"`,
     propiedad,
+    usuario: req.usuario
     // // // csrfToken: req.csrfToken()
     }
   );
@@ -327,7 +334,7 @@ const nuevaImagen = async(req, res) => {
   const { id } = req.params
   const propiedad = await Propiedad.findByPk(id,{
     include: [
-      { model: Imagen, required: false, where: {propiedadID: Sequelize.col('propiedades.id') }}
+      { model: Imagen, as: 'imagenes'}
     ]
   });
 
@@ -343,8 +350,9 @@ const nuevaImagen = async(req, res) => {
     return res.render("propiedades/editar-imagen",{
       pagina: `Editar Imagen para "${propiedad.titulo}"`,
       propiedad,
-      errores: [{ msg: "No se ha cargado una imagen" }]
-      }
+      errores: [{ msg: "No se ha cargado una imagen" }],
+      usuario: req.usuario
+    }
     );
   }
 
@@ -480,7 +488,7 @@ const mostrarPropiedad = async(req, res) => {
     include: [
       { model: Categoria, as: 'categoria' },
       { model: Precio, as: 'precio' },
-      { model: Imagen, required: false, where: { propiedadID: Sequelize.col('propiedades.id')} }
+      { model: Imagen, as: 'imagenes' }
     ]
   });
   
