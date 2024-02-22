@@ -2,32 +2,31 @@ nav.flex-wrap.flex.w-full.items-center.justify-between.py-2.shadow-md(class='lg:
   .flex.w-full.flex-wrap.items-center.justify-between.px-3
     // Hamburger button for mobile view
     button.block.border-0.bg-transparent.px-2(class='hover:no-underline hover:shadow-none focus:no-underline focus:shadow-none focus:outline-none focus:ring-0 lg:hidden' type='button' data-te-collapse-init='' data-te-target='#navbarSupportedContent12' aria-controls='navbarSupportedContent12' aria-expanded='false' aria-label='Toggle navigation')
-      span(class='h-14 text-bodytext')
-        svg.h-7.w-7(xmlns='http://www.w3.org/2000/svg' viewbox='0 0 24 24' fill='currentColor')
-          path(fill-rule='evenodd' d='M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z' clip-rule='evenodd')
+      span(class='h-14 text-secondary')
+        include ../../svg/menuHamburgesaSVG
     // Collapsible navigation contain
     #navbarSupportedContent12.hidden.flex-grow.items-center(class='!visible basis-[100%] lg:!flex lg:basis-auto' data-te-collapse-item='')
       // Logo
       a.mb-4.ml-2.mr-5.mt-3.flex.items-center(class='lg:mb-0 lg:mt-0' href='/')
-        img(src='https://res.cloudinary.com/dakerpersonalspace/image/upload/v1708389207/i4kxygg7csubalo2tfwe.png' alt='TE Logo' loading='lazy' class="h-11 rounded-full hover:scale-105 hover:border-4 border-bodytext-bodytext")
+        img(src='https://res.cloudinary.com/dakerpersonalspace/image/upload/v1708389207/i4kxygg7csubalo2tfwe.png' alt='TE Logo' loading='lazy' class="h-11 rounded-full hover:scale-105 hover:border-4 border-secondary")
       ul.list-style-none.mr-auto.flex.flex-col.pl-0(class='lg:flex-row' data-te-navbar-nav-ref='')
         li.mb-4(class='lg:mb-0 lg:pr-4' data-te-nav-item-ref='')
-          a.transition.duration-200(class='text-xl hover:ease-in-out font-semibold text-bodytext hover:text-accent -700 focus:outline-none focus:ring focus:ring-bodytext px-2 rounded' href='/propiedades/explorar' data-te-nav-link-ref='' autofocus) Buscador
+          a.transition.duration-200(class='text-xl hover:ease-in-out font-semibold text-secondary hover:text-accent -700 focus:outline-none focus:ring focus:ring-secondary px-2 rounded' href='/propiedades/explorar' data-te-nav-link-ref='') Explorar
         li.mb-4(class='lg:mb-0 lg:pr-4' data-te-nav-item-ref='')
-          a.transition.duration-200(class='text-sm hover:ease-in-out font-semibold text-bodytext hover:text-accent  focus:outline-none focus:ring focus:ring-bodytext px-2 rounded' href="/categoria/1" data-te-nav-link-ref='') Casas
+          a.transition.duration-200(class='text-sm hover:ease-in-out font-semibold text-secondary hover:text-accent  focus:outline-none focus:ring focus:ring-secondary px-2 rounded' href="/categoria/1" data-te-nav-link-ref='') Casas
         li.mb-4(class='lg:mb-0 lg:pr-4' data-te-nav-item-ref='')
-          a.transition.duration-200(class='text-sm hover:ease-in-out font-semibold text-bodytext hover:text-accent  focus:outline-none focus:ring focus:ring-bodytext px-2 rounded' href="/categoria/2" data-te-nav-link-ref='') Apartamentos
+          a.transition.duration-200(class='text-sm hover:ease-in-out font-semibold text-secondary hover:text-accent  focus:outline-none focus:ring focus:ring-secondary px-2 rounded' href="/categoria/2" data-te-nav-link-ref='') Apartamentos
         li.mb-4(class='lg:mb-0 lg:pr-4' data-te-nav-item-ref='')
-          a.transition.duration-200(class='text-sm hover:ease-in-out font-semibold text-bodytext hover:text-accent  focus:outline-none focus:ring focus:ring-bodytext px-2 rounded' href="/categoria/3" data-te-nav-link-ref='') Bodegas
+          a.transition.duration-200(class='text-sm hover:ease-in-out font-semibold text-secondary hover:text-accent  focus:outline-none focus:ring focus:ring-secondary px-2 rounded' href="/categoria/3" data-te-nav-link-ref='') Bodegas
         li.mb-4(class='lg:mb-0 lg:pr-4' data-te-nav-item-ref='')
-          a.transition.duration-200(class='text-sm hover:ease-in-out font-semibold text-bodytext hover:text-accent  focus:outline-none focus:ring focus:ring-bodytext px-2 rounded' href="/categoria/4" data-te-nav-link-ref='') Terrenos
+          a.transition.duration-200(class='text-sm hover:ease-in-out font-semibold text-secondary hover:text-accent  focus:outline-none focus:ring focus:ring-secondary px-2 rounded' href="/categoria/4" data-te-nav-link-ref='') Terrenos
         li.mb-4(class='lg:mb-0 lg:pr-4' data-te-nav-item-ref='')
-          a.transition.duration-200(class='text-sm hover:ease-in-out font-semibold text-bodytext hover:text-accent  focus:outline-none focus:ring focus:ring-bodytext px-2 rounded' href="/categoria/5" data-te-nav-link-ref='') Cabañas
+          a.transition.duration-200(class='text-sm hover:ease-in-out font-semibold text-secondary hover:text-accent  focus:outline-none focus:ring focus:ring-secondary px-2 rounded' href="/categoria/5" data-te-nav-link-ref='') Cabañas
 
         
     .relative.flex.items-center
       if usuario
-        a.mr-4.transition.duration-200(class='text-bodytext font-semibold hover:ease-in-out hover:text-accent motion-reduce:transition-none' href='/propiedades')
+        a.mr-4.transition.duration-200(class='text-secondary font-semibold hover:ease-in-out hover:text-accent motion-reduce:transition-none' href='/propiedades')
           span(class='h-12')
             include ../../svg/houseSVG
         .relative(data-te-dropdown-ref='' data-te-dropdown-alignment='end')
@@ -39,6 +38,6 @@ nav.flex-wrap.flex.w-full.items-center.justify-between.py-2.shadow-md(class='lg:
             li
               a.block.w-full.whitespace-nowrap.bg-transparent.px-4.py-2.text-sm.font-normal(class='hover: active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled: over:bg-white/30' href='#' data-te-dropdown-item-ref='') Perfil
             li
-              a.block.w-full.whitespace-nowrap.bg-transparent.px-4.py-2.text-sm.font-normal(class='hover: text-bodytext hover:text-accent' href='/auth/logout' data-te-dropdown-item-ref='') Cerrar Sesión
+              a.block.w-full.whitespace-nowrap.bg-transparent.px-4.py-2.text-sm.font-normal(class='hover: text-secondary hover:text-accent' href='/auth/logout' data-te-dropdown-item-ref='') Cerrar Sesión
       else
-        a.w-fit.select-none.rounded-lg.py-3.px-6.text-center.text-xs.font-bold.uppercase.text-white.shadow-md.transition-all(class='bg-accent bg-accent/80 hover:shadow-lg hover:shadow-accent focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none focus:outline-none focus:ring focus:ring-bodytext' href="/auth/login") Publica gratis!
+        a.w-fit.select-none.rounded-lg.py-3.px-6.text-center.text-xs.font-bold.uppercase.text-white.shadow-md.transition-all(class='bg-accent bg-accent/80 hover:shadow-lg hover:shadow-accent focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none focus:outline-none focus:ring focus:ring-secondary' href="/auth/login") Publica gratis!

@@ -2,7 +2,7 @@ extends ../layout/app
 
 block contenido
   .py-10
-    h1.text-center.text-2xl.font-semibold.text-background= pagina
+    h1.text-center.text-2xl.font-semibold.text-secondary= pagina
 
   div(class="bg-background shadow py-8 px-4 rounded-lg max-w-md mx-auto")
     p(class= error ? 'bg-red-500' : 'bg-green-500').text-white.uppercase.py-2.px-5.w-full.font-bold.text-center.rounded-md= mensaje

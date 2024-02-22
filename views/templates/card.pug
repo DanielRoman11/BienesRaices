@@ -1,4 +1,4 @@
-article(class="w-full sm:w-1/2 md:w-fit flex-1 my-2 h-[450px] bg-background rounded-lg shadow-lg md:min-w-80 max-w-96 flex flex-col justify-between")
+article(class="w-full sm:w-1/2 md:w-fit flex-1 my-2 h-[450px] bg-background rounded-lg shadow-lg sm:min-w-80 max-w-96 flex flex-col justify-between")
   .flex.flex-col.justify-between.w-full.items-center.relative.h-fit
     img.w-full.rounded-t-lg.object-cover.object-center(src= propiedad.imagenes.length > 0 ? propiedad.imagenes[0].ruta : "https://res.cloudinary.com/dakerpersonalspace/image/upload/v1707755538/kgzjptrvcz3xcmlgmclt.webp" alt= propiedad.titulo class="h-52")
     p(class="left-2 bottom-2 text-background font-medium text-sm rounded-md backdrop-blur-lg rounded-br-md px-2 absolute")= propiedad.precio.nombre

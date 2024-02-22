@@ -2,19 +2,22 @@ extends ../layout/app
 include ../templates/mensajeComponente
 
 block contenido
-  h1.text-3xl.mx-0.w-full.text-center.font-bold.mt-10= pagina
+  h1.text-center.text-2xl.font-semibold.text-secondary.mt-10 #{pagina} de "#{propiedad.titulo}"
 
-  article.container.flex.justify-start.py-10.flex-col.space-y-5
-    .warning-container
-      .warning-message.bg-yellow-100.text-yellow-800.p-4.rounded-md.shadow-md.text-xs
-        p.text-center.font-bold ⚠️ Advertencia de Seguridad y Exención de Responsabilidad:
-        ul.list-disc.ml-6
-          li Por motivos de seguridad, no compartas información confidencial en este chat.
-          li Este servicio se ofrece a tu propia discreción y riesgo.
-          li No nos hacemos responsables de daños, perjuicios o consecuencias del uso de la información proporcionada en este chat.
-        p.mt-5 Este servicio brinda asistencia general y no debe sustituir el asesoramiento profesional adecuado. Si tienes preguntas sobre nuestra exención de responsabilidad o necesitas asesoramiento específico, no dudes en preguntar. Gracias por tu comprensión y colaboración!
-    div.w-fit.space-y-2
-      each contenidoMensaje in propiedad.mensajes
-        +mensajeCard(contenidoMensaje.mensaje, contenidoMensaje.usuario.nombre, contenidoMensaje.createdAt)
+  article.mx-auto.flex.justify-start.py-10.flex-col.w-full(class="md:container")
+    if propiedad.mensajes.length > 0
+      .warning-container.mb-5
+        .warning-message.bg-yellow-100.text-yellow-800.p-4.rounded-md.shadow-md.text-xs
+          p.text-center.font-bold ⚠️ Advertencia de Seguridad y Exención de Responsabilidad:
+          ul.list-disc.ml-6
+            li Por motivos de seguridad, no compartas información confidencial en este chat.
+            li Este servicio se ofrece a tu propia discreción y riesgo.
+            li No nos hacemos responsables de daños, perjuicios o consecuencias del uso de la información proporcionada en este chat.
+          p.mt-5 Este servicio brinda asistencia general y no debe sustituir el asesoramiento profesional adecuado. Si tienes preguntas sobre nuestra exención de responsabilidad o necesitas asesoramiento específico, no dudes en preguntar. Gracias por tu comprensión y colaboración!
+      div.w-fit.space-y-2
+        each contenidoMensaje in propiedad.mensajes
+          +mensajeCard(contenidoMensaje.mensaje, contenidoMensaje.usuario.nombre, contenidoMensaje.createdAt)
+    else
+      p.text-secondary.w-full.text-center.text-xl(class="mt-24") No tienes mensajes nuevos 😥
          
   //- pre= JSON.stringify(propiedad, undefined, 2)

@@ -3,14 +3,13 @@ extends ../layout/app
 block styles
   link(rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css")
 block contenido
-  //- pre= JSON.stringify(casas, undefined, 3)
+  //- pre= JSON.stringify(propiedad, undefined, 3)
   
   article(class="py-5 pb-16 text-center md:flex flex-col mx-auto justify-center items-center md:px-10 rounded")
     h1(class="text-background drop-shadow-lg text-xl sm:text-2xl font-bold py-2" id="titulo")= pagina
     h2(class="text-background drop-shadow-lg text-xs sm:text-md font-bold px-10 mb-5" id="titulo")= propiedad.precio.nombre
     article(class="w-full mx-auto flex relative md:justify-start flex-col")
       include ../templates/carousel
-
 
       div(class="flex absolute items-center rounded-full space-x-2 bg-secondary/20 backdrop-blur-md z-10 px-10 py-2 left-1 top-5 sm:left-4 text-background font-semibold")
         svg(xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 sm:size-6")
@@ -59,5 +58,5 @@ block scripts
   script(src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js")
   script(src="/js/mostrarMapa.js")
   
-  if errores || enviado 
+  if errores 
     script(type="module" src="/js/scrollDown.js")

@@ -17,7 +17,7 @@
   font-family: 'Fira Code', monospace;
 }
 
-.background-container {
+/* .background-container {
   position: fixed;
   top: 0;
   left: 0;
@@ -28,7 +28,7 @@
   background-size: cover;
   background-position: center;
   filter: blur(20px);
-}
+} */
 
 
 

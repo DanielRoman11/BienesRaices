@@ -1,8 +1,5 @@
 extends ../layout/app
 
-//- block styles
-  //- link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.css")
-  //- meta(name="csrf-token" content= csrfToken)
 block contenido
   .py-5
     h1.text-center.text-2xl.font-semibold.text-background= pagina
@@ -28,8 +25,3 @@ block contenido
         div.flex.w-full.items-center.gap-2.text-center.font-semibold.uppercase.text-sm
           button(id="publicar" class="border border-primary hover:scale-[101%] uppercase rounded-md px-10 py-1 text-primary bg-primary/30 w-full mt-5" type="submit") Cambiar Imágenes
           a(href="/propiedades" class="w-1/3 border border-pink-800 bg-pink-100 hover:scale-[101%] rounded-md px-2 sm:px-5 py-1 text-pink-800  mt-5") No cambiar
-        
-
-block scripts
-  script(src="/js/tw-elements.js" type="module")
-  script(src='/tw-elements/dist/js/tw-elements.umd.min.js' type='text/javascript')
