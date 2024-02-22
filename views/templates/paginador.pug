@@ -1,5 +1,5 @@
 mixin paginador(referenceRoute)
-  div(class="fixed w-full bottom-0 inset-x-0 bg-bodytext/30 backdrop-blur-2xl p-2 flex items-center justify-evenly sm:px-6 overflow-x-auto gap-2")
+  div(class="fixed w-full bottom-0 inset-x-0 bg-bodytext/30 backdrop-blur-2xl p-2 flex items-center justify-evenly sm:px-6 overflow-x-auto gap-2 z-20")
       div(class="flex flex-1 justify-between sm:hidden")
         
         a(href=`${referenceRoute}?pagina=${paginaActual - 1}` class=`${paginaActual == 1 ? 'pointer-events-none bg-secondary text-bodytext hover:bg-secondary' : ""} `+" relative inline-flex items-center px-4 py-2 text-sm font-medium rounded-md bg-white hover:bg-gray-50 cursor-pointer") #{paginaActual == 1 ? "Primera página" : "Anterior"}
