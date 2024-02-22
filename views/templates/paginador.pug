@@ -1,0 +1,19 @@
+mixin paginador(referenceRoute)
+  div(class="fixed w-full bottom-0 inset-x-0 bg-bodytext/30 backdrop-blur-2xl p-2 flex items-center justify-evenly sm:px-6 overflow-x-auto gap-2")
+      div(class="flex flex-1 justify-between sm:hidden")
+        
+        a(href=`${referenceRoute}?pagina=${paginaActual - 1}` class=`${paginaActual == 1 ? 'pointer-events-none bg-secondary text-bodytext hover:bg-secondary' : ""} `+" relative inline-flex items-center px-4 py-2 text-sm font-medium rounded-md bg-white hover:bg-gray-50 cursor-pointer") #{paginaActual == 1 ? "Primera página" : "Anterior"}
+
+        a(href=`${referenceRoute}?pagina=${paginaActual + 1}` class=`${paginaActual + 1 > paginas ? 'pointer-events-none bg-secondary text-bodytext hover:bg-secondary' : ""}`+"relative inline-flex items-center px-4 py-2 text-sm font-medium rounded-md bg-white cursor-pointer") #{paginaActual + 1 > paginas ? "Última página" : "Siguiente"}
+      div(class="hidden sm:flex w-2/5 sm:flex-1 sm:items-center sm:justify-between")
+        p(class="text-sm md:text-md lg:text-lg text-background gap-2") Mostrando de 
+          span(class="font-bold text-background") #{offset + 1} 
+            span.font-normal a 
+          span(class="font-bold") #{limit * paginaActual < total ? limit * paginaActual : total} propiedades   
+            span.font-normal de 
+          span(class="font-bold") #{total} encontradas.
+      div(class="hidden sm:block overflow-auto w-3/5")
+        nav(class="z-0 flex justify-center rounded-md space-x-2")
+          - var n = 1;
+            while n <= paginas
+              a(href=`${referenceRoute}?pagina=${n}` class=`${paginaActual == n ? 'bg-secondary/50 border-secondary text-background hover:bg-secondary/60' : 'bg-white border border-gray-400 hover:bg-gray-100'} relative inline-flex items-center px-4 py-1 border text-sm font-medium rounded-sm shadow-2xl`) #{n++}
