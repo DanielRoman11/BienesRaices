@@ -1,3 +1,4 @@
+include ../../templates/categoria
 nav.flex-wrap.flex.w-full.items-center.justify-between.py-2.shadow-md(class='lg:justify-start lg:py-4 bg-bodytext/30')
   .flex.w-full.flex-wrap.items-center.justify-between.px-3
     // Hamburger button for mobile view
@@ -9,35 +10,36 @@ nav.flex-wrap.flex.w-full.items-center.justify-between.py-2.shadow-md(class='lg:
       // Logo
       a.mb-4.ml-2.mr-5.mt-3.flex.items-center(class='lg:mb-0 lg:mt-0' href='/')
         img(src='https://res.cloudinary.com/dakerpersonalspace/image/upload/v1708389207/i4kxygg7csubalo2tfwe.png' alt='TE Logo' loading='lazy' class="h-11 rounded-full hover:scale-105 hover:border-4 border-secondary")
-      ul.list-style-none.mr-auto.flex.flex-col.pl-0(class='lg:flex-row' data-te-navbar-nav-ref='')
-        li.mb-4(class='lg:mb-0 lg:pr-4' data-te-nav-item-ref='')
-          a.transition.duration-200(class='text-xl hover:ease-in-out font-semibold text-secondary hover:text-accent -700 focus:outline-none focus:ring focus:ring-secondary px-2 rounded' href='/propiedades/explorar' data-te-nav-link-ref='') Explorar
-        li.mb-4(class='lg:mb-0 lg:pr-4' data-te-nav-item-ref='')
-          a.transition.duration-200(class='text-sm hover:ease-in-out font-semibold text-secondary hover:text-accent  focus:outline-none focus:ring focus:ring-secondary px-2 rounded' href="/categoria/1" data-te-nav-link-ref='') Casas
-        li.mb-4(class='lg:mb-0 lg:pr-4' data-te-nav-item-ref='')
-          a.transition.duration-200(class='text-sm hover:ease-in-out font-semibold text-secondary hover:text-accent  focus:outline-none focus:ring focus:ring-secondary px-2 rounded' href="/categoria/2" data-te-nav-link-ref='') Apartamentos
-        li.mb-4(class='lg:mb-0 lg:pr-4' data-te-nav-item-ref='')
-          a.transition.duration-200(class='text-sm hover:ease-in-out font-semibold text-secondary hover:text-accent  focus:outline-none focus:ring focus:ring-secondary px-2 rounded' href="/categoria/3" data-te-nav-link-ref='') Bodegas
-        li.mb-4(class='lg:mb-0 lg:pr-4' data-te-nav-item-ref='')
-          a.transition.duration-200(class='text-sm hover:ease-in-out font-semibold text-secondary hover:text-accent  focus:outline-none focus:ring focus:ring-secondary px-2 rounded' href="/categoria/4" data-te-nav-link-ref='') Terrenos
-        li.mb-4(class='lg:mb-0 lg:pr-4' data-te-nav-item-ref='')
-          a.transition.duration-200(class='text-sm hover:ease-in-out font-semibold text-secondary hover:text-accent  focus:outline-none focus:ring focus:ring-secondary px-2 rounded' href="/categoria/5" data-te-nav-link-ref='') Cabañas
+      
+      form.mb-5(action="/buscador" method="POST" class="lg:mb-0")
+        input(type="text", id="termino" name="termino" placeholder="Buscar Propiedades" class="p-3 rounded-lg rounded-r-none shadow text-xs")
+        input.w-fit.select-none.rounded-lg.rounded-l-none.py-3.px-6.text-center.text-xs.font-bold.uppercase.text-white.shadow-md.transition-all(type="submit", class='bg-secondary shadow-secondary/20 hover:shadow-lg hover:shadow-secondary/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none')
 
         
     .relative.flex.items-center
       if usuario
-        a.mr-4.transition.duration-200(class='text-secondary font-semibold hover:ease-in-out hover:text-accent motion-reduce:transition-none' href='/propiedades')
-          span(class='h-12')
-            include ../../svg/houseSVG
+        .flex.px-2
+          a.transition.duration-200(class='text-secondary font-semibold hover:ease-in-out hover:text-accent motion-reduce:transition-none' href='/propiedades')
+            span(class='h-12')
+              include ../../svg/houseSVG
+              
+          a#dropdownMenuButton1.hidden-arrow.flex.items-center.whitespace-nowrap.transition.duration-150.ease-in-out(class='motion-reduce:transition-none' href='#' role='button' data-te-dropdown-toggle-ref='' aria-expanded='false')
+            // Dropdown trigger icon
+            span(class='px-2 text-secondary hover:text-accent')
+              include ../../svg/categorySVG
+          ul.absolute.float-left.m-0.hidden.min-w-max.list-none.overflow-hidden.rounded-lg.border-none.bg-white.bg-clip-padding.text-left.text-base.shadow-lg(class='z-[1000] [&[data-te-dropdown-show]]:block' aria-labelledby='dropdownMenuButton1' data-te-dropdown-menu-ref='')
+            +categoriaMixin('Casas','/categoria/1')
+            +categoriaMixin('Apartamentos','/categoria/2')
+            +categoriaMixin('Bodegas','/categoria/3')
+            +categoriaMixin('Terrenos','/categoria/4')
+            +categoriaMixin('Cabañas','/categoria/5')
+          
         .relative(data-te-dropdown-ref='' data-te-dropdown-alignment='end')
           // Second dropdown trigger
-          a#dropdownMenuButton2.hidden-arrow.flex.items-center.whitespace-nowrap.transition.duration-150.ease-in-out(class='motion-reduce:transition-none' href='#' role='button' data-te-dropdown-toggle-ref='' aria-expanded='false')
-            img.rounded-full(src='https://tecdn.b-cdn.net/img/new/avatars/2.jpg' style='height: 25px; width: 25px' alt='' loading='lazy')
+          a#dropdownMenuButton2.hidden-arrow.flex.items-center.whitespace-nowrap.transition.duration-150.ease-in-out(class='motion-reduce:transition-none px-4 border-l-2 border-gray-500' href='#' role='button' data-te-dropdown-toggle-ref='' aria-expanded='false')
+            img.rounded-full(src='https://tecdn.b-cdn.net/img/new/avatars/2.jpg' alt='' loading='lazy' class="size-8")
           ul.absolute.float-left.m-0.hidden.min-w-max.list-none.overflow-hidden.rounded-lg.border-none.bg-white.bg-clip-padding.text-left.text-base.shadow-lg(class='z-[1000] [&[data-te-dropdown-show]]:block' aria-labelledby='dropdownMenuButton2' data-te-dropdown-menu-ref='')
-            // Second dropdown menu items
-            li
-              a.block.w-full.whitespace-nowrap.bg-transparent.px-4.py-2.text-sm.font-normal(class='hover: active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled: over:bg-white/30' href='#' data-te-dropdown-item-ref='') Perfil
-            li
-              a.block.w-full.whitespace-nowrap.bg-transparent.px-4.py-2.text-sm.font-normal(class='hover: text-secondary hover:text-accent' href='/auth/logout' data-te-dropdown-item-ref='') Cerrar Sesión
+            +categoriaMixin('Perfil','back')
+            +categoriaMixin('Cerrar Sesión','/auth/logout')
       else
         a.w-fit.select-none.rounded-lg.py-3.px-6.text-center.text-xs.font-bold.uppercase.text-white.shadow-md.transition-all(class='bg-accent bg-accent/80 hover:shadow-lg hover:shadow-accent focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none focus:outline-none focus:ring focus:ring-secondary' href="/auth/login") Publica gratis!
