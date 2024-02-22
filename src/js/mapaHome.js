@@ -77,8 +77,8 @@
   }
 
   const cantidad_propiedades = document.createElement("p");
-  cantidad_propiedades.classList.add('pt-5')
-  const filtrarPropiedades = () => {
+  cantidad_propiedades.classList.add('pt-5','text-background','font-semibold')
+    const filtrarPropiedades = () => {
     const resultado = propiedades
       .filter(propiedad => filtros.categoria ? filtros.categoria === propiedad.categoriaID : propiedad)
       .filter(propiedad => filtros.precio ? filtros.precio === propiedad.precioID : propiedad)
