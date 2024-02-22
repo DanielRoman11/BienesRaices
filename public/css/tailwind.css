@@ -30,6 +30,8 @@
   filter: blur(20px);
 }
 
+
+
 @media (max-width: 639px){
   .parent :nth-child(1){
     transform: translateY(25px);
