@@ -4,6 +4,9 @@ include ../templates/mensajeComponente
 block contenido
   h1.text-center.text-2xl.font-semibold.text-secondary.mt-10 #{pagina} de "#{propiedad.titulo}"
 
+  a.text-sm.rounded-full(href="/propiedades" class="hover:text-accent underline decoration-2 underline-offset-2") 
+    | <- Regresar
+
   article.mx-auto.flex.justify-start.py-10.flex-col.w-full(class="md:container")
     if propiedad.mensajes.length > 0
       .warning-container.mb-5

@@ -39,7 +39,7 @@ nav.flex-wrap.flex.w-full.items-center.justify-between.py-2.shadow-md(class='lg:
           a#dropdownMenuButton2.hidden-arrow.flex.items-center.whitespace-nowrap.transition.duration-150.ease-in-out(class='motion-reduce:transition-none px-4 border-l-2 border-gray-500' href='#' role='button' data-te-dropdown-toggle-ref='' aria-expanded='false')
             img.rounded-full(src='https://tecdn.b-cdn.net/img/new/avatars/2.jpg' alt='' loading='lazy' class="size-8")
           ul.absolute.float-left.m-0.hidden.min-w-max.list-none.overflow-hidden.rounded-lg.border-none.bg-white.bg-clip-padding.text-left.text-base.shadow-lg(class='z-[1000] [&[data-te-dropdown-show]]:block' aria-labelledby='dropdownMenuButton2' data-te-dropdown-menu-ref='')
-            +categoriaMixin('Perfil','back')
+            +categoriaMixin('Perfil','#')
             +categoriaMixin('Cerrar Sesión','/auth/logout')
       else
         a.w-fit.select-none.rounded-lg.py-3.px-6.text-center.text-xs.font-bold.uppercase.text-white.shadow-md.transition-all(class='bg-accent bg-accent/80 hover:shadow-lg hover:shadow-accent focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none focus:outline-none focus:ring focus:ring-secondary' href="/auth/login") Publica gratis!

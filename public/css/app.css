@@ -3075,6 +3075,9 @@ input[type="range"]:active::-webkit-slider-thumb {}
 .underline-offset-auto {
   text-underline-offset: auto;
 }
+.underline-offset-4 {
+  text-underline-offset: 4px;
+}
 .placeholder-gray-400::-moz-placeholder {
   --tw-placeholder-opacity: 1;
   color: rgb(156 163 175 / var(--tw-placeholder-opacity));
