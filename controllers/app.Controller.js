@@ -75,12 +75,10 @@ export const categoria = async(req,res) => {
   });
 }
 
-export const noEncontrado = (req, res) => {
-  req.usuario = usuario;
-  
+export const noEncontrado = (req, res) => {  
   res.render('404', {
-    pagina: "No encontrada",
-    usuario
+    pagina: "Página no encontrada",
+    usuario: req.usuario
   })
   
 }
