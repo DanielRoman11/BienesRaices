@@ -12,7 +12,8 @@ export const home = async(req,res) => {
         { model: Imagen, as: 'imagenes' }
       ],
       where: {
-        categoriaID: 1
+        categoriaID: 1,
+        publicado: 1
       },
       order: [
         ['createdAt', 'DESC']
@@ -25,7 +26,8 @@ export const home = async(req,res) => {
         { model: Imagen, as: 'imagenes' }
       ],
       where: {
-        categoriaID: 2
+        categoriaID: 2,
+        publicado: 1
       },
       order: [
         ['createdAt', 'DESC']
@@ -60,7 +62,8 @@ export const categoria = async(req,res) => {
 
   const propiedades = await Propiedad.findAll({
     where: {
-      categoriaID: id
+      categoriaID: id,
+      publicado: 1
     },
     include: [
       { model: Precio, as: 'precio' },
@@ -96,7 +99,8 @@ export const buscador = async(req, res) =>{
     where: {
       titulo: {
         [Op.like] : "%"+termino+"%"
-      }
+      },
+      publicado: 1
     },
     include: [
       { model: Precio, as: 'precio' },

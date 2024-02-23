@@ -2,7 +2,7 @@ import { validationResult } from "express-validator";
 import { Categoria, Propiedad, Precio, Mensaje, Imagen, Usuario } from "../models/index.js" 
 import { esVendedor } from "../helpers/esVendedor.js";
 import cloudinary from "../config/cloudinary.js";
-import { Sequelize } from "sequelize";
+import { Sequelize, where } from "sequelize";
 import { emailNuevoMensaje } from "../helpers/emails.js";
 
 const admin = async(req, res) => {
@@ -506,11 +506,14 @@ const cambiarEstado = async(req, res) =>{
 const mostrarPropiedad = async(req, res) => {
   const { id } = req.params;
   const propiedad = await Propiedad.findByPk(id, {
+    where: {
+      publicado: 1
+    },
     include: [
       { model: Categoria, as: 'categoria' },
       { model: Precio, as: 'precio' },
       { model: Imagen, as: 'imagenes' }
-    ]
+    ],
   });
   
   if(!propiedad) res.redirect("/404");
@@ -641,6 +644,9 @@ const explorar = async(req, res) => {
 
   const [ propiedades, total ] = await Promise.all([
     Propiedad.findAll({
+      where: {
+        publicado: 1
+      },
       limit,
       offset,
       include: [

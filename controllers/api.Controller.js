@@ -5,6 +5,9 @@ import cloudinary from "../config/cloudinary.js";
 const propiedades = async(req, res) =>{
   try {
     const propiedades = await Propiedad.findAll({
+      where: {
+        publicado: 1
+      },
       limit: 10, 
       include: [
         { model: Precio, as: 'precio'},
