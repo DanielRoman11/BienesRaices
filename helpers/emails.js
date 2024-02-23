@@ -1,29 +1,28 @@
 import nodemailer from 'nodemailer'
 
-const emailRegistro = async (datos) => {
-  const transport = nodemailer.createTransport({
-    host: process.env.EMAIL_HOST,
-    port: process.env.EMAIL_PORT,
-    tls: {
-      ciphers: "SSLv3",
-      rejectUnauthorized: false,
-  },
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS
-    }
-  });
+const transport = nodemailer.createTransport({
+  host: process.env.EMAIL_HOST,
+  port: process.env.EMAIL_PORT,
+  tls: {
+    ciphers: "SSLv3",
+    rejectUnauthorized: false,
+},
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS
+  }
+});
 
+const emailRegistro = async (datos) => {
   const { email, nombre, token } = datos
 
   // Enviar el email
   await transport.sendMail({
-    from: 'Bienes Raices.com',
+    from: 'Bienes',
     to: email,
-    subject: 'Confirma tu cuenta en BienesRaices.com',
-    text: 'Confirma tu cuenta en BienesRaices.com',
+    subject: 'Confirma tu cuenta',
     html: `
-      <p>Hola ${nombre}, comprueba tu cuenta en BienesRaices.com</p>
+      <p>Hola ${nombre}, comprueba tu cuenta</p>
 
       <p>Tu cuenta ya esta lista, solo debes confirmarla en el siguiente enlace: 
       <a href="${process.env.BACKEND_URL}/auth/confirmar/${token}">Confirmar cuenta</a> </p>
@@ -33,29 +32,15 @@ const emailRegistro = async (datos) => {
   })
 }
 const emailOlvidePassword = async (datos) => {
-  const transport = nodemailer.createTransport({
-    host: process.env.EMAIL_HOST,
-    port: process.env.EMAIL_PORT,
-    tls: {
-      ciphers: "SSLv3",
-      rejectUnauthorized: false,
-  },
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS
-    }
-  });
-
   const { email, nombre, token } = datos
 
   // Enviar el email
   await transport.sendMail({
-    from: 'Bienes Raices.com',
+    from: 'Bienes',
     to: email,
-    subject: 'Restablece tu cuenta en BienesRaices',
-    text: 'Restablece tu cuenta en BienesRaices',
+    subject: 'Restablece tu cuenta en ',
     html: `
-      <p>Hola ${nombre}, comprueba tu cuenta en BienesRaices.com</p>
+      <p>Hola ${nombre}, comprueba tu cuenta</p>
 
       <p>Tu cuenta ya casi esta lista, sigue el siguiente enlace para restablecerla: 
       <a href="${process.env.BACKEND_URL}/auth/olvide-password/${token}">Restablecer contraseña</a> </p>
@@ -65,7 +50,27 @@ const emailOlvidePassword = async (datos) => {
   })
 }
 
+const emailNuevoMensaje = async (datos) => {
+  const { ownerEmail, nombre, tituloPropiedad } = datos;
+
+  // Enviar el email
+  await transport.sendMail({
+    from: 'bienesraices.com',
+    to: ownerEmail,
+    subject: 'Nuevos Mensajes 🏠',
+    text: 'Nuevos Mensajes 🏠',
+    html: `
+      <p>Hola ${nombre}, comprueba tu cuenta</p>
+
+      <p>Haz recibido un nuevo mensaje 📩 en tu propiedad "${tituloPropiedad}" revisala ahora mismo! 🚀 
+        <a href="${process.env.BACKEND_URL}/propiedades">Tus propiedades</a> 
+      </p>
+    `,
+  });
+};
+
 export{
   emailRegistro,
-  emailOlvidePassword
+  emailOlvidePassword,
+  emailNuevoMensaje
 }

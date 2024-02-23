@@ -3,6 +3,7 @@ import { Categoria, Propiedad, Precio, Mensaje, Imagen, Usuario } from "../model
 import { esVendedor } from "../helpers/esVendedor.js";
 import cloudinary from "../config/cloudinary.js";
 import { Sequelize } from "sequelize";
+import { emailNuevoMensaje } from "../helpers/emails.js";
 
 const admin = async(req, res) => {
   const { pagina: paginaActual } = req.query;
@@ -519,7 +520,8 @@ const enviarMensaje = async(req, res) =>{
       { model: Categoria, as: 'categoria' },
       { model: Precio, as: 'precio' },
       { model: Imagen, as: 'imagenes' },
-      { model: Mensaje, as: 'mensajes'}
+      { model: Mensaje, as: 'mensajes' },
+      { model: Usuario, as: 'usuario', attributes: ['nombre', 'email'] }
     ]
   });
   
@@ -547,16 +549,19 @@ const enviarMensaje = async(req, res) =>{
     })
   }
 
-  // console.log(req.body);
-  // console.log(req.params);
-  // console.log(req.usuario);
-
   await Mensaje.create({
     mensaje,
     usuarioID: req.usuario.id,
     propiedadID: propiedad.id
   });
 
+  // console.log(propiedad.titulo);
+
+  emailNuevoMensaje({
+    ownerEmail: propiedad.usuario.email,
+    nombre: propiedad.usuario.nombre,
+    tituloPropiedad: propiedad.titulo,
+  });
 
   res.render('templates/mensaje', {
     pagina: "Confirmación de mensaje",
@@ -580,12 +585,16 @@ const mensajes = async(req, res) =>{
     include: [
       { model: Mensaje, as: 'mensajes',
         include: [
-          { model: Usuario, required: false, where: {usuarioID: Sequelize.col('mensajes.usuarioID')},
-            order: ['createdAt', 'DESC']
+          { model: Usuario, required: false, where: {usuarioID: Sequelize.col('mensajes.usuarioID') },
+            order: ['createdAt', 'DESC'],
+            attributes: ['nombre', 'email']
           }
-        ]
-      }
-    ]
+        ],
+        attributes: ['id', 'mensaje', 'createdAt']
+      },
+      { model: Usuario, as: 'usuario', attributes: ['nombre', 'email']} ,
+    ],
+    attributes: ['id', 'titulo', 'createdAt']
   })
 
   res.render('propiedades/mensajes', {
