@@ -12,7 +12,7 @@ block contenido
       each propiedad in propiedades
         article(class="bg-white w-4/5 sm:w-2/3 h-full sm:h-[460px] max-w-[425px] md:w-2/5 lg:w-1/3 rounded-md overflow-hidden border-2 border-gray-300 hover:border-background hover:shadow-xl")
           div(class="flex h-1/2 relative")
-            img(src= propiedad.imagenes.length > 0 ? propiedad.imagenes[0].ruta : "https://res.cloudinary.com/dakerpersonalspace/image/upload/v1707755538/kgzjptrvcz3xcmlgmclt.webp" alt=`Imagen para la propiedad ${propiedad.titulo}` class="block w-full flex-grow basis-0")
+            img(loading="lazy" src= propiedad.imagenes.length > 0 ? propiedad.imagenes[0].ruta : "https://res.cloudinary.com/dakerpersonalspace/image/upload/v1707755538/kgzjptrvcz3xcmlgmclt.webp" alt=`Imagen para la propiedad ${propiedad.titulo}` class="block w-full flex-grow basis-0")
             p(class="absolute top-2 left-2 flex items-center text-ellipsis font-bold whitespace-pre-line overflow-hidden text-sm bg-white/20 backdrop-blur rounded-md px-4 py-1")
               include ../svg/propiedadSVG
               = propiedad.categoria.nombre

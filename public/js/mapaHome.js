@@ -57,10 +57,13 @@
       try {
         const url = "api/propiedades";
         const respuesta = await fetch(url);
+        if (!respuesta.ok) {
+          throw new Error(`Error al obtener propiedades. Estado: ${respuesta.status}`);
+        }
         propiedades = await respuesta.json();
         mostrarPropiedades(propiedades);
       } catch (error) {
-        console.error(error);
+        console.error("Error al obtener propiedades:", error);
       }
     };
     const cantidad_propiedades = document.createElement("p");
