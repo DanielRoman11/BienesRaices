@@ -30,7 +30,7 @@ dependencies:
     specifier: ^3.6.5
     version: 3.6.5
   nanoid:
-    specifier: '3'
+    specifier: ^3
     version: 3.3.7
   pug:
     specifier: ^3.0.2
