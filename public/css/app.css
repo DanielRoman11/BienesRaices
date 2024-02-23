@@ -1815,14 +1815,8 @@ input[type="range"]:active::-webkit-slider-thumb {}
 .gap-2 {
   gap: 0.5rem;
 }
-.gap-4 {
-  gap: 1rem;
-}
 .gap-5 {
   gap: 1.25rem;
-}
-.gap-6 {
-  gap: 1.5rem;
 }
 .gap-x-3 {
   -moz-column-gap: 0.75rem;
@@ -2180,11 +2174,6 @@ input[type="range"]:active::-webkit-slider-thumb {}
   --tw-border-opacity: 1;
   border-color: rgb(255 255 255 / var(--tw-border-opacity));
 }
-.border-y-\[\#142906\] {
-  --tw-border-opacity: 1;
-  border-top-color: rgb(20 41 6 / var(--tw-border-opacity));
-  border-bottom-color: rgb(20 41 6 / var(--tw-border-opacity));
-}
 .border-r-transparent {
   border-right-color: transparent;
 }
@@ -2353,8 +2342,8 @@ input[type="range"]:active::-webkit-slider-thumb {}
 .bg-secondary\/20 {
   background-color: rgb(40 54 24 / 0.2);
 }
-.bg-secondary\/50 {
-  background-color: rgb(40 54 24 / 0.5);
+.bg-secondary\/30 {
+  background-color: rgb(40 54 24 / 0.3);
 }
 .bg-slate-700\/60 {
   background-color: rgb(51 65 85 / 0.6);
@@ -2390,9 +2379,6 @@ input[type="range"]:active::-webkit-slider-thumb {}
 .bg-zinc-700 {
   --tw-bg-opacity: 1;
   background-color: rgb(63 63 70 / var(--tw-bg-opacity));
-}
-.bg-secondary\/30 {
-  background-color: rgb(40 54 24 / 0.3);
 }
 .bg-none {
   background-image: none;
@@ -2852,10 +2838,6 @@ input[type="range"]:active::-webkit-slider-thumb {}
 .text-\[\#4f4f4f\] {
   --tw-text-opacity: 1;
   color: rgb(79 79 79 / var(--tw-text-opacity));
-}
-.text-\[\#85A86D\] {
-  --tw-text-opacity: 1;
-  color: rgb(133 168 109 / var(--tw-text-opacity));
 }
 .text-\[\#b3afaf\] {
   --tw-text-opacity: 1;
@@ -3798,12 +3780,6 @@ input[type="range"]:active::-webkit-slider-thumb {}
 
 
 
-.hover\:bg-secondary\/60:hover {
-  background-color: rgb(40 54 24 / 0.6);
-}
-
-
-
 .hover\:bg-secondary\/50:hover {
   background-color: rgb(40 54 24 / 0.5);
 }
@@ -3812,13 +3788,6 @@ input[type="range"]:active::-webkit-slider-thumb {}
 
 .hover\:fill-\[\#8b8b8b\]:hover {
   fill: #8b8b8b;
-}
-
-
-
-.hover\:text-\[\#142906\]:hover {
-  --tw-text-opacity: 1;
-  color: rgb(20 41 6 / var(--tw-text-opacity));
 }
 
 
@@ -5990,11 +5959,6 @@ input[type="range"]:active::-webkit-slider-thumb {}
   .md\:text-base {
     font-size: 1rem;
     line-height: 1.5rem;
-  }
-
-  .md\:text-sm {
-    font-size: 0.875rem;
-    line-height: 1.25rem;
   }
 }
 

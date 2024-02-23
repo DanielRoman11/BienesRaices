@@ -94,7 +94,6 @@
       cantidad_propiedades.innerText = `Propiedades mostradas: ${resultado.length}`;
     }
   }
-
   
   obtenerPropiedades();
 })();
