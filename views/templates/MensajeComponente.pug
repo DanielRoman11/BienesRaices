@@ -1,7 +1,10 @@
-mixin mensajeCard(mensaje, usuario, createdAt )
-  .mensaje-card-container.p-4.rounded-md.shadow-md.bg-gray-100.text-gray-800
+mixin mensajeCard(mensaje, nombre, createdAt, email )
+  .mensaje-card-container.p-4.rounded-md.shadow-md.bg-gray-100
     p.font-semibold= mensaje
     - const options = {  year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', timeZone: 'UTC'}
     - const userLocale = idiomaPreferido || 'es-419';
 
-    p.text-xs Enviado por #{usuario} el #{createdAt.toLocaleDateString(userLocale, options)}
+    p.text-xs.mt-5.border-t-2.pt-2 Enviado por 
+      span.text-accent.font-bold #{nombre}
+      span.text-xs , el #{createdAt.toLocaleDateString(userLocale, options)}
+    p.text-xs.text-accent.font-bold.float-right #{email}

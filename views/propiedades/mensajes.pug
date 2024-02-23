@@ -19,7 +19,7 @@ block contenido
           p.mt-5 Este servicio brinda asistencia general y no debe sustituir el asesoramiento profesional adecuado. Si tienes preguntas sobre nuestra exención de responsabilidad o necesitas asesoramiento específico, no dudes en preguntar. Gracias por tu comprensión y colaboración!
       div.w-fit.space-y-2
         each contenidoMensaje in propiedad.mensajes
-          +mensajeCard(contenidoMensaje.mensaje, contenidoMensaje.usuario.nombre, contenidoMensaje.createdAt)
+          +mensajeCard(contenidoMensaje.mensaje, contenidoMensaje.usuario.nombre, contenidoMensaje.createdAt, contenidoMensaje.usuario.email)
     else
       p.text-secondary.w-full.text-center.text-xl(class="mt-24") No tienes mensajes nuevos 😥
          

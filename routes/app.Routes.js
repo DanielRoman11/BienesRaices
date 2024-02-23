@@ -1,5 +1,6 @@
 import express from 'express';
 import { buscador, categoria, home, noEncontrado } from '../controllers/app.Controller.js';
+import { identificarUsuario } from '../middleware/indentificarUsuario.js';
 
 const route = express.Router()
 

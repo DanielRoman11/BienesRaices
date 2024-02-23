@@ -998,6 +998,9 @@ input[type="range"]:active::-webkit-slider-thumb {}
 .mt-\[0\.15rem\] {
   margin-top: 0.15rem;
 }
+.mt-4 {
+  margin-top: 1rem;
+}
 .box-border {
   box-sizing: border-box;
 }
@@ -2075,6 +2078,9 @@ input[type="range"]:active::-webkit-slider-thumb {}
 }
 .border-t-0 {
   border-top-width: 0px;
+}
+.border-t-2 {
+  border-top-width: 2px;
 }
 .\!border-solid {
   border-style: solid !important;
