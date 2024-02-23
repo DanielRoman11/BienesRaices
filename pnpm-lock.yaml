@@ -32,6 +32,9 @@ dependencies:
   nanoid:
     specifier: ^3
     version: 3.3.7
+  nodemailer:
+    specifier: ^6.9.7
+    version: 6.9.7
   pug:
     specifier: ^3.0.2
     version: 3.0.2
@@ -52,9 +55,6 @@ devDependencies:
   esbuild:
     specifier: ^0.19.11
     version: 0.19.11
-  nodemailer:
-    specifier: ^6.9.1
-    version: 6.9.7
   postcss:
     specifier: ^8.4.21
     version: 8.4.31
@@ -1612,7 +1612,7 @@ packages:
   /nodemailer@6.9.7:
     resolution: {integrity: sha512-rUtR77ksqex/eZRLmQ21LKVH5nAAsVicAtAYudK7JgwenEDZ0UIQ1adUGqErz7sMkWYxWTTU1aeP2Jga6WQyJw==}
     engines: {node: '>=6.0.0'}
-    dev: true
+    dev: false
 
   /nopt@5.0.0:
     resolution: {integrity: sha512-Tbj67rffqceeLpcRXrT7vKAN8CwfPeIBgM7E6iBkmKLV7bEMwpGgYLGv0jACUsECaa/vuxP0IjEont6umdMgtQ==}
