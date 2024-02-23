@@ -25,7 +25,7 @@ try {
     .then(()=>{
       console.log("Conexión establecida ✅");
     })
-  await db.sync();
+  // await db.sync();
 } catch (err) {
   console.error("Hubo un error en la conexión a la base de datos", err);
 }

@@ -2,14 +2,14 @@
   "name": "node_bootcamp",
   "version": "1.0.0",
   "description": "NodeJs MVC",
-  "main": "index.js",
   "type": "module",
+  "main": "index.js",
   "scripts": {
     "start": "node --env-file=.env index.js",
     "start:server": "node --env-file=.env --watch index.js",
     "css": "postcss public/css/tailwind.css -o public/css/app.css --watch",
     "js": "node esbuild.js",
-    "start:dev": "pnpx concurrently \"pnpm run css\" \"pnpm run js\"",
+    "start:dev": "concurrently \"pnpm run css\" \"pnpm run js\"",
     "db:importar": "node ./seed/seeder.js -i",
     "db:eliminar": "node ./seed/seeder.js -e"
   },
@@ -32,7 +32,7 @@
     "jsonwebtoken": "^9.0.0",
     "multer": "^1.4.5-lts.1",
     "mysql2": "^3.6.5",
-    "nanoid": "3",
+    "nanoid": "^3",
     "pug": "^3.0.2",
     "sequelize": "^6.35.1",
     "tw-elements": "^1.1.0"
@@ -45,5 +45,8 @@
     "postcss": "^8.4.21",
     "postcss-cli": "^10.1.0",
     "tailwindcss": "^3.4.1"
+  },
+  "engines": {
+    "node": ">=20.0.0"
   }
 }
