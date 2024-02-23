@@ -16,6 +16,6 @@ router.get('/olvide-password/:token', comprobarPasswordToken);
 router.post('/olvide-password/:token', nuevaPassword);
 
 router.get('/confirmar/:token', confirmar);
-router.get('/logout', logout);
+router.post('/logout', logout);
 
 export default router
