@@ -479,7 +479,28 @@ const eliminar = async(req, res) => {
   .catch(error =>{
     console.error("Algo salió mal al eliminar la propiedad ", error);
   })
+}
 
+const cambiarEstado = async(req, res) =>{
+  const { id } = req.params
+  const propiedad = await Propiedad.findByPk(id,{
+    attributes: ['id', 'publicado', 'usuarioID']
+  });
+
+  if(!propiedad){
+    return res.redirect("/propiedades");
+  }
+
+  if(propiedad.usuarioID.toString() !== req.usuario.id.toString()){
+    return res.redirect("/propiedades")
+  }
+
+  propiedad.publicado = !propiedad.publicado
+  await propiedad.save()
+
+  res.json({
+    resultado: true
+  })
 }
 
 const mostrarPropiedad = async(req, res) => {
@@ -656,6 +677,7 @@ export {
   eliminar,
   verImagen,
   nuevaImagen,
+  cambiarEstado,
   mostrarPropiedad,
   enviarMensaje,
   mensajes,

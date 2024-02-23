@@ -16,4 +16,4 @@ mixin paginador(referenceRoute)
         nav(class="z-0 flex justify-center rounded-md space-x-2")
           - var n = 1;
             while n <= paginas
-              a(href=`${referenceRoute}?pagina=${n}` class=`${paginaActual == n ? 'bg-secondary/50 border-secondary text-secondary hover:bg-secondary/60' : 'bg-white border border-gray-400 hover:bg-gray-100'} relative inline-flex items-center px-4 py-1 border text-sm font-medium rounded-sm shadow-2xl`) #{n++}
+              a(href=`${referenceRoute}?pagina=${n}` class=`${paginaActual == n ? 'bg-secondary/30 border-secondary text-secondary hover:bg-secondary/50' : 'bg-white border border-gray-400 hover:bg-gray-100'} relative inline-flex items-center px-4 py-1 border text-sm font-medium rounded-sm shadow-2xl`) #{n++}

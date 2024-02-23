@@ -31,8 +31,7 @@ block contenido
               p(class="text-ellipsis font-semibold whitespace-pre-line overflow-hidden flex text-primary")= propiedad.precio.nombre
               p(class=" font-semibold text-gray-600")= propiedad.calle
             div(class="flex gap-2 sm:w-auto flex-col sm:flex-row sm:justify-center")
-              form(action="#")
-                input(type="submit" class=`px-2 py-2 md:py-1 text-xs w-full sm:w-auto leading-5 font-semibold rounded-md cursor-pointer ${propiedad.publicado ? 'bg-green-200 text-green-800' : 'bg-orange-200 text-orange-800'}` value=`${propiedad.publicado ? 'Publicado' : 'No publicado'}`)
+              button(type="button" data-propiedad-id=propiedad.id class=`cambiar-estado px-2 py-2 md:py-1 text-xs w-full sm:w-auto leading-5 font-semibold rounded-md cursor-pointer ${propiedad.publicado ? 'bg-green-200 text-green-800' : 'bg-orange-200 text-orange-800'}`)= propiedad.publicado ? 'Publicado' : 'No publicado'
               a(href=`propiedades/editar/${propiedad.id}` class="px-2 py-2 md:py-1 text-center text-xs leading-5 font-semibold rounded-md cursor-pointer bg-blue-200") Editar
 
               form(method="post" action=`/propiedades/eliminar/${propiedad.id}`)
@@ -42,3 +41,6 @@ block contenido
 
   else
     p.text-center.font-bold.text-2xl.mt-10(class="text-background") No hay propiedades
+
+block scripts
+  script(src="/js/cambiarEstado.js") 

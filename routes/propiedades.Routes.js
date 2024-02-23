@@ -1,9 +1,8 @@
 import express from "express";
 import { body } from "express-validator"
-import { admin, agregarImagen, crear, editar, eliminar, enviarMensaje, explorar, guardar, guardarCambios,  mensajes,  mostrarPropiedad,  nuevaImagen,  publicarPropiedad, verImagen } from "../controllers/propiedades.Controller.js"
+import { admin, agregarImagen, cambiarEstado, crear, editar, eliminar, enviarMensaje, explorar, guardar, guardarCambios,  mensajes,  mostrarPropiedad,  nuevaImagen,  publicarPropiedad, verImagen } from "../controllers/propiedades.Controller.js"
 import protegerRuta from "../middleware/proteger.Routes.js";
 import { identificarUsuario } from "../middleware/indentificarUsuario.js";
-import { subirImagen } from "../middleware/subirImagenes.js";
 import { handleUpdatingImages, handleUploadingImages } from "../handler/uploadFiles.js";
 
 const ruta = express.Router();
@@ -51,6 +50,7 @@ ruta.post('/propiedad/:id', identificarUsuario,
 )
 
 ruta.get('/mensajes/:id', protegerRuta, mensajes);
+ruta.put('/:id', protegerRuta, cambiarEstado)
 
 //! Área pública
 ruta.get('/propiedad/:id', identificarUsuario, mostrarPropiedad)
