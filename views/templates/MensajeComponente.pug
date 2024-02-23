@@ -1,7 +1,7 @@
 mixin mensajeCard(mensaje, nombre, createdAt, email )
   .mensaje-card-container.p-4.rounded-md.shadow-md.bg-gray-100
     p.font-semibold= mensaje
-    - let options = {  year: 'numeric', month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', timeZoneName: 'short'}
+    - let options = { weekday:'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true}
     - const userLocale = idiomaPreferido || 'es-419';
     - const dateFormat = new Intl.DateTimeFormat(undefined, options);
     - const completeTimeZone = dateFormat.resolvedOptions().timeZone;
@@ -9,6 +9,5 @@ mixin mensajeCard(mensaje, nombre, createdAt, email )
 
     p.text-xs.mt-5.border-t-2.pt-2 Enviado por 
       span.text-accent.font-bold #{nombre}
-      //- span.text-xs , el #{createdAt}
-      span.text-xs , el #{createdAt.toLocaleDateString('es-ES', options)}
+      span.text-xs  el #{createdAt.toLocaleDateString('es-ES', options)}
     p.text-xs.text-accent.font-bold.float-right #{email}
