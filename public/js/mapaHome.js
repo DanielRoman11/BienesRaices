@@ -19,7 +19,6 @@
       markers.clearLayers();
       var markerIcon = new L.Icon({
         iconUrl: "https://cdn-icons-png.flaticon.com/512/9428/9428182.png",
-        // shadowUrl: 'https://leafletjs.com/examples/custom-icons/leaf-shadow.png',
         iconSize: [25, 40],
         shadowSize: [41, 41],
         iconAnchor: [12, 41],
