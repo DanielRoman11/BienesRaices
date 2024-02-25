@@ -1,4 +1,3 @@
-import { Sequelize } from "sequelize";
 import { Categoria, Imagen, Precio, Propiedad, Usuario } from "../models/index.js";
 import cloudinary from "../config/cloudinary.js";
 
