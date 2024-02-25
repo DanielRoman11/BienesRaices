@@ -25,20 +25,20 @@
         popupAnchor: [1, -34]
       });
       propiedades2.forEach((propiedad) => {
-        console.log(propiedad);
         const marker = new L.marker(
           [propiedad?.lat, propiedad?.lng],
           {
             icon: markerIcon
           }
         ).addTo(mapa).bindPopup(
-          `<div class="text-xs">
-      <img src= ${propiedad.imagenes.length > 0 ? propiedad.imagenes[0].ruta : "https://res.cloudinary.com/dakerpersonalspace/image/upload/v1707755538/kgzjptrvcz3xcmlgmclt.webp"} alt= ${propiedad.titulo}}>
+          `
+      <div class="w-[250px] bg-primary/50 p-2 text-white rounded">
+      <img src= ${propiedad.imagenes.length > 0 ? propiedad.imagenes[0].ruta : "https://res.cloudinary.com/dakerpersonalspace/image/upload/v1707755538/kgzjptrvcz3xcmlgmclt.webp"} alt= ${propiedad.titulo} class="h-48 w-full"}>
       <br>
-      <strong>Direcci\xF3n:</strong> ${propiedad.calle != "" ? propiedad.calle : "Direcci\xF3n no disponible"} <br> 
-      <strong>Precio:</strong> ${propiedad.precio.nombre} <br>
-      <strong>Tratante:</strong> ${propiedad.usuario.nombre} <br>
-      <a href="/propiedades/propiedad/${propiedad.id}" class="border-2 border-bodytext !text-bodytext block p-2 text-center font-bold uppercase">Ver Propiedad</a>
+      <strong class="text-secondary">Direcci\xF3n:</strong> ${propiedad.calle != "" ? propiedad.calle : "Direcci\xF3n no disponible"} <br> 
+      <strong class="text-secondary">Precio:</strong> ${propiedad.precio.nombre} <br>
+      <strong class="text-secondary">Tratante:</strong> ${propiedad.usuario.nombre} <br>
+      <a href="/propiedades/propiedad/${propiedad.id}" class="border-2 border-secondary !text-secondary block p-2 text-center font-bold uppercase">Ver Propiedad</a>
       </div>`
         );
         markers.addLayer(marker);
