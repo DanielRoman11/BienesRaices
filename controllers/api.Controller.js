@@ -13,7 +13,7 @@ const propiedades = async(req, res) =>{
         { model: Precio, as: 'precio'},
         { model: Categoria, as: 'categoria'},
         { model: Usuario, as: 'usuario'},
-        { model: Imagen, required: false, where: {propiedadID: Sequelize.col('propiedades.id') }}
+        { model: Imagen, as: 'imagenes'}
       ],
     })
   

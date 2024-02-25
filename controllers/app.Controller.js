@@ -1,5 +1,5 @@
 import { Categoria, Imagen, Precio, Propiedad } from "../models/index.js"
-import { Op, Sequelize } from "sequelize";
+import { Op } from "sequelize";
 
 export const home = async(req,res) => {
   const [ categorias, precios, casas, apartamentos ] = await Promise.all([
@@ -105,7 +105,7 @@ export const buscador = async(req, res) =>{
     include: [
       { model: Precio, as: 'precio' },
       { model: Categoria, as: 'categoria' },
-      { model: Imagen, as: 'imagenes', required: false, where: { propiedadID: Sequelize.col('propiedades.id')} }
+      { model: Imagen, as: 'imagenes'}
     ]
   })
 

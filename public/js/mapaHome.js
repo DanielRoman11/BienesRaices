@@ -25,6 +25,7 @@
         popupAnchor: [1, -34]
       });
       propiedades2.forEach((propiedad) => {
+        console.log(propiedad);
         const marker = new L.marker(
           [propiedad?.lat, propiedad?.lng],
           {
@@ -37,7 +38,6 @@
       <strong>Direcci\xF3n:</strong> ${propiedad.calle != "" ? propiedad.calle : "Direcci\xF3n no disponible"} <br> 
       <strong>Precio:</strong> ${propiedad.precio.nombre} <br>
       <strong>Tratante:</strong> ${propiedad.usuario.nombre} <br>
-      <strong>\xDAltima Actualizaci\xF3n:</strong> ${new Date(propiedad.updatedAt).toLocaleDateString()} <br>
       <a href="/propiedades/propiedad/${propiedad.id}" class="border-2 border-bodytext !text-bodytext block p-2 text-center font-bold uppercase">Ver Propiedad</a>
       </div>`
         );
