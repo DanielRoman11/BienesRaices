@@ -18,14 +18,13 @@ nav.flex-wrap.flex.w-full.items-center.justify-between.py-2.shadow-md(class='lg:
         
     .relative.flex.items-center
       if usuario
-        .flex.px-2
-          a.transition.duration-200(class='text-secondary font-semibold hover:ease-in-out hover:text-accent motion-reduce:transition-none' href='/propiedades')
-            span(class='h-12')
+        .flex.mr-4.space-x-2(class="last:border-l border-primary")
+          a.transition.duration-200(class='text-secondary font-semibold hover:ease-in-out hover:text-accent motion-reduce:transition-none flex' href='/propiedades')
+            span(class='text-xs') Editar
               include ../../svg/houseSVG
-              
           a#dropdownMenuButton1.hidden-arrow.flex.items-center.whitespace-nowrap.transition.duration-150.ease-in-out(class='motion-reduce:transition-none' href='#' role='button' data-te-dropdown-toggle-ref='' aria-expanded='false')
             // Dropdown trigger icon
-            span(class='px-2 text-secondary hover:text-accent')
+            span(class='px-2 text-xs font-semibold text-secondary hover:text-accent') Categorias
               include ../../svg/categorySVG
           ul.absolute.float-left.m-0.hidden.min-w-max.list-none.overflow-hidden.rounded-lg.border-none.bg-white.bg-clip-padding.text-left.text-base.shadow-lg(class='z-[1000] [&[data-te-dropdown-show]]:block' aria-labelledby='dropdownMenuButton1' data-te-dropdown-menu-ref='')
             +categoriaMixin('Casas','/categoria/1')
