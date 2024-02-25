@@ -1,5 +1,4 @@
 import Sequelize from "sequelize";
-import { manejarDesconexion } from "../helpers/manejaDesconexion.js";
 
 const db = new Sequelize(process.env.BD_NOMBRE, process.env.BD_USER, process.env.BD_PASS, {
   host: process.env.BD_HOST,
@@ -16,7 +15,5 @@ const db = new Sequelize(process.env.BD_NOMBRE, process.env.BD_USER, process.env
   },
   operatorAliases: false
 });  
-
-// manejarDesconexion(db)
 
 export default db;

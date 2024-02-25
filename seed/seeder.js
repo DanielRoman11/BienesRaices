@@ -7,6 +7,9 @@ import usuarios from "./usuarios.js"
 
 import { Categoria, Precio, Usuario } from "../models/index.js"
 
+console.log(db.config);
+console.log(process.env.BD_NOMBRE);
+
 const importarDatos = async () =>{
     try {
         // Autenticar en la base de datos
@@ -33,12 +36,9 @@ const importarDatos = async () =>{
 
 const eliminarDatos = async() => {
     try {
-        // await Promise.all([
-        //     Categoria.destroy({where: {}, truncate: true}),
-        //     Precio.destroy({where: {}, truncate: true})
-        // ]);
-
+        // await db.authenticate()
         await db.sync({force: true})
+        
         console.log("Datos eliminados correctamente 🧹");
         exit()
     } catch (error) {
