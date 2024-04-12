@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 //* Habilitar Cookie Parser
 app.use(cookieParser());
 
-//! Habilitar CSRF DEPRECATED
+//! Habilitar CSRF DEPRECATED -> Cambiando a HELMET (prox.)
 // app.use( csrf({ cookie: true }));
 
 //* Conexión a la base de datos
