@@ -77,6 +77,7 @@ Se definieron las siguientes variables de entorno (`DotEnv`) para la ejecución 
     - `BD_USER`
     - `BD_PASS`
     - `BD_HOST`
+    - `BD_PORT`
 
 2.  Nodemailer:
     - `EMAIL_HOST`
