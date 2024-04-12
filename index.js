@@ -23,7 +23,7 @@ app.use(cookieParser());
 try {
   await Promise.all([
     db.authenticate(),
-    db.sync()
+    // db.sync()
   ])
   .then(() => {
     console.log("Conexión establecida ✅");
