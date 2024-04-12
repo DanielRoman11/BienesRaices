@@ -1,19 +1,21 @@
 const propiedades = [
   {
+    id: 'fe8bcb97-4daf-4a32-ab5f-5ae382f06b7f',
     titulo: "Casa cerca del Campin",
     descripcion: "Una casa muy central, hermosa, moderna y a precio de oportunidad ven a conocerla.",
     habitaciones: 3,
     estacionamiento: 3,
     wc: 2,
-    calle: "",
-    lat: 4,
-    lng: 74,
+    calle: "Calle 127A 18B-70",
+    lat: 4.70739701982,
+    lng: -74.047977912262,
     publicado: 1,
     categoriaID: 1,
     precioID: 2,
     usuarioID: 1
   },
   {
+    id: 'e8176edd-7300-4763-b9f6-7f6e2fa5b87a',
     titulo: "Torres de Bethel",
     descripcion: "Hermosos apartamentos ubicados en Villa Javier, ven a conocerlos y comprueba por que son tan apatecidos.",
     habitaciones: 3,
@@ -28,6 +30,7 @@ const propiedades = [
     usuarioID: 1
   },
   {
+    id: 'a758cfb0-8c6e-4451-a819-f6c01b661503',
     titulo: "Casa en Santa Barbara",
     descripcion: "Hermosa casa en Santa Barbara, una de las más lujosas y con una vista increíble a la ciudad!. Rodeada de naturaleza",
     habitaciones: 4,
@@ -42,20 +45,22 @@ const propiedades = [
     usuarioID: 1
   },
   {
-    titulo: "NATIVA - PARQUE DE LAS AMERICAS",
+    id: "e245f3f5-5969-46b1-b71c-efb84900365c",
+    titulo: "NATIVA - POLO CLUB",
     descripcion: "Proyecto inmobiliario independiente de Parque de las Américas con viviendas de interés social y renovación urbana. Esta propuesta arquitectónica innovadora ocupa una posición privilegiada en el corazón del plan parcial de renovación urbana “Triángulo de Bavaria”",
     habitaciones: 4,
     estacionamiento: 2,
     wc: 3,
-    calle: "",
-    lat: 4,
-    lng: 74,
+    calle: "Calle 83 22A-43",
+    lat: 4.670702544966078,
+    lng: -74.06261444091798,
     publicado: 1,
     categoriaID: 2,
     precioID: 2,
     usuarioID: 1
   },
   {
+    id: "83e6a919-69a6-4f5f-95b4-fc894ef5add8",
     titulo: "NATIVA - PARQUE DE LAS AMERICAS",
     descripcion: "¡Bienvenido a Torres de Michua, tu oasis de lujo y comodidad en el corazón de Chía! Este proyecto de la reconocida Constructora Exalta redefine la experiencia de vivir con un diseño innovador y una ubicación privilegiada en la Carrera 7 con 13.",
     habitaciones: 4,
@@ -70,14 +75,15 @@ const propiedades = [
     usuarioID: 1
   },
   {
+    id: "5ae676d7-0a55-4bbe-bc13-8bfd03e56d7f",
     titulo: "Living Sabana",
     descripcion: "¡Bienvenido al hogar de tus sueños en armonía con el nuevo estilo de vida que marca tendencia en el mundo! Descubre una experiencia única de vivir, donde la independencia se fusiona con la elegancia y la innovación.",
     habitaciones: 4,
     estacionamiento: 2,
     wc: 3,
     calle: "",
-    lat: 4,
-    lng: 74,
+    lat: 4.70739701982,
+    lng: -74.047977912262,
     publicado: 1,
     categoriaID: 2,
     precioID: 2,
