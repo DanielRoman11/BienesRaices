@@ -4,6 +4,12 @@
 Plataforma de anuncios inmobiliarios que tiene como propósito facilitar la compra, venta y consulta de bienes inmuebles. La aplicación no cuenta con pagos virtuales, la venta se hace entre ambas partes facilitando el contacto del vendedor; en donde se publica una propiedad y una vez autenticado el cliente este deberá contactar directamente al vendedor.
 
 
+## Getting Started
+Esta aplicación es compatible con devcontainers
+
+## Stack
+Para esta apliación se esta utilizando el siguiente stack de tecnologías: NodeJs, Express, Pug, Tailwind y MySql. 
+
 ## Estado del proyecto
 Actualmente el proyecto se encuentra en progreso, ya se realizaron varios despliegues en producción con normalidad, pero aún no se han hecho pruebas, hacen falta varias funcionalidades como el acceso a usuarios autenticados a contenido público de otros usuarios, la pagina de inicio y la personalización del usuario.
 
@@ -72,7 +78,7 @@ Se definieron las siguientes variables de entorno (`DotEnv`) para la ejecución 
 > [!WARNING]
 > Estas pueden que cambien dependiendo de la versión del proyecto
 
-1.  Database (MySql):
+1.  Database:
     - `BD_NOMBRE`
     - `BD_USER`
     - `BD_PASS`
@@ -88,7 +94,12 @@ Se definieron las siguientes variables de entorno (`DotEnv`) para la ejecución 
 3.  JWT:
     - `SECRET_JWT`
 
-4.  General:
+4.  Cloudinary:
+    - `CLOUD_NAME
+    - `CLOUD_KEY`
+    - `CLOUD_SECRET` 
+
+5.  General:
     - `BACKEND_URL`
     - `PORT`
 

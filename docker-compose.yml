@@ -12,13 +12,7 @@ services:
       MYSQL_USER: daker
       MYSQL_PASSWORD: password
       MYSQL_DATABASE: bienesraices
-
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - 8080:8080
-
+  
   app:
     build:
       context: .
@@ -30,3 +24,9 @@ services:
       - .:/app
     depends_on:
       - db
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
