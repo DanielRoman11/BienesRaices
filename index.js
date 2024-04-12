@@ -11,20 +11,24 @@ import { identificarUsuario } from './middleware/indentificarUsuario.js'
 const app = express()
 
 //* Habilitar lectura de datos de formularios
-app.use( express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 
 //* Habilitar Cookie Parser
-app.use( cookieParser());
+app.use(cookieParser());
 
 //! Habilitar CSRF DEPRECATED
 // app.use( csrf({ cookie: true }));
 
 //* Conexión a la base de datos
 try {
-  await db.authenticate()
-    .then(()=>{
-      console.log("Conexión establecida ✅");
-    })
+  await Promise.all([
+    db.authenticate(),
+    db.sync({force: true})
+  ])
+  .then(() => {
+    console.log("Conexión establecida ✅");
+  })
+    
   // await db.sync();
 } catch (err) {
   console.error("Hubo un error en la conexión a la base de datos", err);

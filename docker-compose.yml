@@ -5,6 +5,8 @@ services:
     image: mysql
     command: --default-authentication-plugin=caching_sha2_password
     restart: always
+    ports:
+    - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: secret
       MYSQL_USER: daker
