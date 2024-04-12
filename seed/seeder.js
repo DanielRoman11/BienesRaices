@@ -4,8 +4,9 @@ import db from "../config/dbs.js"
 import categorias from "./categoria.js"
 import precios from "./precio.js"
 import usuarios from "./usuarios.js"
+import propiedades from "./propiedades.js"
 
-import { Categoria, Precio, Usuario } from "../models/index.js"
+import { Categoria, Precio, Propiedad, Usuario } from "../models/index.js"
 
 console.log(db.config);
 console.log(process.env.BD_NOMBRE);
@@ -22,7 +23,8 @@ const importarDatos = async () =>{
         await Promise.all([
             Categoria.bulkCreate(categorias),
             Precio.bulkCreate(precios),
-            Usuario.bulkCreate(usuarios)
+            Usuario.bulkCreate(usuarios),
+            Propiedad.bulkCreate(propiedades)
         ]);
 
         console.log("Datos importados correctamente");

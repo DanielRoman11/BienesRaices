@@ -2,8 +2,8 @@ article(class="w-full sm:w-1/2 md:w-fit flex-1 my-2 h-[450px] bg-background roun
   .flex.flex-col.justify-between.w-full.items-center.relative.h-fit
     img.w-full.rounded-t-lg.object-cover.object-center(loading="lazy" src= propiedad.imagenes.length > 0 ? propiedad.imagenes[0].ruta : "https://res.cloudinary.com/dakerpersonalspace/image/upload/v1707755538/kgzjptrvcz3xcmlgmclt.webp" alt= propiedad.titulo class="h-52")
     p(class="left-2 bottom-2 text-background font-medium text-sm rounded-md backdrop-blur-lg rounded-br-md px-2 absolute")= propiedad.precio.nombre
-  .flex.flex-col.w-full.px-3.text-sm(class="self-end h-full py-5 space-y-5")
-    div
+  .flex.flex-col.w-full.px-3.text-sm(class="self-end h-fit sm:h-full py-5 space-y-5")
+    div.flex.flex-col
       h3.text-balance.line-clamp-1.font-semibold(class="text-secondary")= propiedad.titulo
       - const options = {  year: 'numeric', month: 'short',day: 'numeric'}
       h4(class="text-primary text-xs text-pretty")= "Publicado el "+ propiedad.createdAt.toLocaleDateString(undefined, options)

@@ -1205,11 +1205,25 @@ input[type="range"]:active::-webkit-slider-thumb {}
 .h-screen {
   height: 100vh;
 }
+.h-\[content-fit\] {
+  height: content-fit;
+}
+.h-\[fit-content\] {
+  height: -moz-fit-content;
+  height: fit-content;
+}
 .max-h-\[calc\(100\%-64px\)\] {
   max-height: calc(100% - 64px);
 }
 .max-h-full {
   max-height: 100%;
+}
+.max-h-fit {
+  max-height: -moz-fit-content;
+  max-height: fit-content;
+}
+.max-h-96 {
+  max-height: 24rem;
 }
 .min-h-\[1\.5rem\] {
   min-height: 1.5rem;
@@ -5800,6 +5814,10 @@ input[type="range"]:active::-webkit-slider-thumb {}
 
   .sm\:h-\[460px\] {
     height: 460px;
+  }
+
+  .sm\:h-full {
+    height: 100%;
   }
 
   .sm\:w-1\/2 {
