@@ -13,32 +13,35 @@
   async function getUserLocation() {
     return new Promise((resolve, reject) => {
       navigator.geolocation.getCurrentPosition(
-        ({coords}) => {
+        ({ coords }) => {
           useLocation = [coords.latitude, coords.longitude]
           resolve(useLocation)
         },
-        (error) => {
-          console.error(error)
-          alert("No se pudo obtener la información de geolocalización")
-
-          useLocation = [4.6771137, -74.0490971]
-          reject()
+        ( err ) => {
+          reject(err)
         }
       )
     })
   }
 
-  if(!navigator.geolocation){
+  if (!navigator.geolocation || useLocation.length == 0) {
     useLocation = [4.6771137, -74.0490971]
-  } else{
-    await getUserLocation()
   }
+
+  await getUserLocation()
+    .then((result) =>{
+      useLocation = [...result]
+    })
+    .catch(( reason ) => {
+      console.log(reason);
+    })
+  
 
   lat = useLocation[0]
   lng = useLocation[1]
 
   mapa.setView(useLocation, 13)
-  
+
   const filtros = {
     categoria: '',
     precio: ''
@@ -93,25 +96,20 @@
   });
 
   const obtenerPropiedades = async () => {
-    try {
-      const url = 'api/propiedades';
-      const respuesta = await fetch(url);
+    const url = 'api/propiedades';
+    const respuesta = await fetch(url);
 
-      if (!respuesta.ok) {
-        throw new Error(`Error al obtener propiedades. Estado: ${respuesta.status}`);
-      }
-
-      propiedades = await respuesta.json();
-
-      mostrarPropiedades(propiedades)
-
-    } catch (error) {
-      console.error('Error al obtener propiedades:', error);
+    if (!respuesta.ok) {
+      throw new Error(`Error al obtener propiedades: ${respuesta.status}`);
     }
+
+    propiedades = await respuesta.json();
+    mostrarPropiedades(propiedades)
   }
 
   const cantidad_propiedades = document.createElement("p");
   cantidad_propiedades.classList.add('pt-5', 'text-background', 'font-semibold')
+
   const filtrarPropiedades = () => {
     const resultado = propiedades
       .filter(propiedad => filtros.categoria ? filtros.categoria === propiedad.categoriaID : propiedad)
@@ -119,9 +117,9 @@
 
     mostrarPropiedades(resultado)
 
-    if(resultado.length > 0)
+    if (resultado.length > 0)
       mapa.setView([resultado[0].lat, resultado[0].lng], 13)
-    
+
     const filterbox = document.getElementById("filterbox");
 
     if (cantidad_propiedades.innerText == "") {

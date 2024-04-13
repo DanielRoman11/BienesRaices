@@ -16,20 +16,20 @@
             useLocation = [coords.latitude, coords.longitude];
             resolve(useLocation);
           },
-          (error) => {
-            console.error(error);
-            alert("No se pudo obtener la informaci\xF3n de geolocalizaci\xF3n");
-            useLocation = [4.6771137, -74.0490971];
-            reject();
+          (err) => {
+            reject(err);
           }
         );
       });
     }
-    if (!navigator.geolocation) {
+    if (!navigator.geolocation || useLocation.length == 0) {
       useLocation = [4.6771137, -74.0490971];
-    } else {
-      await getUserLocation();
     }
+    await getUserLocation().then((result) => {
+      useLocation = [...result];
+    }).catch((reason) => {
+      console.log(reason);
+    });
     lat = useLocation[0];
     lng = useLocation[1];
     mapa.setView(useLocation, 13);
@@ -78,17 +78,13 @@
       filtrarPropiedades();
     });
     const obtenerPropiedades = async () => {
-      try {
-        const url = "api/propiedades";
-        const respuesta = await fetch(url);
-        if (!respuesta.ok) {
-          throw new Error(`Error al obtener propiedades. Estado: ${respuesta.status}`);
-        }
-        propiedades = await respuesta.json();
-        mostrarPropiedades(propiedades);
-      } catch (error) {
-        console.error("Error al obtener propiedades:", error);
+      const url = "api/propiedades";
+      const respuesta = await fetch(url);
+      if (!respuesta.ok) {
+        throw new Error(`Error al obtener propiedades: ${respuesta.status}`);
       }
+      propiedades = await respuesta.json();
+      mostrarPropiedades(propiedades);
     };
     const cantidad_propiedades = document.createElement("p");
     cantidad_propiedades.classList.add("pt-5", "text-background", "font-semibold");
