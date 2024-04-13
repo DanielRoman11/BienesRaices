@@ -33,7 +33,8 @@
       useLocation = [...result]
     })
     .catch(( reason ) => {
-      console.log(reason);
+      console.error(reason);
+      alert("Usuario rechazo geolocalización: " + reason.message)
     })
   
 

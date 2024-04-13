@@ -28,7 +28,8 @@
     await getUserLocation().then((result) => {
       useLocation = [...result];
     }).catch((reason) => {
-      console.log(reason);
+      console.error(reason);
+      alert("Usuario rechazo geolocalizaci\xF3n: " + reason.message);
     });
     lat = useLocation[0];
     lng = useLocation[1];
