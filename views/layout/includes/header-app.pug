@@ -10,37 +10,41 @@ nav.flex-wrap.flex.w-full.items-center.justify-between.py-2.shadow-md(class='lg:
       // Logo
       a.mb-4.ml-2.mr-5.mt-3.flex.items-center(class='lg:mb-0 lg:mt-0' href='/')
         img(src='https://res.cloudinary.com/dakerpersonalspace/image/upload/v1708389207/i4kxygg7csubalo2tfwe.png' alt='TE Logo' loading='lazy' class="h-11 rounded-full hover:scale-105 hover:border-4 border-secondary")
-      
-      form.mb-5(action="/buscador" method="POST" class="lg:mb-0")
-        input(type="text", id="termino" name="termino" placeholder="Buscar Propiedades" class="p-3 rounded-lg rounded-r-none shadow text-xs")
-        input.w-fit.select-none.rounded-lg.rounded-l-none.py-3.px-6.text-center.text-xs.font-bold.uppercase.text-white.shadow-md.transition-all(type="submit", class='bg-secondary shadow-secondary/20 hover:shadow-lg hover:shadow-secondary/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none')
 
-        
+      form.mb-5(action="/buscador" method="POST" class="lg:mb-0")
+        input(type="text" id="termino" name="termino" placeholder="Buscar Propiedades" class="p-3 rounded-lg rounded-r-none shadow text-xs")
+        input.w-fit.select-none.rounded-lg.rounded-l-none.py-3.px-6.text-center.text-xs.font-bold.uppercase.text-white.shadow-md.transition-all(type="submit" class='bg-secondary shadow-secondary/20 hover:shadow-lg hover:shadow-secondary/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none')
+
+
     .relative.flex.items-center
       if usuario
         .flex.mr-4.space-x-2(class="last:border-l border-primary")
           a.transition.duration-200(class='text-secondary font-semibold hover:ease-in-out hover:text-accent motion-reduce:transition-none flex' href='/propiedades')
-            span(class='text-xs') Editar
+            span(class='text-xs') Administrar
               include ../../svg/houseSVG
           a#dropdownMenuButton1.hidden-arrow.flex.items-center.whitespace-nowrap.transition.duration-150.ease-in-out(class='motion-reduce:transition-none' href='#' role='button' data-te-dropdown-toggle-ref='' aria-expanded='false')
             // Dropdown trigger icon
             span(class='px-2 text-xs font-semibold text-secondary hover:text-accent') Categorias
               include ../../svg/categorySVG
+          a.transition.duration-200(class='text-secondary font-semibold hover:ease-in-out hover:text-accent motion-reduce:transition-none flex' href='/')
+            span(class='text-xs') Inicio
+              include ../../svg/homeSVG
           ul.absolute.float-left.m-0.hidden.min-w-max.list-none.overflow-hidden.rounded-lg.border-none.bg-white.bg-clip-padding.text-left.text-base.shadow-lg(class='z-[1000] [&[data-te-dropdown-show]]:block' aria-labelledby='dropdownMenuButton1' data-te-dropdown-menu-ref='')
             +categoriaMixin('Casas','/categoria/1')
             +categoriaMixin('Apartamentos','/categoria/2')
             +categoriaMixin('Bodegas','/categoria/3')
             +categoriaMixin('Terrenos','/categoria/4')
             +categoriaMixin('Cabañas','/categoria/5')
-          
+
         .relative(data-te-dropdown-ref='' data-te-dropdown-alignment='end')
           // Second dropdown trigger
           a#dropdownMenuButton2.hidden-arrow.flex.items-center.whitespace-nowrap.transition.duration-150.ease-in-out(class='motion-reduce:transition-none px-4 border-l-2 border-gray-500' href='#' role='button' data-te-dropdown-toggle-ref='' aria-expanded='false')
-            img.rounded-full(src='https://tecdn.b-cdn.net/img/new/avatars/2.jpg' alt='' loading='lazy' class="size-8")
+            img.rounded-full(
+              src='https://static.vecteezy.com/system/resources/previews/029/337/463/non_2x/man-and-woman-empty-avatars-set-default-photo-placeholder-for-social-networks-resumes-forums-and-dating-sites-male-and-female-no-photo-images-for-unfilled-user-profile-illustration-vector.jpg' alt='' loading='lazy' class="size-8")
           ul.absolute.float-left.m-0.hidden.min-w-max.list-none.overflow-hidden.rounded-lg.border-none.bg-white.bg-clip-padding.text-left.text-base.shadow-lg(class='z-[1000] [&[data-te-dropdown-show]]:block' aria-labelledby='dropdownMenuButton2' data-te-dropdown-menu-ref='')
             +categoriaMixin('Perfil','#')
             li
-              form(action='/auth/logout', method='POST')
+              form(action='/auth/logout' method='POST')
                 input.block.w-full.whitespace-nowrap.bg-transparent.px-4.py-2.text-sm.font-normal.text-neutral-700(type="submit" value='Cerrar Sesión' class='hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-200 dark:hover:bg-white/30')
       else
         a.w-fit.select-none.rounded-lg.py-3.px-6.text-center.text-xs.font-bold.uppercase.text-white.shadow-md.transition-all(class='bg-accent bg-accent/80 hover:shadow-lg hover:shadow-accent focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none focus:outline-none focus:ring focus:ring-secondary' href="/auth/login") Publica gratis!

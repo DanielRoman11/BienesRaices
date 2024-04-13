@@ -1,13 +1,38 @@
 (() => {
   // src/js/mapaHome.js
-  (function() {
-    const lng = -74.0490971;
-    const lat = 4.6771137;
+  (async function() {
+    let useLocation = [];
+    let lat = 4.6771137;
+    let lng = -74.0490971;
     var mapa = L.map("mapaHome").setView([lat, lng], 13);
     let markers = new L.FeatureGroup().addTo(mapa);
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(mapa);
+    async function getUserLocation() {
+      return new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(
+          ({ coords }) => {
+            useLocation = [coords.latitude, coords.longitude];
+            resolve(useLocation);
+          },
+          (error) => {
+            console.error(error);
+            alert("No se pudo obtener la informaci\xF3n de geolocalizaci\xF3n");
+            useLocation = [4.6771137, -74.0490971];
+            reject();
+          }
+        );
+      });
+    }
+    if (!navigator.geolocation) {
+      useLocation = [4.6771137, -74.0490971];
+    } else {
+      await getUserLocation();
+    }
+    lat = useLocation[0];
+    lng = useLocation[1];
+    mapa.setView(useLocation, 13);
     const filtros = {
       categoria: "",
       precio: ""
@@ -70,6 +95,8 @@
     const filtrarPropiedades = () => {
       const resultado = propiedades.filter((propiedad) => filtros.categoria ? filtros.categoria === propiedad.categoriaID : propiedad).filter((propiedad) => filtros.precio ? filtros.precio === propiedad.precioID : propiedad);
       mostrarPropiedades(resultado);
+      if (resultado.length > 0)
+        mapa.setView([resultado[0].lat, resultado[0].lng], 13);
       const filterbox = document.getElementById("filterbox");
       if (cantidad_propiedades.innerText == "") {
         filterbox.insertAdjacentElement("afterend", cantidad_propiedades);
