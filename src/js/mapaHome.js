@@ -118,8 +118,12 @@
 
     mostrarPropiedades(resultado)
 
-    if (resultado.length > 0)
-      mapa.setView([resultado[0].lat, resultado[0].lng], 13)
+    if (resultado.length > 0){
+      const latAvg = resultado.reduce((total, propiedad) => total + Number(propiedad.lat), 0) / resultado.length;
+      const lngAvg = resultado.reduce((total, propiedad) => total + Number(propiedad.lng), 0) / resultado.length;
+
+      mapa.setView([latAvg, lngAvg], 12)
+    }
 
     const filterbox = document.getElementById("filterbox");
 
