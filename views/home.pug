@@ -6,9 +6,19 @@ block styles
 block contenido
 
   //- pre= JSON.stringify(apartamentos, null, 3)
-  
+
   section(class="py-3")
-    h1(class="text-center text-3xl sm:text-4xl font-extrabold text-secondary")= pagina
+    div(class="relative grid grid-cols-2 rounded-lg overflow-hidden mb-10 items-center") 
+      div.absolute(class="left-5 top-5 sm:top-10 lg:left-20 lg:top-20 space-y-5 bg-white/40 backdrop-blur-lg p-4 rounded w-4/5 md:w-1/2 justify-center")
+        h1(class=" text-primary md:text-3xl lg:text-4xl font-extrabold tracking-tighter")= pagina
+        p.left-5.top-5(class="sm:top-14 lg:top-28 lg:left-20 text-secondary text-pretty hidden md:block") La casa de tus sueños es más que una estructura; es el lugar donde tus aspiraciones y felicidad se entrelazan. En nuestro sitio, estamos aquí para hacer ese sueño realidad. Con una amplia variedad de opciones y un equipo comprometido, te acompañaremos en el emocionante viaje de convertir tu visión en tu hogar ideal.
+        form.mb-5(action="/buscador" method="POST" class="lg:mb-0 hidden md:grid grid-cols-3 text-sm !*:md:text-base")
+          input(type="text" id="termino" name="termino" placeholder="Tu hogar ideal te espera..." class="p-3 rounded-lg rounded-r-none shadow col-span-2 text-xs")
+          input.w-fit.select-none.rounded-lg.rounded-l-none.text-center.text-xs.font-bold.uppercase.text-white.shadow-md.transition-all(type="submit" class='col-span-1 bg-secondary shadow-secondary/20 hover:shadow-lg hover:shadow-secondary/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none md:py-3 px-6' value="Buscar")
+      img(src='/images/fondo.jpeg' alt="Imagen de Fondo" class="w-full col-span-2")
+
+
+
     h4(class="font-bold text-sm uppercase text-secondary") Filtrar propiedades:
     nav(class="grid grid-cols-1 md:grid-cols-2 gap-2" id="filterbox")
       div(class="w-full md:w-auto flex items-center gap-2")
@@ -24,7 +34,7 @@ block contenido
           each precio in precios
             option(value=precio.id)= precio.nombre
     div(id="mapaHome" class="h-96 md:h-[600px] mt-5")
-  
+
   section.py-5
     h2.text-center.text-4xl.font-extrabold.py-10.pb-5(class="text-secondary") Últimas Casas en venta
     div(class="flex flex-col sm:flex-row flex-wrap items-center gap-x-3 justify-center")

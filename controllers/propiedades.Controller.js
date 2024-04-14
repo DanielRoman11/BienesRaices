@@ -2,7 +2,7 @@ import { validationResult } from "express-validator";
 import { Categoria, Propiedad, Precio, Mensaje, Imagen, Usuario } from "../models/index.js" 
 import { esVendedor } from "../helpers/esVendedor.js";
 import cloudinary from "../config/cloudinary.js";
-import { Sequelize, where } from "sequelize";
+import { Sequelize } from "sequelize";
 import { emailNuevoMensaje } from "../helpers/emails.js";
 
 const admin = async(req, res) => {

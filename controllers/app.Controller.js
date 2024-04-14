@@ -39,17 +39,12 @@ export const home = async(req,res) => {
   const usuario = req.usuario;
 
   res.render('home', {
-    pagina: "Home",
+    pagina: "La casa de tus sueños está aquí!",
     categorias,
     precios,
     casas,
     apartamentos,
     usuario
-  })
- 
- 
-  res.render('home', {
-    pagina: "Inicio"
   })
 }
 

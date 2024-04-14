@@ -20,7 +20,8 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"tal7aouy.icons"
+				"tal7aouy.icons",
+				"bradlc.vscode-tailwindcss"
 			]
 		}
 	}
