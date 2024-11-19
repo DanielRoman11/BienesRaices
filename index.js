@@ -21,24 +21,24 @@ app.use(cookieParser());
 
 //* Conexión a la base de datos
 try {
-  await Promise.all([
-    db.authenticate(),
-    // db.sync()
-  ])
-  .then(() => {
-    console.log("Conexión establecida ✅");
-  })
-    
-  // await db.sync();
+	await Promise.all([
+		db.authenticate(),
+		// db.sync()
+	])
+		.then(() => {
+			console.log("Conexión establecida ✅");
+		})
+
+	// await db.sync();
 } catch (err) {
-  console.error("Hubo un error en la conexión a la base de datos", err);
+	console.error("Hubo un error en la conexión a la base de datos", err);
 }
 
 //* Habilitar el template engine (PUG)
 app.set('view engine', 'pug');
 app.set('views', './views');
 
-//* Routes 
+//* Routes
 app.use('/auth', rutasUsuarios); // Esto es lo que se conoce como middleware
 app.use('/propiedades', rutasPropiedades);
 app.use('/api', rutasApi);
@@ -51,5 +51,5 @@ app.use(express.static("node_modules"));
 //* Definir un puerto y arrancar proyecto
 const port = process.env.PORT;
 app.listen(port, () => {
-  console.log(`El servidor en puerto ${port}`);
+	console.log(`Escuchando servidor en ${process.env.BACKEND_URL}`);
 });
