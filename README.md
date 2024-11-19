@@ -8,7 +8,7 @@ Plataforma de anuncios inmobiliarios que tiene como propósito facilitar la comp
 Esta aplicación es compatible con devcontainers
 
 ## Stack
-Para esta apliación se esta utilizando el siguiente stack de tecnologías: NodeJs, Express, Pug, Tailwind y MySql. 
+Para esta apliación se esta utilizando el siguiente stack de tecnologías: NodeJs, Express, Pug, Tailwind y MySql.
 
 ## Estado del proyecto
 Actualmente el proyecto se encuentra en progreso, ya se realizaron varios despliegues en producción con normalidad, pero aún no se han hecho pruebas, hacen falta varias funcionalidades como el acceso a usuarios autenticados a contenido público de otros usuarios, la pagina de inicio y la personalización del usuario.
@@ -54,7 +54,7 @@ Se esta utilizando el siguiente schema para los usuarios:
 > Aún se encuentra en desarrollo el acceso público a las propiedades de los otros usuarios. Aunque ya se tiene acceso se esta trabajando en la separación con usuarios autenticados y no autenticados en el inicio de la página.
 
 Los usuarios pueden crear una lista de propiedades que deseen vender y actualizar su estado a medida que las propiedades se venden o se retiran de la lista. Al mismo tiempo es posible editar la imagen de la propiedad, la información y la ubicación de la propiedad. El Schema utilizado es el siguiente:
-  
+
 | Campo          | Tipo         | Permite Nulos | Valor Predeterminado | Clave Primaria |
 |----------------|--------------|---------------|-----------------------|----------------|
 | id             | UUID         | No            | UUIDV4                | Sí             |
@@ -73,7 +73,7 @@ Los usuarios pueden crear una lista de propiedades que deseen vender y actualiza
 Es necesario que el usuario corra en consola el siguiente comando antes de iniciar cualquier acción de prueba, ya que es necesario instalar las librerías que se encuentran en el package.json
 `npm i`
 
-Se definieron las siguientes variables de entorno (`DotEnv`) para la ejecución del proyecto: 
+Se definieron las siguientes variables de entorno (`DotEnv`) para la ejecución del proyecto:
 
 > [!WARNING]
 > Estas pueden que cambien dependiendo de la versión del proyecto
@@ -88,7 +88,7 @@ Se definieron las siguientes variables de entorno (`DotEnv`) para la ejecución 
 2.  Nodemailer:
     - `EMAIL_HOST`
     - `EMAIL_PORT`
-    - `MAIL_USER`
+    - `EMAIL_USER`
     - `EMAIL_PASS`
 
 3.  JWT:
@@ -97,7 +97,7 @@ Se definieron las siguientes variables de entorno (`DotEnv`) para la ejecución 
 4.  Cloudinary:
     - `CLOUD_NAME
     - `CLOUD_KEY`
-    - `CLOUD_SECRET` 
+    - `CLOUD_SECRET`
 
 5.  General:
     - `BACKEND_URL`
