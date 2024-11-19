@@ -7,7 +7,6 @@ const propiedades = async(req, res) =>{
       where: {
         publicado: 1
       },
-      limit: 10, 
       include: [
         { model: Precio, as: 'precio'},
         { model: Categoria, as: 'categoria'},
@@ -15,7 +14,7 @@ const propiedades = async(req, res) =>{
         { model: Imagen, as: 'imagenes'}
       ],
     })
-  
+
     res.status(200).json(propiedades)
   } catch (error) {
     console.error("Algo salio mal!", error);
