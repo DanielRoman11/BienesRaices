@@ -2,17 +2,16 @@ version: '3.1'
 
 services:
   db:
-    image: mysql
-    command: --default-authentication-plugin=caching_sha2_password
+    image: mysql:latest
     restart: always
     ports:
-    - "3306:3306"
+      - 3306:3306
     environment:
       MYSQL_ROOT_PASSWORD: secret
-      MYSQL_USER: daker
-      MYSQL_PASSWORD: password
       MYSQL_DATABASE: bienesraices
-  
+    volumes:
+      - .:/data/db
+
   app:
     build:
       context: .
